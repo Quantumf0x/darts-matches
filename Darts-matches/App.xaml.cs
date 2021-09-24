@@ -13,5 +13,15 @@ namespace Darts_matches
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            Startup += new StartupEventHandler(App_Startup);
+        }
+
+        void App_Startup(object sender, StartupEventArgs e)
+        {
+            Window mainWindow = Darts_matches.MainWindow.Instance;
+            mainWindow.Show();
+        }
     }
 }
