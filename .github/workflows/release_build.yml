@@ -1,0 +1,43 @@
+name: Automatic Release
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Install dependencies
+      run: dotnet restore Darts-matches/darts-matches.sln --no-dependencies
+    - name: Build
+      run: dotnet build Darts-matches/darts-matches.sln --configuration Release --no-restore
+    - name: Zip the Build
+      run: 7z a Darts-matches-release-v1_${{ github.run_number }}.zip ./Darts-matches/bin/Release/netcoreapp3.1/* 
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v1.${{ github.run_number }}
+        release_name: Release v1.${{ github.run_number }}
+        body: ${{ github.event.head_commit.message }}
+        draft: false
+        prerelease: false
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./Darts-matches-release-v1_${{ github.run_number }}.zip
+        asset_name: Darts-matches-release-v1_${{ github.run_number }}.zip
+        asset_content_type: application/zip
