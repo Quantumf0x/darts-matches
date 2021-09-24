@@ -7,6 +7,11 @@
 * [ ] Bugfix
 * [ ] Custom
 
+### Urgency
+* [ ] Low
+* [ ] Medium
+* [ ] High
+
 ### Description
 <!-- type the description below -->
 
