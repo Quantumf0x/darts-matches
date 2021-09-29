@@ -1,18 +1,17 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows;
 
 namespace Darts_matches
 {
+    /// <summary>
+    /// Interaction logic for App.xaml
+    /// </summary>
     public partial class App : Application
     {
-        public App()
-        {
-            Startup += new StartupEventHandler(App_Startup);
-        }
-
-        void App_Startup(object sender, StartupEventArgs e)
-        {
-            Window applicationWindow = Darts_matches.ApplicationWindow.Instance;
-            applicationWindow.Show();
-        }
     }
 }
