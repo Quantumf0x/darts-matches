@@ -23,7 +23,10 @@ namespace Darts_matches
 
         private void OnKeyDown(object sender, KeyEventArgs keyEventArguments)
         {
-
+            if (keyEventArguments.Key == Key.Left)
+            {
+                ApplicationWindow.Instance.SetFrame(new MainMenuPage());
+            }
             if (keyEventArguments.Key == Key.Right)
             {
                 ApplicationWindow.Instance.SetFrame(new PlayerInputPage());

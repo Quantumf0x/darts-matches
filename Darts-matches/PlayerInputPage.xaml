@@ -9,7 +9,12 @@
     <Grid  Name="PlayerInputGrid" KeyDown="OnKeyDown" Focusable="True" Loaded="PlayerInputGridOnLoaded">
         <Grid.Resources>
             <Style TargetType="Button">
-                <Setter Property="Margin" Value="10,10,10,10" />
+                <Setter Property="Margin" Value="10,60,10,20" />
+                <Setter Property="Padding" Value="280,20,280,20" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="Background" Value="#0078D7" />
+                <Setter Property="Foreground" Value="White" />
             </Style>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
@@ -22,6 +27,6 @@
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <Label Grid.Column="1" Grid.Row="0"  Content="Vul hier de naam van de spelers in" HorizontalContentAlignment="Center" FontSize="20"/>
-        <Button Grid.Column="1" Grid.Row="1" Content="Volgende" Click="MatchScoresInputPage" Background="#0078D7" Foreground="White" Padding="280,20,280,20" BorderThickness="0" Margin="10, 60, 10, 20" FontSize="20"/>
+        <Button Grid.Column="1" Grid.Row="1" Content="Volgende" Click="MatchScoresInputPage" />
     </Grid>
 </Page>
