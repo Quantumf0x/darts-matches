@@ -6,7 +6,7 @@ namespace Darts_matches
     public partial class ApplicationWindow : Window
     {
         public static ApplicationWindow Instance { get; private set; }
-        
+
         static ApplicationWindow()
         {
             Instance = new ApplicationWindow();
