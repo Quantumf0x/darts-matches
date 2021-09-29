@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Darts_matches"
         mc:Ignorable="d"
         Title="MatchResultsWindow" >
-    <Grid>
+    <Grid Name="MatchResultsGrid" KeyDown="OnKeyDown" Focusable="True" Loaded="MatchResultsGridOnLoaded">
         <Grid.Resources>
             <Style TargetType="Button">
                 <Setter Property="Margin" Value="10,10,10,10" />
@@ -20,6 +20,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <Label Grid.Column="1" Grid.Row="0"  Content="Resultaten van de wedstrijd" HorizontalContentAlignment="Center"/>
+        <Label Grid.Column="1" Grid.Row="0"  Content="Resultaten van de wedstrijd" HorizontalContentAlignment="Center" FontSize="20"/>
     </Grid>
 </Page>

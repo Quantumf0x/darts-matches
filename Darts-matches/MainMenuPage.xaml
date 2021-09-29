@@ -7,7 +7,7 @@
       mc:Ignorable="d"
       Title="MainMenu">
 
-    <Grid>
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid.Resources>
             <Style TargetType="Button">
                 <Setter Property="Margin" Value="10,10,10,10" />
@@ -23,10 +23,12 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <Label Grid.Column="1" Grid.Row="0"  Content="Darts Applicatie" HorizontalContentAlignment="Center"/>
-        <Button Grid.Column="1" Grid.Row="1" Content="Start" Click="OpenDartMatchInputPage"/>
-        <Button Grid.Column="1" Grid.Row="2" Content="Overzicht" Click="OpenMatchOverviewPage" />
-        <Button Grid.Column="1" Grid.Row="3" Content="Help" Click="OpenHelpPage" />
+        <Label Grid.Column="1" Grid.Row="0"  Content="Dart Applicatie" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontSize="40"/>
+        <Label Grid.Column="1" Grid.Row="1"  Content="Voor dart wedstrijden" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontSize="20"/>
+        <Button Grid.Column="1" Grid.Row="2" Content="Start" Click="OpenDartMatchInputPage" Background="#0078D7" Foreground="White" Padding="280,20,280,20" BorderThickness="0" Margin="10, 60, 10, 20" FontSize="20"/>
+        <Button Grid.Column="1" Grid.Row="3" Content="Overzicht" Click="OpenMatchOverviewPage" Background="#0078D7" Foreground="White" Padding="280,20,280,20" BorderThickness="0" Margin="10, 20, 10, 20" FontSize="20"/>
+        <Button Grid.Column="1" Grid.Row="4" Content="Help" Click="OpenHelpPage" Background="#0078D7" Foreground="White" Padding="280,20,280,20" BorderThickness="0" Margin="10, 20, 10, 20" FontSize="20"/>
     </Grid>
 </Page>

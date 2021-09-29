@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Darts_matches
 {
@@ -11,7 +12,24 @@ namespace Darts_matches
         }
         private void MatchScoresInputPage(object sender, RoutedEventArgs eventArguments)
         {
-            MainWindow.Instance.SetFrame(new MatchScoresInputPage());
+            ApplicationWindow.Instance.SetFrame(new MatchScoresInputPage());
+        }
+
+        private void PlayerInputGridOnLoaded(object sender, RoutedEventArgs routedEventArgs)
+        {
+            PlayerInputGrid.Focus();
+        }
+
+        private void OnKeyDown(object sender, KeyEventArgs keyEventArguments)
+        {
+            if (keyEventArguments.Key == Key.Left)
+            {
+                ApplicationWindow.Instance.SetFrame(new MatchInputPage());
+            }
+            if (keyEventArguments.Key == Key.Right)
+            {
+                ApplicationWindow.Instance.SetFrame(new MatchScoresInputPage());
+            }
         }
     }
 }

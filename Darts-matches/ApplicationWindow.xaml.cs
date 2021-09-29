@@ -3,15 +3,16 @@ using System.Windows.Controls;
 
 namespace Darts_matches
 {
-    public partial class MainWindow : Window
+    public partial class ApplicationWindow : Window
     {
-        public static MainWindow Instance { get; private set; }
-
-        static MainWindow()
+        public static ApplicationWindow Instance { get; private set; }
+        
+        static ApplicationWindow()
         {
-            Instance = new MainWindow();
+            Instance = new ApplicationWindow();
         }
-        private MainWindow()
+
+        private ApplicationWindow()
         {
             InitializeComponent();
             Loaded += LoadNewWindow;
@@ -22,9 +23,9 @@ namespace Darts_matches
             SetFrame(new MainMenuPage());
         }
 
-        public void SetFrame(Page newWindow)
+        public void SetFrame(Page newPage)
         {
-            frame.NavigationService.Navigate(newWindow);
+            frame.NavigationService.Navigate(newPage);
         }
     }
 }

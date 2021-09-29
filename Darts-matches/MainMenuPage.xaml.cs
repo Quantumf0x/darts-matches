@@ -12,17 +12,17 @@ namespace Darts_matches
 
         private void OpenDartMatchInputPage(object sender, RoutedEventArgs eventArguments)
         {
-            MainWindow.Instance.SetFrame(new MatchInputPage());
+            ApplicationWindow.Instance.SetFrame(new MatchInputPage());
         }
 
         private void OpenMatchOverviewPage(object sender, RoutedEventArgs eventArguments)
         {
-            MainWindow.Instance.SetFrame(new MatchOverviewPage());
+            ApplicationWindow.Instance.SetFrame(new MatchOverviewPage());
         }
 
         private void OpenHelpPage(object sender, RoutedEventArgs eventArguments)
         {
-            MainWindow.Instance.SetFrame(new HelpPage());
+            ApplicationWindow.Instance.SetFrame(new HelpPage());
         }
     }
 }
