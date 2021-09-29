@@ -26,6 +26,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <Label Grid.Column="1" Grid.Row="0"  Content="Overzicht aan gespeelde wedstrijden" HorizontalContentAlignment="Center" FontSize="20"/>
+        <Label Grid.Column="1" Grid.Row="0"  Content="Overzicht van gespeelde wedstrijden" HorizontalContentAlignment="Center" FontSize="20"/>
     </Grid>
 </Page>
