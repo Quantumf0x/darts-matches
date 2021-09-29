@@ -30,8 +30,8 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <Label Grid.Column="1" Grid.Row="0"  Content="Dart Applicatie" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontSize="40"/>
-        <Label Grid.Column="1" Grid.Row="1"  Content="Voor dart wedstrijden" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontSize="20"/>
+        <Label Grid.Column="1" Grid.Row="0"  Content="Dartapplicatie" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontSize="40"/>
+        <Label Grid.Column="1" Grid.Row="1"  Content="Voor dartwedstrijden" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontSize="20"/>
         <Button Grid.Column="1" Grid.Row="2" Content="Start" Click="OpenDartMatchInputPage" />
         <Button Grid.Column="1" Grid.Row="3" Content="Overzicht" Click="OpenMatchOverviewPage" />
         <Button Grid.Column="1" Grid.Row="4" Content="Help" Click="OpenHelpPage" />

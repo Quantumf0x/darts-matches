@@ -8,6 +8,13 @@
         WindowState="Maximized"
         Title="MainWindow">
     <Grid>
-        <Frame x:Name="frame" Content="Frame" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" NavigationUIVisibility="Hidden"></Frame>
+        <Frame x:Name="frame" 
+               Content="Frame" 
+               Margin="0" HorizontalAlignment="Stretch" 
+               VerticalAlignment="Stretch" 
+               HorizontalContentAlignment="Stretch"
+               VerticalContentAlignment="Stretch" 
+               NavigationUIVisibility="Hidden">
+        </Frame>
     </Grid>
 </Window>
