@@ -9,5 +9,25 @@ namespace Darts_matches.Models
         int setNumber;
         Player winner;
         List<Leg> legs;
+
+        public Set(int setNumber)
+        {
+            this.setNumber = setNumber;
+        }
+
+        public void calculateWinner()
+        {
+            // Logic to calculate the winner of the set
+            Player winner = null;
+            this.winner = winner;
+        }
+
+        public Leg createNewLeg()
+        {
+            int legNumber = legs.Count + 1;
+            Leg leg = new Leg(legNumber);
+            legs.Add(leg);
+            return leg;
+        }
     }
 }
