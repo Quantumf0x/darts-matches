@@ -16,9 +16,10 @@ namespace Darts_matches.Models
         Player winner;
 
         int numberOfSets;
+        int numberOfLegsPerSet;
         List<Set> sets;
 
-        public Match(string name, string tournament, string inputField, Player playerOne, Player playerTwo, int numberOfSets)
+        public Match(string name, string tournament, string inputField, Player playerOne, Player playerTwo, int numberOfSets, int numberOfLegsPerSet)
         {
             this.name = name;
             this.tournament = tournament;
@@ -27,6 +28,12 @@ namespace Darts_matches.Models
             this.playerOne = playerOne;
             this.playerTwo = playerTwo;
             this.numberOfSets = numberOfSets;
+            this.numberOfLegsPerSet = numberOfLegsPerSet;
+
+            for (int i = 0; i < numberOfSets; i++)
+            {
+                createNewSet();
+            }
         }
 
         public void calculateWinner()
@@ -36,10 +43,10 @@ namespace Darts_matches.Models
             this.winner = winner;
         }
 
-        public Set createNewSet()
+        private void createNewSet()
         {
             int setNumber = sets.Count + 1;
-            Set set = new Set(setNumber);
+            Set set = new Set(setNumber, numberOfLegsPerSet);
             sets.Add(set);
             return set;
         }

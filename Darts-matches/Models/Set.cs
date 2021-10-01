@@ -7,12 +7,19 @@ namespace Darts_matches.Models
     class Set
     {
         int setNumber;
+        int numberOfLegs;
         Player winner;
         List<Leg> legs;
 
-        public Set(int setNumber)
+        public Set(int setNumber, int numberOfLegs)
         {
             this.setNumber = setNumber;
+            this.numberOfLegs = numberOfLegs;
+
+            for (int i = 0; i < numberOfLegs; i++)
+            {
+                createNewLeg();
+            }
         }
 
         public void calculateWinner()
@@ -22,7 +29,7 @@ namespace Darts_matches.Models
             this.winner = winner;
         }
 
-        public Leg createNewLeg()
+        private void createNewLeg()
         {
             int legNumber = legs.Count + 1;
             Leg leg = new Leg(legNumber);
