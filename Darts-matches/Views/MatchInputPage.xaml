@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Darts_matches"
         mc:Ignorable="d"
         Title="MatchInputWindow" >
-    <Grid Name="MatchInputGrid" KeyDown="OnKeyDown" Focusable="True" Loaded="MatchInputGridOnLoaded">
+    <Grid Name="MatchInputGrid">
         <Grid.Resources>
             <Style TargetType="Button">
                 <Setter Property="Margin" Value="10,60,10,20" />

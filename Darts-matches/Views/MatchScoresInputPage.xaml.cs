@@ -4,7 +4,7 @@ using System.Windows.Input;
 
 namespace Darts_matches
 {
-    public partial class MatchScoresInputPage : Page
+    public partial class MatchScoresInputPage : Page, IKeyHandler
     {
         public MatchScoresInputPage()
         {
@@ -15,20 +15,18 @@ namespace Darts_matches
             ApplicationWindow.Instance.SetFrame(new MatchResultsPage());
         }
 
-        private void MatchScoresInputGridOnLoaded(object sender, RoutedEventArgs routedEventArgs)
+        void IKeyHandler.handleKeyEvent(KeyEventArgs keyEventArgs)
         {
-            MatchScoresInputGrid.Focus();
-        }
-
-        private void OnKeyDown(object sender, KeyEventArgs keyEventArguments)
-        {
-            if (keyEventArguments.Key == Key.Left)
+            switch (keyEventArgs.Key)
             {
-                ApplicationWindow.Instance.SetFrame(new PlayerInputPage());
-            }
-            if (keyEventArguments.Key == Key.Right)
-            {
-                ApplicationWindow.Instance.SetFrame(new MatchResultsPage());
+                case Key.Left:
+                    ApplicationWindow.Instance.SetFrame(new PlayerInputPage());
+                    break;
+                case Key.Right:
+                    ApplicationWindow.Instance.SetFrame(new MatchResultsPage());
+                    break;
+                default:
+                    break;
             }
         }
     }
