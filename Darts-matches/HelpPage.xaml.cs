@@ -19,7 +19,7 @@ namespace Darts_matches
 
         void IKeyHandler.handleKeyEvent(KeyEventArgs keyEventArgs)
         {
-            if(keyEventArgs.Key == Key.Escape)
+            if (keyEventArgs.Key == Key.Escape)
             {
                 ApplicationWindow.Instance.SetFrame(_previousContext);
             }
