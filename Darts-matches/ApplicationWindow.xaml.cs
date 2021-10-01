@@ -40,7 +40,10 @@ namespace Darts_matches
 
         private void HandleKeyPress(object sender, KeyEventArgs keyEventArgs)
         {
-            if (_context is IKeyHandler) ((IKeyHandler)_context).handleKeyEvent(keyEventArgs);
+            if (_context is IKeyHandler)
+            {
+                ((IKeyHandler)_context).handleKeyEvent(keyEventArgs);
+            }
         }
     }
 }
