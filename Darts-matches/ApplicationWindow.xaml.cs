@@ -8,7 +8,7 @@ namespace Darts_matches
     {
         public static ApplicationWindow Instance { get; private set; }
 
-        private Page Context;
+        private Page _context;
 
         static ApplicationWindow()
         {
@@ -29,7 +29,7 @@ namespace Darts_matches
         public void SetFrame(Page newPage)
         {
             frame.NavigationService.Navigate(newPage);
-            Context = newPage;
+            _context = newPage;
         }
 
         private void UserControlOnLoaded(object sender, RoutedEventArgs routedEventArgs)
@@ -40,7 +40,7 @@ namespace Darts_matches
 
         private void HandleKeyPress(object sender, KeyEventArgs keyEventArgs)
         {
-            if (Context is IKeyHandler) ((IKeyHandler)Context).handleKeyEvent(keyEventArgs);
+            if (_context is IKeyHandler) ((IKeyHandler)_context).handleKeyEvent(keyEventArgs);
         }
     }
 }
