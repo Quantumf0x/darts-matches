@@ -8,6 +8,7 @@
         WindowState="Maximized"
         Title="MainWindow">
     <Grid>
+        <UserControl Loaded="UserControlOnLoaded"/>
         <Frame x:Name="frame" 
                Content="Frame" 
                Margin="0" HorizontalAlignment="Stretch" 
