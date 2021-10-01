@@ -4,23 +4,22 @@ using System.Windows.Input;
 
 namespace Darts_matches
 {
-    public partial class MatchResultsPage : Page
+    public partial class MatchResultsPage : Page, IKeyHandler
     {
         public MatchResultsPage()
         {
             InitializeComponent();
         }
 
-        private void MatchResultsGridOnLoaded(object sender, RoutedEventArgs routedEventArgs)
+        void IKeyHandler.handleKeyEvent(KeyEventArgs keyEventArgs)
         {
-            MatchResultsGrid.Focus();
-        }
-
-        private void OnKeyDown(object sender, KeyEventArgs keyEventArguments)
-        {
-            if (keyEventArguments.Key == Key.Left)
+            switch (keyEventArgs.Key)
             {
-                ApplicationWindow.Instance.SetFrame(new MatchScoresInputPage());
+                case Key.Left:
+                    ApplicationWindow.Instance.SetFrame(new MatchScoresInputPage());
+                    break;
+                default:
+                    break;
             }
         }
     }

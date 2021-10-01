@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Darts_matches"
         mc:Ignorable="d"
         Title="PlayerInputWindow">
-    <Grid  Name="PlayerInputGrid" KeyDown="OnKeyDown" Focusable="True" Loaded="PlayerInputGridOnLoaded">
+    <Grid  Name="PlayerInputGrid">
         <Grid.Resources>
             <Style TargetType="Button">
                 <Setter Property="Margin" Value="10,60,10,20" />
