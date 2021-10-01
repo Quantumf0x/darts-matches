@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Darts_matches.Models
 {
-    enum Area
+    internal enum Area
     {
         Single,
         Double,

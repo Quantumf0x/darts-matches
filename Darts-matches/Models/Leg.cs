@@ -4,36 +4,41 @@ using System.Text;
 
 namespace Darts_matches.Models
 {
-    class Leg
+    internal class Leg
     {
-        int legNumber;
-        Player winner;
-        List<Throw> throws;
-        int scorePlayerOne;
-        int scorePlayerTwo;
+        private int _legNumber;
+        private Player _winner;
+        private List<Throw> _throws;
+        private int _scorePlayerOne;
+        private int _scorePlayerTwo;
+
+        public int LegNumber { get => _legNumber; }
+        public Player Winner { get => _winner; }
+        public int ScorePlayerOne { get => _scorePlayerOne; }
+        public int ScorePlayerTwo { get => _scorePlayerTwo; }
 
         public Leg(int legNumber)
         {
-            this.legNumber = legNumber;
+            _legNumber = legNumber;
         }
 
         public void calculateWinner()
         {
             // Logic to calculate the winner of the set
             Player winner = null;
-            this.winner = winner;
+            _winner = winner;
         }
 
         public void addThrow(Player player)
         {
-            throws.Add(player.getLatestThrow());
+            _throws.Add(player.getLatestThrow());
         }
 
         public void calculateScoresPerPlayer()
         {
             // Logic to calculate score per player
-            scorePlayerOne = 0;
-            scorePlayerTwo = 0;
+            _scorePlayerOne = 0;
+            _scorePlayerTwo = 0;
         }
     }
 }

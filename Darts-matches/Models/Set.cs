@@ -4,17 +4,20 @@ using System.Text;
 
 namespace Darts_matches.Models
 {
-    class Set
+    internal class Set
     {
-        int setNumber;
-        int numberOfLegs;
-        Player winner;
-        List<Leg> legs;
+        private int _setNumber;
+        private int _numberOfLegs;
+        private Player _winner;
+        private List<Leg> _legs;
+
+        public int SetNumber { get => _setNumber; }
+        public Player Winner { get => _winner; }
 
         public Set(int setNumber, int numberOfLegs)
         {
-            this.setNumber = setNumber;
-            this.numberOfLegs = numberOfLegs;
+            _setNumber = setNumber;
+            _numberOfLegs = numberOfLegs;
 
             for (int i = 0; i < numberOfLegs; i++)
             {
@@ -26,15 +29,14 @@ namespace Darts_matches.Models
         {
             // Logic to calculate the winner of the set
             Player winner = null;
-            this.winner = winner;
+            _winner = winner;
         }
 
         private void createNewLeg()
         {
-            int legNumber = legs.Count + 1;
+            int legNumber = _legs.Count + 1;
             Leg leg = new Leg(legNumber);
-            legs.Add(leg);
-            return leg;
+            _legs.Add(leg);
         }
     }
 }
