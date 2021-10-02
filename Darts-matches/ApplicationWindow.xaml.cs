@@ -46,6 +46,10 @@ namespace Darts_matches
                 helpPage.SetPreviousContext(_context);
                 SetFrame(helpPage);
             }
+            else if (keyEventArgs.Key == Key.F2 && !(_context is MainMenuPage))
+            {
+                SetFrame(new MainMenuPage());
+            }
             else if (_context is IKeyHandler)
             {
                 ((IKeyHandler)_context).handleKeyEvent(keyEventArgs);
