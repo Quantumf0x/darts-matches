@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Darts_matches.Models
 {
@@ -21,18 +19,18 @@ namespace Darts_matches.Models
 
             for (int i = 0; i < numberOfLegs; i++)
             {
-                createNewLeg();
+                CreateNewLeg();
             }
         }
 
-        public void calculateWinner()
+        // TODO: add logic to calculate the winner of the set
+        public void CalculateWinner()
         {
-            // Logic to calculate the winner of the set
             Player winner = null;
             _winner = winner;
         }
 
-        private void createNewLeg()
+        private void CreateNewLeg()
         {
             int legNumber = _legs.Count + 1;
             Leg leg = new Leg(legNumber);

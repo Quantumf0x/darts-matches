@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Darts_matches.Models
 {
@@ -22,21 +20,21 @@ namespace Darts_matches.Models
             _legNumber = legNumber;
         }
 
-        public void calculateWinner()
+        // TODO: add logic to calculate the winner of the set
+        public void CalculateWinner()
         {
-            // Logic to calculate the winner of the set
             Player winner = null;
             _winner = winner;
         }
 
-        public void addThrow(Player player)
+        public void AddThrow(Player player)
         {
-            _throws.Add(player.getLatestThrow());
+            _throws.Add(player.GetLatestThrow());
         }
 
-        public void calculateScoresPerPlayer()
+        // TODO: add logic to calculate score per player
+        public void CalculateScoresPerPlayer()
         {
-            // Logic to calculate score per player
             _scorePlayerOne = 0;
             _scorePlayerTwo = 0;
         }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Darts_matches.Models
 {
@@ -8,7 +7,7 @@ namespace Darts_matches.Models
     {
         private string _name;
         private string _tournament;
-        private string _freeInput;
+        private string _notes;
         private DateTime _date;
         private Player _playerOne;
         private Player _playerTwo;
@@ -19,18 +18,18 @@ namespace Darts_matches.Models
 
         public string Name { get => _name; }
         public string Tournament { get => _tournament; }
-        public string FreeInput { get => _freeInput; }
+        public string FreeInput { get => _notes; }
         public DateTime Date { get => _date; }
         public Player PlayerOne { get => _playerOne; }
         public Player PlayerTwo { get => _playerTwo; }
         public Player Winner { get => _winner; }
 
 
-        public Match(string name, string tournament, string freeInput, Player playerOne, Player playerTwo, int numberOfSets, int numberOfLegsPerSet)
+        public Match(string name, string tournament, string notes, Player playerOne, Player playerTwo, int numberOfSets, int numberOfLegsPerSet)
         {
             _name = name;
             _tournament = tournament;
-            _freeInput = freeInput;
+            _notes = notes;
             _date = DateTime.Today;
             _playerOne = playerOne;
             _playerTwo = playerTwo;
@@ -39,18 +38,18 @@ namespace Darts_matches.Models
 
             for (int i = 0; i < numberOfSets; i++)
             {
-                createNewSet();
+                CreateNewSet();
             }
         }
 
-        public void calculateWinner()
+        // TODO: add logic to calculate the winner of the match
+        public void CalculateWinner()
         {
-            // Logic to calculate the winner of the match
             Player winner = null;
             _winner = winner;
         }
 
-        private void createNewSet()
+        private void CreateNewSet()
         {
             int setNumber = _sets.Count + 1;
             Set set = new Set(setNumber, _numberOfLegsPerSet);

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Darts_matches.Models
+﻿namespace Darts_matches.Models
 {
     internal enum Area
     {

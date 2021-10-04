@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Darts_matches.Models
+﻿namespace Darts_matches.Models
 {
     internal class Throw
     {
@@ -21,9 +17,9 @@ namespace Darts_matches.Models
             _number = number;
         }
 
-        public void calculateScore()
+        // TODO: add logic to multiply area with number (triple 5 = 15 for example)
+        public void CalculateScore()
         {
-            // Logic to multiply area with number (triple 5 = 15 for example)
             _score = 0;
         }
     }
