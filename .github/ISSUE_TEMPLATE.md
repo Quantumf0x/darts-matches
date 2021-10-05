@@ -2,7 +2,6 @@
 labels: bug
 ---
 # Issue
-
 ### Development category
 <!-- place an x and remove the space between the [] -->
 <!-- also please add the corresponding label on the right -->
