@@ -82,7 +82,7 @@ namespace Darts_matches
 
         private bool validateInputSets(int sets)
         {
-            if (Int32.TryParse(SetsInputBox.Text, out sets))
+            if (int.TryParse(SetsInputBox.Text, out sets))
             {
                 SetsInputBox.BorderBrush = System.Windows.Media.Brushes.Gray;
                 return true;
