@@ -16,6 +16,10 @@
                 <Setter Property="Background" Value="#0078D7" />
                 <Setter Property="Foreground" Value="White" />
             </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Margin" Value="10,60,10,20" />
+                <Setter Property="Padding" Value="20,20,20,20" />
+            </Style>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -26,7 +30,9 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <Label Grid.Column="1" Grid.Row="0"  Content="Vul hier de naam van de wedstrijd in" HorizontalContentAlignment="Center" FontSize="20"/>
-        <Button Grid.Column="1" Grid.Row="1" Content="Volgende" Click="PlayerInputPage"/>
+        <Label Grid.Column="1" Grid.Row="0"  Content="Vul de hier de datum in" HorizontalContentAlignment="Center" FontSize="20"/>
+        <TextBox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" x:Name="DateInputBox"/>
+        <Label Grid.Column="1" Grid.Row="3"  Content="Vul hier de naam van de wedstrijd in" HorizontalContentAlignment="Center" FontSize="20"/>
+        <Button Grid.Column="1" Grid.Row="2" Content="Volgende" Click="PlayerInputPage"/>
     </Grid>
 </Page>
