@@ -27,7 +27,7 @@ namespace Darts_matches
 
             if (this.validateInput(datetime))
             {
-                this._match.setDate(datetime);
+                this._match.Date = datetime;
                 ApplicationWindow.Instance.SetFrame(new PlayerInputPage());
             }
             else
@@ -42,7 +42,7 @@ namespace Darts_matches
 
             if (this.validateInput(datetime))
             {
-                this._match.setDate(datetime);
+                this._match.Date = datetime;
                 switch (keyEventArgs.Key)
                 {
                     case Key.Left:
