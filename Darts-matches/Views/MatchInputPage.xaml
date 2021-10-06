@@ -30,7 +30,6 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <Label Grid.Column="1" Grid.Row="0"  Content="Vul de hier het aantal sets in" HorizontalContentAlignment="Center" FontSize="20"/>
         <TextBox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" x:Name="SetsInputBox" />
