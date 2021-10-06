@@ -29,7 +29,7 @@ namespace Darts_matches
             {
                 this._match.setDate(datetime);
                 ApplicationWindow.Instance.SetFrame(new PlayerInputPage());
-            } 
+            }
             else
             {
                 DateInputBox.BorderBrush = System.Windows.Media.Brushes.Red;
@@ -54,7 +54,7 @@ namespace Darts_matches
                     default:
                         break;
                 }
-            } 
+            }
             else
             {
                 DateInputBox.BorderBrush = System.Windows.Media.Brushes.Red;
@@ -74,11 +74,11 @@ namespace Darts_matches
                 {
                     return false;
                 }
-            } 
+            }
             else
             {
                 return true;
-            } 
+            }
         }
     }
 }

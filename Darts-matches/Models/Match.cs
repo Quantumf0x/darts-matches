@@ -56,11 +56,6 @@ namespace Darts_matches.Models
             _sets.Add(set);
         }
 
-        public DateTime getDate()
-        {
-            return this._date;
-        }
-
         public void setDate(DateTime date)
         {
             this._date = date;
