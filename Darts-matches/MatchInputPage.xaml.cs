@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -11,7 +12,7 @@ namespace Darts_matches
             InitializeComponent();
         }
 
-        private void PlayerInputPage(object sender, RoutedEventArgs eventArguments)
+        private void btn_next_Click(object sender, RoutedEventArgs eventArguments)
         {
             ApplicationWindow.Instance.SetFrame(new PlayerInputPage());
         }
@@ -39,6 +40,36 @@ namespace Darts_matches
         private void btn_help_Click(object sender, RoutedEventArgs e)
         {
             ApplicationWindow.Instance.SetFrame(new HelpPage());
+        }
+
+        private void btn_add_leg_Click(object sender, RoutedEventArgs e)
+        {
+            int currentNrOfLegs = int.Parse(lbl_nr_of_legs.Text);
+            currentNrOfLegs++;
+            lbl_nr_of_legs.Text = currentNrOfLegs.ToString();
+        }
+
+        private void btn_del_leg_Click(object sender, RoutedEventArgs e)
+        {
+            int currentNrOfLegs = int.Parse(lbl_nr_of_legs.Text);
+            currentNrOfLegs--;
+            if (currentNrOfLegs > 0) lbl_nr_of_legs.Text = currentNrOfLegs.ToString();
+            else lbl_nr_of_legs.Text = "0";
+        }
+
+        private void btn_add_set_Click(object sender, RoutedEventArgs e)
+        {
+            int currentNrOfSets = int.Parse(lbl_nr_of_sets.Text);
+            currentNrOfSets++;
+            lbl_nr_of_sets.Text = currentNrOfSets.ToString();
+        }
+
+        private void btn_del_set_Click(object sender, RoutedEventArgs e)
+        {
+            int currentNrOfSets = int.Parse(lbl_nr_of_sets.Text);
+            currentNrOfSets--;
+            if (currentNrOfSets > 0) lbl_nr_of_sets.Text = currentNrOfSets.ToString();
+            else lbl_nr_of_sets.Text = "0";
         }
     }
 }
