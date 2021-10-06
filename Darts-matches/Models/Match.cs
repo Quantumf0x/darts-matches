@@ -23,6 +23,7 @@ namespace Darts_matches.Models
         public Player PlayerOne { get => _playerOne; }
         public Player PlayerTwo { get => _playerTwo; }
         public Player Winner { get => _winner; }
+        public int NumberOfSets { get => _numberOfSets; set => _numberOfSets = value; }
 
 
         public Match(string name, string tournament, string notes, Player playerOne, Player playerTwo, int numberOfSets, int numberOfLegsPerSet)
