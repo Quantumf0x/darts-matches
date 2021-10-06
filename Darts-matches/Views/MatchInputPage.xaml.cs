@@ -27,6 +27,7 @@ namespace Darts_matches
 
             if (this.validateInput(datetime))
             {
+                this._match.setDate(datetime);
                 ApplicationWindow.Instance.SetFrame(new PlayerInputPage());
             } else
             {
@@ -37,8 +38,10 @@ namespace Darts_matches
         void IKeyHandler.handleKeyEvent(KeyEventArgs keyEventArgs)
         {
             DateTime datetime = new DateTime();
+
             if (this.validateInput(datetime))
             {
+                this._match.setDate(datetime);
                 switch (keyEventArgs.Key)
                 {
                     case Key.Left:
@@ -58,14 +61,21 @@ namespace Darts_matches
 
         private bool validateInput(DateTime date)
         {
-            var formats = new[] { "dd/MM/yyyy", "yyyy-MM-dd" };
-            if (DateTime.TryParseExact(DateInputBox.Text, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+            if (DateInputBox.Text != "")
             {
-                return true;
+                var formats = new[] { "dd/MM/yyyy", "yyyy-MM-dd" };
+                if (DateTime.TryParseExact(DateInputBox.Text, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             } else
             {
-                return false;
-            }
+                return true;
+            } 
         }
     }
 }
