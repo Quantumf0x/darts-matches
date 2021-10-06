@@ -30,5 +30,15 @@ namespace Darts_matches
                     break;
             }
         }
+
+        private void btn_main_Click(object sender, RoutedEventArgs e)
+        {
+            ApplicationWindow.Instance.SetFrame(new MainMenuPage());
+        }
+
+        private void btn_help_Click(object sender, RoutedEventArgs e)
+        {
+            ApplicationWindow.Instance.SetFrame(new HelpPage());
+        }
     }
 }
