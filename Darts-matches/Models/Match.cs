@@ -19,7 +19,7 @@ namespace Darts_matches.Models
         public string Name { get => _name; }
         public string Tournament { get => _tournament; }
         public string FreeInput { get => _notes; }
-        public DateTime Date { get => _date; }
+        public DateTime Date { get => _date; set => _date = value; }
         public Player PlayerOne { get => _playerOne; }
         public Player PlayerTwo { get => _playerTwo; }
         public Player Winner { get => _winner; }
