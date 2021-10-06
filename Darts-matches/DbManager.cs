@@ -9,8 +9,16 @@ namespace Darts_matches
 {
     public class DbManager
     {
-        private string state;
-        public string getState() { return state; }
+        private string projectDir = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.Parent.FullName;
+        private SqlConnection connection;
+
+        private string state1;
+        private string state2;
+        public string getState1() { return state1; }
+        public string getState2() { return state2; }
+
+        private bool succes;
+        public bool getSucces() { return succes; }
 
         private DbManager() { }
 
@@ -25,19 +33,62 @@ namespace Darts_matches
             return _instance;
         }
 
-        private void connect()
-        {
-            string projectDir = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.Parent.FullName;
-            using (SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='" + projectDir.ToString() + @"\Darts-matches\DatabaseMatches.mdf';Integrated Security=True"))
-            {
-                connection.Open();
-                state = connection.State.ToString();
-            }
-        }
-
-        public void addToDatabase()
+        public void testConnection()
         {
             connect();
+            close();
+        }
+
+        private void setConnection()
+        {
+            connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='" + projectDir.ToString() + @"\Darts-matches\DatabaseMatches.mdf';Integrated Security=True");
+        }
+
+        private void connect()
+        {
+            if (connection == null)
+            {
+                setConnection();
+            }
+
+            connection.Open();
+            state1 = connection.State.ToString();
+        }
+
+        private void close()
+        {
+            connection.Close();
+            state2 = connection.State.ToString();
+        }
+
+        public void addToDatabase(string match_name, string empty_input_field, string winner, string player1, string player2, string sets_won_by, string legs_won_per_set_player1, string legs_won_per_set_player2, int average_per_3_darts_total_player1, int average_per_3_darts_total_player2, string average_per_3_darts_per_set_player1, string average_per_3_darts_per_set_player2, string average_per_3_darts_per_leg_player1, string average_per_3_darts_per_leg_player2, int number_180_player1, int number_180_player2, DateTime date)
+        {
+            connect();
+
+            SqlCommand command = connection.CreateCommand();
+            command.CommandText = "INSERT INTO dbo.matches (" +
+                "tournement_name, empty_input_field, winner, " +
+                "player1, player2, sets_won_by, legs_won_per_set_player1, " +
+                "legs_won_per_set_player2, average_per_3_darts_total_player1, average_per_3_darts_total_player2, " +
+                "average_per_3_darts_per_set_player1, average_per_3_darts_per_set_player2, average_per_3_darts_per_leg_player1, " +
+                "average_per_3_darts_per_leg_player2, number_180_player1, number_180_player2, " +
+                "datum) " +
+                "VALUES ('" + match_name + "', '" + empty_input_field + "', '" + winner + "'," +
+                " '" + player1 + "', '" + player2 + "', '" + sets_won_by + "'," +
+                " '" + legs_won_per_set_player1 + "', '" + legs_won_per_set_player2 + "', '" + average_per_3_darts_total_player1 + "'," +
+                " '" + average_per_3_darts_total_player2 + "', '" + average_per_3_darts_per_set_player1 + "', '" + average_per_3_darts_per_set_player2 + "'," +
+                " '" + average_per_3_darts_per_leg_player1 + "', '" + average_per_3_darts_per_leg_player2 + "', '" + number_180_player1 + "'," +
+                " '" + number_180_player2 + "', '" + date + "')";
+            if (command.ExecuteNonQuery() == 1)
+            {
+                succes = true;
+            }
+            else
+            {
+                succes = false;
+            }
+
+            close();
         }
 
         public void pullFromDatabase()
