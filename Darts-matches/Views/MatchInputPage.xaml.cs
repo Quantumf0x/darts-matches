@@ -24,25 +24,25 @@ namespace Darts_matches
         private void PlayerInputPage(object sender, RoutedEventArgs eventArguments)
         {
             DateTime datetime = new DateTime();
+            int numberOfSets = 0;
 
-            if (this.validateInput(datetime))
+            if (this.validateInput(datetime) && this.validateInputSets(numberOfSets))
             {
                 this._match.Date = datetime;
+                this._match.NumberOfSets = numberOfSets;
                 ApplicationWindow.Instance.SetFrame(new PlayerInputPage());
-            }
-            else
-            {
-                DateInputBox.BorderBrush = System.Windows.Media.Brushes.Red;
             }
         }
 
         void IKeyHandler.handleKeyEvent(KeyEventArgs keyEventArgs)
         {
             DateTime datetime = new DateTime();
+            int numberOfSets = 0;
 
-            if (this.validateInput(datetime))
+            if (this.validateInput(datetime) && this.validateInputSets(numberOfSets))
             {
                 this._match.Date = datetime;
+                this._match.NumberOfSets = numberOfSets;
                 switch (keyEventArgs.Key)
                 {
                     case Key.Left:
@@ -55,10 +55,6 @@ namespace Darts_matches
                         break;
                 }
             }
-            else
-            {
-                DateInputBox.BorderBrush = System.Windows.Media.Brushes.Red;
-            }
         }
 
         private bool validateInput(DateTime date)
@@ -68,16 +64,33 @@ namespace Darts_matches
                 var formats = new[] { "dd/MM/yyyy", "yyyy-MM-dd" };
                 if (DateTime.TryParseExact(DateInputBox.Text, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
                 {
+                    DateInputBox.BorderBrush = System.Windows.Media.Brushes.Gray;
                     return true;
                 }
                 else
                 {
+                    DateInputBox.BorderBrush = System.Windows.Media.Brushes.Red;
                     return false;
                 }
             }
             else
             {
+                DateInputBox.BorderBrush = System.Windows.Media.Brushes.Gray;
                 return true;
+            }
+        }
+
+        private bool validateInputSets(int sets)
+        {
+            if (Int32.TryParse(SetsInputBox.Text, out sets))
+            {
+                SetsInputBox.BorderBrush = System.Windows.Media.Brushes.Gray;
+                return true;
+            }
+            else
+            {
+                SetsInputBox.BorderBrush = System.Windows.Media.Brushes.Red;
+                return false;
             }
         }
     }
