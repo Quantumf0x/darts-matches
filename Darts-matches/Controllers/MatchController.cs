@@ -9,6 +9,7 @@ namespace Darts_matches.Controllers
     public class MatchController
     {
         private static MatchController _instance;
+        private Match _match;
 
         public static MatchController Instance
         {
@@ -24,12 +25,15 @@ namespace Darts_matches.Controllers
 
         public void SetMatchInputPageValues(string name, DateTime date)
         {
-            Debug.WriteLine(name + " en " + date);
-            //MatchInputPage matchInputPage = new MatchInputPage();
-            //string name = matchInputPage.MatchName;
-            //DateTime date = matchInputPage.Date;
+            _match = new Match(name, date);
+        }
 
-            //Match match = new Match(name, );
+        public void SetPlayers(string namePlayerOne, string namePlayerTwo)
+        {
+            Player playerOne = new Player(namePlayerOne);
+            Player playerTwo = new Player(namePlayerTwo);
+            _match.PlayerOne = playerOne;
+            _match.PlayerTwo = playerTwo;
         }
     }
 }

@@ -15,25 +15,23 @@ namespace Darts_matches.Models
         private int _numberOfLegsPerSet;
         private List<Set> _sets;
 
-        public string Name { get => _name; }
-        public string FreeInput { get => _notes; }
+        public string Name { get => _name; set => _name = value; }
+        public string Notes { get => _notes; set => _notes = value; }
         public DateTime Date { get => _date; set => _date = value; }
-        public Player PlayerOne { get => _playerOne; }
-        public Player PlayerTwo { get => _playerTwo; }
-        public Player Winner { get => _winner; }
+        public Player PlayerOne { get => _playerOne; set => _playerOne = value; }
+        public Player PlayerTwo { get => _playerTwo; set => _playerTwo = value; }
+        public Player Winner { get => _winner; set => _winner = value; }
 
 
-        public Match(string name, string notes, DateTime date, Player playerOne, Player playerTwo, int numberOfSets, int numberOfLegsPerSet)
+        public Match(string name, DateTime date)
         {
             _name = name;
-            _notes = notes;
             _date = date;
-            _playerOne = playerOne;
-            _playerTwo = playerTwo;
-            _numberOfSets = numberOfSets;
-            _numberOfLegsPerSet = numberOfLegsPerSet;
+        }
 
-            for (int i = 0; i < numberOfSets; i++)
+        public void setupMatch()
+        {
+            for (int i = 0; i < _numberOfSets; i++)
             {
                 CreateNewSet();
             }
