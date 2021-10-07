@@ -6,7 +6,6 @@ namespace Darts_matches.Models
     internal class Match
     {
         private string _name;
-        private string _tournament;
         private string _notes;
         private DateTime _date;
         private Player _playerOne;
@@ -17,7 +16,6 @@ namespace Darts_matches.Models
         private List<Set> _sets;
 
         public string Name { get => _name; }
-        public string Tournament { get => _tournament; }
         public string FreeInput { get => _notes; }
         public DateTime Date { get => _date; set => _date = value; }
         public Player PlayerOne { get => _playerOne; }
@@ -25,12 +23,11 @@ namespace Darts_matches.Models
         public Player Winner { get => _winner; }
 
 
-        public Match(string name, string tournament, string notes, Player playerOne, Player playerTwo, int numberOfSets, int numberOfLegsPerSet)
+        public Match(string name, string notes, DateTime date, Player playerOne, Player playerTwo, int numberOfSets, int numberOfLegsPerSet)
         {
             _name = name;
-            _tournament = tournament;
             _notes = notes;
-            _date = DateTime.Today;
+            _date = date;
             _playerOne = playerOne;
             _playerTwo = playerTwo;
             _numberOfSets = numberOfSets;

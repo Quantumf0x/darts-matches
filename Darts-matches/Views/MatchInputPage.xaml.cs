@@ -2,47 +2,68 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using System;
-using Darts_matches.Models;
-using System.Globalization;
+using Darts_matches.Controllers;
+using System.Diagnostics;
 
 namespace Darts_matches
 {
     public partial class MatchInputPage : Page, IKeyHandler
     {
-        private Match _match;
-        private Player _playerOne;
-        private Player _playerTwo;
+        private bool _allFieldsFilled;
+        private string _matchName;
+        private DateTime _date;
+
+        public string MatchName { get => _matchName; }
+        public DateTime Date { get => _date; }
 
         public MatchInputPage()
         {
             InitializeComponent();
-            this._playerOne = new Player("");
-            this._playerTwo = new Player("");
-            this._match = new Match("", "", "", this._playerOne, this._playerTwo, -1, -1);
         }
 
-        private void PlayerInputPage(object sender, RoutedEventArgs eventArguments)
+        private void Submit(object sender, RoutedEventArgs eventArguments)
         {
-            DateTime datetime = new DateTime();
-
-            if (this.validateInput(datetime))
+            if (NameInputBox.Text == "")
             {
-                this._match.Date = datetime;
-                ApplicationWindow.Instance.SetFrame(new PlayerInputPage());
+                NameInputBox.BorderBrush = System.Windows.Media.Brushes.Red;
             }
             else
             {
-                DateInputBox.BorderBrush = System.Windows.Media.Brushes.Red;
+                _matchName = NameInputBox.Text;
+            }
+            
+            if (DateSelector.SelectedDate == null || DateSelector.Text == "")
+            {
+                DateSelector.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+            else
+            {
+                try
+                {
+                    _date = Convert.ToDateTime(DateSelector.SelectedDate.Value.ToShortDateString());
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e.Message);
+                }
+            }
+
+            _allFieldsFilled = _matchName != null && _date != null && _date != DateTime.MinValue;
+
+            if (_allFieldsFilled) 
+            { 
+                ApplicationWindow.Instance.SetFrame(new PlayerInputPage()); 
+            }
+            else
+            {
+                _matchName = null;
             }
         }
 
         void IKeyHandler.handleKeyEvent(KeyEventArgs keyEventArgs)
         {
-            DateTime datetime = new DateTime();
-
-            if (this.validateInput(datetime))
+            if (_allFieldsFilled)
             {
-                this._match.Date = datetime;
                 switch (keyEventArgs.Key)
                 {
                     case Key.Left:
@@ -54,30 +75,8 @@ namespace Darts_matches
                     default:
                         break;
                 }
-            }
-            else
-            {
-                DateInputBox.BorderBrush = System.Windows.Media.Brushes.Red;
-            }
-        }
 
-        private bool validateInput(DateTime date)
-        {
-            if (DateInputBox.Text != "")
-            {
-                var formats = new[] { "dd/MM/yyyy", "yyyy-MM-dd" };
-                if (DateTime.TryParseExact(DateInputBox.Text, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                return true;
+                MatchController.Instance.SetMatchInputPageValues(_matchName, _date);
             }
         }
     }
