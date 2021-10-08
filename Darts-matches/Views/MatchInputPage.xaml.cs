@@ -48,6 +48,8 @@ namespace Darts_matches
                 }
             }
 
+            // TODO: check for valid input for sets and legs and change bordercolor to red when invalid
+
             _allFieldsFilled = _matchName != null && _date != null && _date != DateTime.MinValue;
 
             if (_allFieldsFilled)
@@ -78,6 +80,16 @@ namespace Darts_matches
 
                 MatchController.Instance.SetNameAndDate(_matchName, _date);
             }
+        }
+
+        private void MainMenuButtonClick(object sender, RoutedEventArgs e)
+        {
+            ApplicationWindow.Instance.SetFrame(new MainMenuPage());
+        }
+
+        private void HelpButtonClick(object sender, RoutedEventArgs e)
+        {
+            ApplicationWindow.Instance.SetFrame(new HelpPage());
         }
     }
 }

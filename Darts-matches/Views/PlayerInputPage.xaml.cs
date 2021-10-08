@@ -10,7 +10,8 @@ namespace Darts_matches
         {
             InitializeComponent();
         }
-        private void MatchScoresInputPage(object sender, RoutedEventArgs eventArguments)
+
+        private void btn_next_Click(object sender, RoutedEventArgs eventArguments)
         {
             ApplicationWindow.Instance.SetFrame(new MatchScoresInputPage());
         }
@@ -28,6 +29,16 @@ namespace Darts_matches
                 default:
                     break;
             }
+        }
+
+        private void btn_main_Click(object sender, RoutedEventArgs e)
+        {
+            ApplicationWindow.Instance.SetFrame(new MainMenuPage());
+        }
+
+        private void btn_help_Click(object sender, RoutedEventArgs e)
+        {
+            ApplicationWindow.Instance.SetFrame(new HelpPage());
         }
     }
 }

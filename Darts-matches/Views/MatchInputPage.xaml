@@ -5,12 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Darts_matches"
         mc:Ignorable="d"
-        Title="MatchInputWindow" Height="385" >
-    <Grid Name="MatchInputGrid">
+        Title="MatchInputWindow" >
+    <Grid Name="MatchInputGrid" HorizontalAlignment="Center">
         <Grid.Resources>
             <Style TargetType="Button">
-                <Setter Property="Margin" Value="10,60,10,20" />
-                <Setter Property="Padding" Value="280,20,280,20" />
                 <Setter Property="BorderThickness" Value="0" />
                 <Setter Property="FontSize" Value="20" />
                 <Setter Property="Background" Value="#0078D7" />
@@ -22,18 +20,40 @@
             </Style>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="auto" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
+            <RowDefinition Height="75" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <Label Grid.Column="1" Grid.Row="0"  Content="Vul de hier de datum in" HorizontalContentAlignment="Center" FontSize="20"/>
-        <DatePicker Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" x:Name="DateSelector"/>
-        <Label Grid.Column="1" Grid.Row="2"  Content="Vul hier de naam van de wedstrijd in" HorizontalContentAlignment="Center" FontSize="20"/>
-        <TextBox Grid.Column="1" Grid.Row="1" x:Name="NameInputBox" Margin="10,60,10,20"/>
-        <Button Grid.Column="1" Grid.Row="1" Content="Volgende" Click="Submit" Margin="10,160,10,-80"/>
+        <Button x:Name="btn_main" Grid.Column="0" Content="M" HorizontalAlignment="Left" VerticalAlignment="Center" Width="45" Height="45" Click="MainMenuButtonClick"/>
+        <Button x:Name="btn_help" Grid.Column="3" Content="H" HorizontalAlignment="Right" VerticalAlignment="Center" Width="45" Height="45" Click="HelpButtonClick"/>
+        <Label Grid.Column="1" Content="Hoofdscherm" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="15" Margin="0,-3,5,0"/>
+        <Label Grid.Column="4" Content="Help" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" Margin="0,-3,5,0"/>
+        <Label Grid.Column="2" Content="Dartapplicatie" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontSize="40" Margin="0,-3,5,0"/>
+        <Label Grid.Column="2" Content="Voor dartwedstrijden" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontSize="20" Grid.ColumnSpan="2" Margin="0,60,300,0"/>
+        <Label Grid.Column="2" Content="Wedstrijdnaam" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontSize="15" Grid.ColumnSpan="2" Margin="0,45,300,50" Grid.Row="1" Grid.RowSpan="2"/>
+        <TextBox x:Name="NameInputBox" Grid.Column="2" Grid.Row="2" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" FontSize="15" Grid.ColumnSpan="2" Margin="0,0,300,25"/>
+        <DatePicker x:Name="DateSelector" Grid.Column="2" Grid.Row="2" Margin="0,30,300,10" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+
+        <TextBlock Grid.Column="2" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="45" Height="45" Text="Legs" FontSize="20" Margin="209,18,0,0"/>
+        <TextBox x:Name="LegsInputBox" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center" Width="45" Height="45" Text="0" FontSize="20" Margin="0,16,0,0"/>
+
+        <TextBlock Grid.Column="2" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="45" Height="45" Text="Sets" FontSize="20" Margin="209,18,0,0"/>
+        <TextBox x:Name="SetsInputBox" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center" Width="45" Height="45" Text="0" FontSize="20" Margin="0,16,0,0"/>
+
+        <Button x:Name="btn_next" Grid.Column="2" Grid.Row="6" Content="Volgende" Click="Submit" Margin="10,100,10,20" Padding="280,20,280,20"/>
+
     </Grid>
 </Page>
