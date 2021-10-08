@@ -80,11 +80,8 @@ namespace Darts_matches
             }
 
             // TODO: check for valid input for sets and legs and change bordercolor to red when invalid
-            
-            return 
-                _matchName != null && 
-                _date != null && 
-                _date != DateTime.MinValue;
+
+            return _matchName != null && _date != null && _date != DateTime.MinValue;
         }
 
         private void MainMenuButtonClick(object sender, RoutedEventArgs e)
