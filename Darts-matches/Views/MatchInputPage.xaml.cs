@@ -9,7 +9,6 @@ namespace Darts_matches
 {
     public partial class MatchInputPage : Page, IKeyHandler
     {
-        private bool _allFieldsFilled;
         private string _matchName;
         private DateTime _date;
 
@@ -23,6 +22,38 @@ namespace Darts_matches
 
         private void Submit(object sender, RoutedEventArgs eventArguments)
         {
+            if (ValidateInputs())
+            {
+                ApplicationWindow.Instance.SetFrame(new PlayerInputPage());
+            }
+            else
+            {
+                _matchName = null;
+            }
+        }
+
+        void IKeyHandler.handleKeyEvent(KeyEventArgs keyEventArgs)
+        {
+            if (ValidateInputs())
+            {
+                switch (keyEventArgs.Key)
+                {
+                    case Key.Left:
+                        ApplicationWindow.Instance.SetFrame(new MainMenuPage());
+                        break;
+                    case Key.Right:
+                        ApplicationWindow.Instance.SetFrame(new PlayerInputPage());
+                        break;
+                    default:
+                        break;
+                }
+
+                MatchController.Instance.SetNameAndDate(_matchName, _date);
+            }
+        }
+
+        private bool ValidateInputs()
+        {
             if (NameInputBox.Text == "")
             {
                 NameInputBox.BorderBrush = System.Windows.Media.Brushes.Red;
@@ -31,7 +62,7 @@ namespace Darts_matches
             {
                 _matchName = NameInputBox.Text;
             }
-            
+
             if (DateSelector.SelectedDate == null || DateSelector.Text == "")
             {
                 DateSelector.BorderBrush = System.Windows.Media.Brushes.Red;
@@ -49,37 +80,11 @@ namespace Darts_matches
             }
 
             // TODO: check for valid input for sets and legs and change bordercolor to red when invalid
-
-            _allFieldsFilled = _matchName != null && _date != null && _date != DateTime.MinValue;
-
-            if (_allFieldsFilled)
-            {
-                ApplicationWindow.Instance.SetFrame(new PlayerInputPage());
-            }
-            else
-            {
-                _matchName = null;
-            }
-        }
-
-        void IKeyHandler.handleKeyEvent(KeyEventArgs keyEventArgs)
-        {
-            if (_allFieldsFilled)
-            {
-                switch (keyEventArgs.Key)
-                {
-                    case Key.Left:
-                        ApplicationWindow.Instance.SetFrame(new MainMenuPage());
-                        break;
-                    case Key.Right:
-                        ApplicationWindow.Instance.SetFrame(new PlayerInputPage());
-                        break;
-                    default:
-                        break;
-                }
-
-                MatchController.Instance.SetNameAndDate(_matchName, _date);
-            }
+            
+            return 
+                _matchName != null && 
+                _date != null && 
+                _date != DateTime.MinValue;
         }
 
         private void MainMenuButtonClick(object sender, RoutedEventArgs e)
