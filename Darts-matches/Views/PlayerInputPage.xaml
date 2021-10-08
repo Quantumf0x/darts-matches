@@ -6,27 +6,41 @@
         xmlns:local="clr-namespace:Darts_matches"
         mc:Ignorable="d"
         Title="PlayerInputWindow">
-    <Grid  Name="PlayerInputGrid">
+    <Grid Name="PlayerInputGrid" HorizontalAlignment="Center">
         <Grid.Resources>
-            <Style TargetType="Button">
-                <Setter Property="Margin" Value="10,60,10,20" />
-                <Setter Property="Padding" Value="280,20,280,20" />
-                <Setter Property="BorderThickness" Value="0" />
-                <Setter Property="FontSize" Value="20" />
-                <Setter Property="Background" Value="#0078D7" />
-                <Setter Property="Foreground" Value="White" />
-            </Style>
+        <Style TargetType="Button">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Background" Value="#0078D7" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="auto" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
+            <RowDefinition Height="75" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <Label Grid.Column="1" Grid.Row="0"  Content="Vul hier de naam van de spelers in" HorizontalContentAlignment="Center" FontSize="20"/>
-        <Button Grid.Column="1" Grid.Row="1" Content="Volgende" Click="MatchScoresInputPage" />
+        <Button x:Name="btn_main" Grid.Column="0" Content="M" HorizontalAlignment="Left" VerticalAlignment="Center" Width="45" Height="45" Click="btn_main_Click"/>
+        <Button x:Name="btn_help" Grid.Column="3" Content="H" HorizontalAlignment="Right" VerticalAlignment="Center" Width="45" Height="45" Click="btn_help_Click"/>
+        <Label Grid.Column="1" Content="Hoofdscherm" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="15" Margin="0,-3,5,0"/>
+        <Label Grid.Column="4" Content="Help" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" Margin="0,-3,5,0"/>
+        <Label Grid.Column="2" Content="Dartapplicatie" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontSize="40" Margin="0,-3,5,0"/>
+        <Label Grid.Column="2" Content="Voor dartwedstrijden" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontSize="20" Grid.ColumnSpan="2" Margin="0,60,300,0"/>
+        <TextBox x:Name="lbl_name_player1" Grid.Column="2" Grid.Row="2" Text="Naam1" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" FontSize="15" Margin="0,6,364,19" Width="300"/>
+        <TextBlock Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" TextAlignment="Center" Width="46" Height="45" Text="VS" FontSize="20" Margin="307,0,0,0"/>
+        <TextBox x:Name="lbl_name_player2" Grid.Column="2" Grid.Row="2" Text="Naam2" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" FontSize="15" Margin="364,6,0,19" Width="300"/>
+        <TextBox x:Name="lbl_optional_text" Grid.Column="2" Grid.Row="3" Text="Vrije Text" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" FontSize="15" Grid.ColumnSpan="2" Margin="0,0,300,25" Width="300"/>
+
+        <Button x:Name="btn_next" Grid.Column="2" Grid.Row="6" Content="Volgende" Click="btn_next_Click" Margin="10,100,10,20" Padding="280,20,280,20"/>
     </Grid>
 </Page>

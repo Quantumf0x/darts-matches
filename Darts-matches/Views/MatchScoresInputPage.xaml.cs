@@ -6,10 +6,12 @@ namespace Darts_matches
 {
     public partial class MatchScoresInputPage : Page, IKeyHandler
     {
+
         public MatchScoresInputPage()
         {
             InitializeComponent();
         }
+
         private void MatchResultsPage(object sender, RoutedEventArgs eventArguments)
         {
             ApplicationWindow.Instance.SetFrame(new MatchResultsPage());
@@ -28,6 +30,16 @@ namespace Darts_matches
                 default:
                     break;
             }
+        }
+
+        private void btn_main_Click(object sender, RoutedEventArgs e)
+        {
+            ApplicationWindow.Instance.SetFrame(new MainMenuPage());
+        }
+
+        private void btn_help_Click(object sender, RoutedEventArgs e)
+        {
+            ApplicationWindow.Instance.SetFrame(new HelpPage());
         }
     }
 }

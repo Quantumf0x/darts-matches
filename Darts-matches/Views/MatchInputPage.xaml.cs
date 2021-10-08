@@ -21,6 +21,11 @@ namespace Darts_matches
             this._match = new Match("", "", "", this._playerOne, this._playerTwo, -1, -1);
         }
 
+        private void btn_next_Click(object sender, RoutedEventArgs eventArguments)
+        {
+            ApplicationWindow.Instance.SetFrame(new PlayerInputPage());
+        }
+
         private void PlayerInputPage(object sender, RoutedEventArgs eventArguments)
         {
             DateTime datetime = new DateTime();
@@ -59,39 +64,80 @@ namespace Darts_matches
 
         private bool validateInput(DateTime date)
         {
-            if (DateInputBox.Text != "")
-            {
-                var formats = new[] { "dd/MM/yyyy", "yyyy-MM-dd" };
-                if (DateTime.TryParseExact(DateInputBox.Text, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
-                {
-                    DateInputBox.BorderBrush = System.Windows.Media.Brushes.Gray;
-                    return true;
-                }
-                else
-                {
-                    DateInputBox.BorderBrush = System.Windows.Media.Brushes.Red;
-                    return false;
-                }
-            }
-            else
-            {
-                DateInputBox.BorderBrush = System.Windows.Media.Brushes.Gray;
-                return true;
-            }
+            //if (DateInputBox.Text != "")
+            //{
+            //    var formats = new[] { "dd/MM/yyyy", "yyyy-MM-dd" };
+            //    if (DateTime.TryParseExact(DateInputBox.Text, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+            //    {
+            //        DateInputBox.BorderBrush = System.Windows.Media.Brushes.Gray;
+            //        return true;
+            //    }
+            //    else
+            //    {
+            //        DateInputBox.BorderBrush = System.Windows.Media.Brushes.Red;
+            //        return false;
+            //    }
+            //}
+            //else
+            //{
+            //    DateInputBox.BorderBrush = System.Windows.Media.Brushes.Gray;
+            //    return true;
+            //}
+            return true;
         }
 
         private bool validateInputSets(int sets)
         {
-            if (int.TryParse(SetsInputBox.Text, out sets))
+            if (int.TryParse(lbl_nr_of_sets.Text, out sets))
             {
-                SetsInputBox.BorderBrush = System.Windows.Media.Brushes.Gray;
+                lbl_nr_of_sets.BorderBrush = System.Windows.Media.Brushes.Gray;
                 return true;
             }
             else
             {
-                SetsInputBox.BorderBrush = System.Windows.Media.Brushes.Red;
+                lbl_nr_of_sets.BorderBrush = System.Windows.Media.Brushes.Red;
                 return false;
             }
+        }
+
+        private void btn_main_Click(object sender, RoutedEventArgs e)
+        {
+            ApplicationWindow.Instance.SetFrame(new MainMenuPage());
+        }
+
+        private void btn_help_Click(object sender, RoutedEventArgs e)
+        {
+            ApplicationWindow.Instance.SetFrame(new HelpPage());
+        }
+
+        private void btn_add_leg_Click(object sender, RoutedEventArgs e)
+        {
+            int currentNrOfLegs = int.Parse(lbl_nr_of_legs.Text);
+            currentNrOfLegs++;
+            lbl_nr_of_legs.Text = currentNrOfLegs.ToString();
+        }
+
+        private void btn_del_leg_Click(object sender, RoutedEventArgs e)
+        {
+            int currentNrOfLegs = int.Parse(lbl_nr_of_legs.Text);
+            currentNrOfLegs--;
+            if (currentNrOfLegs > 0) lbl_nr_of_legs.Text = currentNrOfLegs.ToString();
+            else lbl_nr_of_legs.Text = "0";
+        }
+
+        private void btn_add_set_Click(object sender, RoutedEventArgs e)
+        {
+            int currentNrOfSets = int.Parse(lbl_nr_of_sets.Text);
+            currentNrOfSets++;
+            lbl_nr_of_sets.Text = currentNrOfSets.ToString();
+        }
+
+        private void btn_del_set_Click(object sender, RoutedEventArgs e)
+        {
+            int currentNrOfSets = int.Parse(lbl_nr_of_sets.Text);
+            currentNrOfSets--;
+            if (currentNrOfSets > 0) lbl_nr_of_sets.Text = currentNrOfSets.ToString();
+            else lbl_nr_of_sets.Text = "0";
         }
     }
 }
