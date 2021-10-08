@@ -50,9 +50,9 @@ namespace Darts_matches
 
             _allFieldsFilled = _matchName != null && _date != null && _date != DateTime.MinValue;
 
-            if (_allFieldsFilled) 
-            { 
-                ApplicationWindow.Instance.SetFrame(new PlayerInputPage()); 
+            if (_allFieldsFilled)
+            {
+                ApplicationWindow.Instance.SetFrame(new PlayerInputPage());
             }
             else
             {
@@ -76,7 +76,7 @@ namespace Darts_matches
                         break;
                 }
 
-                MatchController.Instance.SetMatchInputPageValues(_matchName, _date);
+                MatchController.Instance.SetNameAndDate(_matchName, _date);
             }
         }
     }

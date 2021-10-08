@@ -21,6 +21,8 @@ namespace Darts_matches.Models
         public Player PlayerOne { get => _playerOne; set => _playerOne = value; }
         public Player PlayerTwo { get => _playerTwo; set => _playerTwo = value; }
         public Player Winner { get => _winner; set => _winner = value; }
+        public int NumberOfSets { get => _numberOfSets; set => _numberOfSets = value; }
+        public int NumberOfLegsPerSet { get => _numberOfLegsPerSet; set => _numberOfLegsPerSet = value; }
 
 
         public Match(string name, DateTime date)
@@ -29,7 +31,8 @@ namespace Darts_matches.Models
             _date = date;
         }
 
-        public void setupMatch()
+        // TODO: change to work when all parameters have a value (last step before starting match)
+        public void SetupMatch()
         {
             for (int i = 0; i < _numberOfSets; i++)
             {
