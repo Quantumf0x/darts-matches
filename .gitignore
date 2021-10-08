@@ -197,3 +197,5 @@ git_stats/*
 *.ncrunchproject
 StyleCop.Cache
 bin
+Darts-matches/DatabaseMatches.mdf
+Darts-matches/DatabaseMatches_log.ldf
