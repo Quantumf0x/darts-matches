@@ -95,7 +95,7 @@ namespace Darts_matches.Controllers
 
         public void PullFromDatabase()
         {
-            
+
         }
     }
 }
