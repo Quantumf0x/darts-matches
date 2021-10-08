@@ -9,6 +9,9 @@ namespace Darts_matches
         public MainMenuPage()
         {
             InitializeComponent();
+
+            DatabaseController dbc = DatabaseController.GetInstance();
+            dbc.PullFromDatabase();
         }
 
         private void OpenDartMatchInputPage(object sender, RoutedEventArgs eventArguments)

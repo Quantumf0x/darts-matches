@@ -95,7 +95,28 @@ namespace Darts_matches.Controllers
 
         public void PullFromDatabase()
         {
-            throw new NotImplementedException();
+            Connect();
+            SqlCommand command = _connection.CreateCommand();
+            command.CommandText = "SELECT * FROM dbo.matches WHERE id = 1;";
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        Debug.WriteLine(reader.GetValue(i));
+                    }
+                }
+            }
+            else
+            {
+                Debug.WriteLine("No rows found.");
+            }
+
+            reader.Close();
         }
     }
 }
