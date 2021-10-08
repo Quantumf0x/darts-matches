@@ -44,7 +44,7 @@ namespace Darts_matches_tests
             bool expected = true;
 
             //act
-            dbManager.addToDatabase("test", "test", "test", "tester1", "tester2", "011001", "test", "test", 23, 43, "test", "test", "test", "test", 5, 1, System.DateTime.Today);
+            dbManager.addToDatabase("dutch-open", "test", "tester1", "tester1", "tester2", "1:2:2:1:2", "2:3:1:3:0", "2:3:1:3:0", 23, 43, "130:70:100", "130:70:100", "105:101:80;90:80", "105:101:80;90:80", 5, 1, System.DateTime.Today);
 
             //assert
             bool succes = dbManager.getSucces();
