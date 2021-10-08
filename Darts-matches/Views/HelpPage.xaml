@@ -1,0 +1,50 @@
+﻿<Page x:Class="Darts_matches.HelpPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Darts_matches"
+      mc:Ignorable="d" 
+      Title="HelpPage">
+
+    <Grid HorizontalAlignment="Center">
+        <Grid.Resources>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="10,60,10,20" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="Background" Value="#0078D7" />
+                <Setter Property="Foreground" Value="White" />
+            </Style>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="664" />
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="0*" />
+            <ColumnDefinition Width="0*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Button Grid.Column="0" Grid.Row="0" Content="M" HorizontalAlignment="Left" VerticalAlignment="Top" Width="45" Height="44" Margin="8,24,0,0"/>
+        <Label Grid.Column="0" Grid.Row="0" Content="Hoofscherm" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="15" Margin="63,31,5,27"/>
+        <Label Grid.Column="1" Grid.Row="0"  Content="Help" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontSize="50"/>
+        <Label Grid.Column="1" Grid.Row="1"  Content="Help"  Margin="178,71,412,32" FontSize="20" FontWeight="Light"/>
+        <Label Grid.Column="1" Grid.Row="1"  Content="Vul T in voor Triple"  Margin="424,93,77,10" FontSize="20" HorizontalContentAlignment="Right" FontWeight="Light"/>
+        <Label Grid.Column="1" Grid.Row="2"  Content="Volgende veld"  Margin="178,71,412,32" FontSize="20" FontWeight="Light"/>
+        <Label Grid.Column="1" Grid.Row="1"  Content="Vul D in voor Double"  Margin="418,63,55,40" FontSize="20" HorizontalContentAlignment="Right" FontWeight="Light"/>
+        <Button Grid.Column="1" Grid.Row="1" Content="F1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="60" Height="60" Margin="100,60,10,20"/>
+        <Button Grid.Column="1" Grid.Row="2" Content="Tab" HorizontalAlignment="Left" Width="60" Height="60" Margin="100,60,10,20"/>
+        <Label Grid.Column="1" Grid.Row="2"  Content="Volgende veld"  Margin="178,71,350,32" FontSize="20" FontWeight="Light"/>
+        <Button Grid.Column="1" Grid.Row="3" Content="Ctrl" HorizontalAlignment="Left" Width="60" Height="60"/>
+        <Label Grid.Column="1" Grid.Row="3"  Content="+" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30" Width="45" Margin="63,40,667,3"/>
+        <Button Grid.Column="1" Grid.Row="3" Content="Tab" HorizontalAlignment="Left" Width="60" Height="60" Margin="100,60,10,20"/>
+        <Label Grid.Column="1" Grid.Row="3"  Content="Vorige veld"  Margin="178,71,380,32" FontSize="20" FontWeight="Light"/>
+        <Button Grid.Column="1" Grid.Row="4" Content="Sluiten" Padding="280,20,280,20"/>
+    </Grid>
+</Page>
