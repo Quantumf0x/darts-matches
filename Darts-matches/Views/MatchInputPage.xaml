@@ -48,12 +48,12 @@
 
         <TextBlock Grid.Column="2" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="45" Height="45" Text="Legs" FontSize="20" Margin="209,18,0,0"/>
         <Button x:Name="btn_del_leg" Grid.Column="2" Grid.Row="4" Content="-" HorizontalAlignment="Left" VerticalAlignment="Center" Width="45" Height="45" Margin="257,0,0,0" Click="btn_del_leg_Click"/>
-        <TextBlock x:Name="lbl_nr_of_legs" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center" Width="45" Height="45" Text="0" FontSize="20" Margin="0,16,0,0"/>
+        <TextBox x:Name="lbl_nr_of_legs" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center" Width="45" Height="45" Text="0" FontSize="20" Margin="0,16,0,0"/>
         <Button x:Name="btn_add_leg" Grid.Column="2" Grid.Row="4" Content="+" VerticalAlignment="Center" Height="45" Margin="363,0,256,0" Click="btn_add_leg_Click"/> 
 
         <TextBlock Grid.Column="2" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="45" Height="45" Text="Sets" FontSize="20" Margin="209,18,0,0"/>
         <Button x:Name="btn_del_set" Grid.Column="2" Grid.Row="5" Content="-" HorizontalAlignment="Left" VerticalAlignment="Center" Width="45" Height="45" Margin="257,0,0,0" Click="btn_del_set_Click"/>
-        <TextBlock x:Name="lbl_nr_of_sets" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center" Width="45" Height="45" Text="0" FontSize="20" Margin="0,16,0,0"/>
+        <TextBox x:Name="lbl_nr_of_sets" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center" Width="45" Height="45" Text="0" FontSize="20" Margin="0,16,0,0"/>
         <Button x:Name="btn_add_set" Grid.Column="2" Grid.Row="5" Content="+" VerticalAlignment="Center" Height="45" Margin="363,0,256,0" Click="btn_add_set_Click"/>
 
 
