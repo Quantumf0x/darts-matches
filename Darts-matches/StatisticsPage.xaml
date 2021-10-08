@@ -7,11 +7,9 @@
       mc:Ignorable="d" 
       Title="StatisticsPage">
 
-    <Grid>
+    <Grid HorizontalAlignment="Center">
         <Grid.Resources>
             <Style TargetType="Button">
-                <Setter Property="Margin" Value="10,60,10,20" />
-                <Setter Property="Padding" Value="280,20,280,20" />
                 <Setter Property="BorderThickness" Value="0" />
                 <Setter Property="FontSize" Value="20" />
                 <Setter Property="Background" Value="#0078D7" />
@@ -19,13 +17,41 @@
             </Style>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="auto" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="300" />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
-        <Label Grid.Column="1" Grid.Row="0"  Content="Bekijk de statistieken van een wedstrijd" HorizontalContentAlignment="Center" FontSize="20"/>
+        <Button Grid.Column="0" Content="M" HorizontalAlignment="Left" VerticalAlignment="Center" Width="45" Height="45"/>
+        <Button Grid.Column="3" Content="H" HorizontalAlignment="Right" VerticalAlignment="Center" Width="45" Height="45"/>
+        <Label Grid.Column="1" Content="Hoofscherm" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="15" Margin="0,-3,5,0"/>
+        <Label Grid.Column="4" Content="Help" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" Margin="0,-3,5,0"/>
+        <Label Grid.Column="2" Content="Dartapplicatie" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontSize="40" Margin="0,-3,5,0"/>
+        <Label Grid.Column="2" Content="Voor dartwedstrijden" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontSize="20" Grid.ColumnSpan="2" Margin="0,60,300,0"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Center" Grid.Row="2" Text="Speler 1" FontSize="30" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Margin="0,24,0,0"/>
+        <TextBlock HorizontalAlignment="Center" Grid.Row="2" Text="Gemiddelde per set:" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Margin="0,93,0,0" Grid.Column="1"/>
+        <TextBlock HorizontalAlignment="Center" Grid.Row="2" Text="50" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="1" Margin="0,111,0,0"/>
+        <TextBlock HorizontalAlignment="Center" Grid.Row="2" Text="Gemiddelde per leg:" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="300" Grid.Column="1"/>
+        <TextBlock HorizontalAlignment="Center" Grid.Row="2" Text="50" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="1" Margin="0,159,0,0"/>
+        <TextBlock HorizontalAlignment="Center" Grid.Row="2" Text="Gemiddelde beurt wedstrijd:" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="1" Margin="0,186,0,0"/>
+        <TextBlock HorizontalAlignment="Center" Grid.Row="2" Text="50" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="1" Margin="0,207,0,0"/>
+        <TextBlock Grid.Column="3" HorizontalAlignment="Center" Grid.Row="2" Text="Speler 2" FontSize="30" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Margin="0,24,0,0"/>
+        <TextBlock HorizontalAlignment="Center" Grid.Row="2" Text="Gemiddelde per set:" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Margin="0,93,0,0" Grid.Column="3"/>
+        <TextBlock HorizontalAlignment="Center" Grid.Row="2" Text="50" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="3" Margin="0,111,0,0"/>
+        <TextBlock HorizontalAlignment="Center" Grid.Row="2" Text="Gemiddelde per leg:" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="300" Grid.Column="3"/>
+        <TextBlock HorizontalAlignment="Center" Grid.Row="2" Text="50" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="3" Margin="0,159,0,0"/>
+        <TextBlock HorizontalAlignment="Center" Grid.Row="2" Text="Gemiddelde beurt wedstrijd:" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="3" Margin="0,186,0,0"/>
+        <TextBlock HorizontalAlignment="Center" Grid.Row="2" Text="50" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="3" Margin="0,207,0,0"/>
+        <TextBlock HorizontalAlignment="Center" Grid.Row="2" Text="Aantal 180-scores:" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="1" Margin="0,232,0,0"/>
+        <TextBlock HorizontalAlignment="Center" Grid.Row="2" Text="4" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="1" Margin="0,253,0,0"/>
+        <TextBlock HorizontalAlignment="Center" Grid.Row="2" Text="Aantal 180-scores" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="3" Margin="0,232,0,0"/>
+        <TextBlock HorizontalAlignment="Center" Grid.Row="2" Text="4" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="3" Margin="0,253,0,0"/>
     </Grid>
 </Page>
