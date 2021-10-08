@@ -26,7 +26,7 @@ namespace Darts_matches.Controllers
 
         public static DatabaseController GetInstance()
         {
-            if(_instance == null)
+            if (_instance == null)
             {
                 _instance = new DatabaseController();
             }
