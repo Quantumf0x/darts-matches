@@ -93,7 +93,7 @@ namespace Darts_matches.Controllers
             return _succes;
         }
 
-        public void PullFromDatabase()
+        public object[] PullFromDatabase()
         {
             Connect();
             SqlCommand command = _connection.CreateCommand();
@@ -101,22 +101,15 @@ namespace Darts_matches.Controllers
 
             SqlDataReader reader = command.ExecuteReader();
 
-            if (reader.HasRows)
+            object[] data = new object[13];
+            while (reader.Read())
             {
-                while (reader.Read())
-                {
-                    for (int i = 0; i < reader.FieldCount; i++)
-                    {
-                        Debug.WriteLine(reader.GetValue(i));
-                    }
-                }
+                reader.GetValues(data);          
             }
-            else
-            {
-                Debug.WriteLine("No rows found.");
-            }
-
+           
             reader.Close();
+
+            return data;
         }
     }
 }
