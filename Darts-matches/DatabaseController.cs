@@ -12,10 +12,10 @@ namespace Darts_matches.Controllers
         private string _projectDir = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.Parent.FullName;
         private SqlConnection _connection;
 
-        private string _state1;
-        private string _state2;
-        public string GetState1() { return _state1; }
-        public string GetState2() { return _state2; }
+        private string _testConnectionOpen;
+        private string _testConnectionClose;
+        public string GetTestConnectionOpen() { return _testConnectionOpen; }
+        public string GetTestConnectionClose() { return _testConnectionClose; }
 
         private bool _succes;
         public bool GetSucces() { return _succes; }
@@ -52,13 +52,13 @@ namespace Darts_matches.Controllers
             }
 
             _connection.Open();
-            _state1 = _connection.State.ToString();
+            _testConnectionOpen = _connection.State.ToString();
         }
 
         private void Close()
         {
             _connection.Close();
-            _state2 = _connection.State.ToString();
+            _testConnectionClose = _connection.State.ToString();
         }
 
         public bool AddToDatabase(string match_name, string empty_input_field, int leg_size, string winner, string player1, string player2, string sets_won_by, string legs_won_per_set_player1, string legs_won_per_set_player2, int average_per_3_darts_total_player1, int average_per_3_darts_total_player2, string average_per_3_darts_per_set_player1, string average_per_3_darts_per_set_player2, string average_per_3_darts_per_leg_player1, string average_per_3_darts_per_leg_player2, int number_180_player1, int number_180_player2, DateTime date)
@@ -95,7 +95,7 @@ namespace Darts_matches.Controllers
 
         public void PullFromDatabase()
         {
-
+            throw new NotImplementedException();
         }
     }
 }

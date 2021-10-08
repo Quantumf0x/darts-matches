@@ -17,7 +17,7 @@ namespace Darts_matches_tests
             dbManager.TestConnection();
 
             //assert
-            string state = dbManager.GetState1();
+            string state = dbManager.GetTestConnectionOpen();
             Assert.AreEqual(expected, state, "connection not established: " + state);
         }
 
@@ -32,7 +32,7 @@ namespace Darts_matches_tests
             dbManager.TestConnection();
 
             //assert
-            string state = dbManager.GetState2();
+            string state = dbManager.GetTestConnectionClose();
             Assert.AreEqual(expected, state, "connection not established: " + state);
         }
 
