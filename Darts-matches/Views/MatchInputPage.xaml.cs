@@ -54,7 +54,7 @@ namespace Darts_matches
 
         private bool ValidateInputs()
         {
-            if (NameInputBox.Text == "")
+            if (NameInputBox.Text == string.Empty)
             {
                 NameInputBox.BorderBrush = System.Windows.Media.Brushes.Red;
             }
@@ -63,7 +63,7 @@ namespace Darts_matches
                 _matchName = NameInputBox.Text;
             }
 
-            if (DateSelector.SelectedDate == null || DateSelector.Text == "")
+            if (DateSelector.SelectedDate == null || DateSelector.Text == string.Empty)
             {
                 DateSelector.BorderBrush = System.Windows.Media.Brushes.Red;
             }
