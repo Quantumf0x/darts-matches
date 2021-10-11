@@ -1,0 +1,39 @@
+﻿<Page x:Class="Darts_matches.MainMenuPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Darts_matches"
+      mc:Ignorable="d"
+      Title="MainMenu">
+
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.Resources>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="10,60,10,20" />
+                <Setter Property="Padding" Value="280,20,280,20" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="Background" Value="#0078D7" />
+                <Setter Property="Foreground" Value="White" />
+            </Style>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Label Grid.Column="1" Grid.Row="0"  Content="Dartapplicatie" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontSize="40"/>
+        <Label Grid.Column="1" Grid.Row="1"  Content="Voor dartwedstrijden" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontSize="20"/>
+        <Button Grid.Column="1" Grid.Row="2" Content="Start" Click="OpenDartMatchInputPage" />
+        <Button Grid.Column="1" Grid.Row="3" Content="Overzicht" Click="OpenMatchOverviewPage" />
+        <Button Grid.Column="1" Grid.Row="4" Content="Help" Click="OpenHelpPage" />
+    </Grid>
+</Page>
