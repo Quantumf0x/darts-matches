@@ -15,12 +15,6 @@ namespace Darts_matches
         private int _numberOfLegsPerSet;
         private int _numberOfSets;
 
-        public string MatchName { get => _matchName; }
-        public DateTime Date { get => _date; }
-        public int PointsPerLeg { get => _pointsPerLeg; }
-        public int NumberOfLegsPerSet { get => _numberOfLegsPerSet; set => _numberOfLegsPerSet = value; }
-        public int NumberOfSets { get => _numberOfSets; set => _numberOfSets = value; }
-
         public MatchInputPage()
         {
             InitializeComponent();
@@ -50,12 +44,12 @@ namespace Darts_matches
                         break;
                     case Key.Right:
                         ApplicationWindow.Instance.SetFrame(new PlayerInputPage());
+                        MatchController.Instance.CreateMatchAndSetInputs(_matchName, _date, _pointsPerLeg, _numberOfLegsPerSet, _numberOfSets);
                         break;
                     default:
                         break;
                 }
 
-                MatchController.Instance.CreateMatchAndSetInputs(_matchName, _date, _pointsPerLeg, _numberOfLegsPerSet, _numberOfSets);
             }
         }
 
