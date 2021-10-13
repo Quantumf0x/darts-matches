@@ -15,12 +15,6 @@ namespace Darts_matches
         private int _numberOfLegsPerSet;
         private int _numberOfSets;
 
-        public string MatchName { get => _matchName; }
-        public DateTime Date { get => _date; }
-        public int PointsPerLeg { get => _pointsPerLeg; }
-        public int NumberOfLegsPerSet { get => _numberOfLegsPerSet; set => _numberOfLegsPerSet = value; }
-        public int NumberOfSets { get => _numberOfSets; set => _numberOfSets = value; }
-
         public MatchInputPage()
         {
             InitializeComponent();

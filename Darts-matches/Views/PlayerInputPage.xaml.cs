@@ -11,6 +11,7 @@ namespace Darts_matches
     {
         private string _namePlayerOne;
         private string _namePlayerTwo;
+        private string _note;
 
         public PlayerInputPage()
         {
@@ -21,7 +22,7 @@ namespace Darts_matches
         {
             if (ValidateInputs())
             {
-                MatchController.Instance.SetPlayersAndNotes(_namePlayerOne, _namePlayerTwo, "test");
+                MatchController.Instance.SetPlayersAndNotes(_namePlayerOne, _namePlayerTwo, _note);
                 ApplicationWindow.Instance.SetFrame(new MatchScoresInputPage());
             }
         }
@@ -65,7 +66,12 @@ namespace Darts_matches
                 _namePlayerTwo = PlayerTwoInputBox.Text;
             }
 
-            return (_namePlayerOne != null && _namePlayerTwo != null);
+            if (NotesInputBox.Text != string.Empty)
+            {
+                _note = NotesInputBox.Text;
+            }
+
+            return (_playerOneName != null && _playerTwoName != null);
         }
 
         private void MainMenuButtonClick(object sender, RoutedEventArgs e)
