@@ -11,7 +11,7 @@ namespace Darts_matches
             InitializeComponent();
         }
 
-        private void btn_next_Click(object sender, RoutedEventArgs eventArguments)
+        private void Submit(object sender, RoutedEventArgs eventArguments)
         {
             ApplicationWindow.Instance.SetFrame(new MatchScoresInputPage());
         }
@@ -31,12 +31,12 @@ namespace Darts_matches
             }
         }
 
-        private void btn_main_Click(object sender, RoutedEventArgs e)
+        private void MainMenuButtonClick(object sender, RoutedEventArgs e)
         {
             ApplicationWindow.Instance.SetFrame(new MainMenuPage());
         }
 
-        private void btn_help_Click(object sender, RoutedEventArgs e)
+        private void HelpButtonClick(object sender, RoutedEventArgs e)
         {
             ApplicationWindow.Instance.SetFrame(new HelpPage());
         }
