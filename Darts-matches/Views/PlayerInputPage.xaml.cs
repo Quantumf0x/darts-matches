@@ -71,7 +71,7 @@ namespace Darts_matches
                 _note = NotesInputBox.Text;
             }
 
-            return (_playerOneName != null && _playerTwoName != null);
+            return (_namePlayerOne != null && _namePlayerTwo != null);
         }
 
         private void MainMenuButtonClick(object sender, RoutedEventArgs e)
