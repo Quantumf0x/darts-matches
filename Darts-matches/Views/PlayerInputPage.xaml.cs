@@ -9,9 +9,8 @@ namespace Darts_matches
 {
     public partial class PlayerInputPage : Page, IKeyHandler
     {
-
-        private string _playerOneName;
-        private string _playerTwoName;
+        private string _namePlayerOne;
+        private string _namePlayerTwo;
 
         public PlayerInputPage()
         {
@@ -20,22 +19,30 @@ namespace Darts_matches
 
         private void Submit(object sender, RoutedEventArgs eventArguments)
         {
-            ApplicationWindow.Instance.SetFrame(new MatchScoresInputPage());
+            if (ValidateInputs())
+            {
+                MatchController.Instance.SetPlayersAndNotes(_namePlayerOne, _namePlayerTwo, "test");
+                ApplicationWindow.Instance.SetFrame(new MatchScoresInputPage());
+            }
         }
 
         void IKeyHandler.handleKeyEvent(KeyEventArgs keyEventArgs)
         {
-            switch (keyEventArgs.Key)
-            {
-                case Key.Left:
-                    ApplicationWindow.Instance.SetFrame(new MatchInputPage());
-                    break;
-                case Key.Right:
-                    ApplicationWindow.Instance.SetFrame(new MatchScoresInputPage());
-                    break;
-                default:
-                    break;
-            }
+                switch (keyEventArgs.Key)
+                {
+                    case Key.Left:
+                        ApplicationWindow.Instance.SetFrame(new MatchInputPage());
+                        break;
+                    case Key.Right:
+                        if (ValidateInputs())
+                        {
+                            ApplicationWindow.Instance.SetFrame(new MatchScoresInputPage());
+                            MatchController.Instance.SetPlayersAndNotes(_namePlayerOne, _namePlayerTwo, "test");
+                        }
+                        break;
+                    default:
+                        break;
+                }
         }
 
         private bool ValidateInputs()
@@ -46,7 +53,7 @@ namespace Darts_matches
             }
             else
             {
-                _playerOneName = PlayerOneInputBox.Text;
+                _namePlayerOne = PlayerOneInputBox.Text;
             }
 
             if (PlayerTwoInputBox.Text == string.Empty)
@@ -55,10 +62,10 @@ namespace Darts_matches
             }
             else
             {
-                _playerTwoName = PlayerTwoInputBox.Text;
+                _namePlayerTwo = PlayerTwoInputBox.Text;
             }
 
-            return (_playerOneName != null && _playerTwoName != null);
+            return (_namePlayerOne != null && _namePlayerTwo != null);
         }
 
         private void MainMenuButtonClick(object sender, RoutedEventArgs e)

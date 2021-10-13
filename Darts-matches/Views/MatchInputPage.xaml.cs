@@ -50,12 +50,11 @@ namespace Darts_matches
                         break;
                     case Key.Right:
                         ApplicationWindow.Instance.SetFrame(new PlayerInputPage());
+                        MatchController.Instance.CreateMatchAndSetInputs(_matchName, _date, _pointsPerLeg, _numberOfLegsPerSet, _numberOfSets);
                         break;
                     default:
                         break;
                 }
-
-                MatchController.Instance.CreateMatchAndSetInputs(_matchName, _date, _pointsPerLeg, _numberOfLegsPerSet, _numberOfSets);
             }
         }
 
