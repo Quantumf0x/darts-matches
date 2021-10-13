@@ -13,6 +13,7 @@ namespace Darts_matches.Models
         private Player _winner;
         private int _numberOfSets;
         private int _numberOfLegsPerSet;
+        private int _pointsPerLeg;
         private List<Set> _sets;
 
         public string Name { get => _name; set => _name = value; }
@@ -23,13 +24,9 @@ namespace Darts_matches.Models
         public Player Winner { get => _winner; set => _winner = value; }
         public int NumberOfSets { get => _numberOfSets; set => _numberOfSets = value; }
         public int NumberOfLegsPerSet { get => _numberOfLegsPerSet; set => _numberOfLegsPerSet = value; }
+        public int PointsPerLeg { get => _pointsPerLeg; set => _pointsPerLeg = value; }
 
-
-        public Match(string name, DateTime date)
-        {
-            _name = name;
-            _date = date;
-        }
+        public Match() { }
 
         // TODO: change to work when all parameters have a value (last step before starting match)
         public void SetupMatch()
