@@ -100,7 +100,7 @@ namespace Darts_matches
             }
             else
             {
-                if(SetsInputBox.Text != string.Empty)
+                if (SetsInputBox.Text != string.Empty)
                 {
                     _numberOfSets = Convert.ToInt32(SetsInputBox.Text);
                 }
@@ -111,7 +111,7 @@ namespace Darts_matches
             }
             else
             {
-                if(LegsInputBox.Text != string.Empty)
+                if (LegsInputBox.Text != string.Empty)
                 {
                     _numberOfLegsPerSet = Convert.ToInt32(LegsInputBox.Text);
                 }

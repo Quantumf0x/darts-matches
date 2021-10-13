@@ -26,16 +26,7 @@ namespace Darts_matches.Models
         public int NumberOfLegsPerSet { get => _numberOfLegsPerSet; set => _numberOfLegsPerSet = value; }
         public int PointsPerLeg { get => _pointsPerLeg; set => _pointsPerLeg = value; }
 
-        public Match()
-        {
-                
-        }
-        public Match(string name, DateTime date, int pointsPerLeg)
-        {
-            _name = name;
-            _date = date;
-            _pointsPerLeg = pointsPerLeg;
-        }
+        public Match() { }
 
         // TODO: change to work when all parameters have a value (last step before starting match)
         public void SetupMatch()
