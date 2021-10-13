@@ -118,9 +118,9 @@ namespace Darts_matches.Controllers
             object[] data = new object[19];
             while (reader.Read())
             {
-                reader.GetValues(data);          
+                reader.GetValues(data);
             }
-           
+
             reader.Close();
 
             Close();
