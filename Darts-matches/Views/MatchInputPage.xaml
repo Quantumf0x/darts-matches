@@ -18,6 +18,33 @@
                 <Setter Property="Margin" Value="10,60,10,20" />
                 <Setter Property="Padding" Value="20,20,20,20" />
             </Style>
+            <Style x:Key="PointsPerLegToggleButtonStyle" TargetType="{x:Type ToggleButton}">                
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ToggleButton}">
+                            <StackPanel Orientation="Horizontal">
+                                <ContentPresenter RecognizesAccessKey="True"/>
+                                <Border x:Name="short" Width="45" Height="30" Background="LightGray">
+                                    <TextBlock x:Name="shortText" Text="301" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <Border x:Name="regular" Width="45" Height="30" Background="LightGray">
+                                    <TextBlock x:Name="regularText" Text="501" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </StackPanel>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked" Value="true">
+                                    <Setter TargetName="short" Property="Background" Value="#0078D7"/>
+                                    <Setter TargetName="shortText" Property="Foreground" Value="White"/>
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="False">
+                                    <Setter TargetName="regular" Property="Background" Value="#0078D7"/>
+                                    <Setter TargetName="regularText" Property="Foreground" Value="White"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto" />
@@ -36,6 +63,7 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <Button x:Name="btn_main" Grid.Column="0" Content="M" HorizontalAlignment="Left" VerticalAlignment="Center" Width="45" Height="45" Click="MainMenuButtonClick"/>
         <Button x:Name="btn_help" Grid.Column="3" Content="H" HorizontalAlignment="Right" VerticalAlignment="Center" Width="45" Height="45" Click="HelpButtonClick"/>
@@ -50,12 +78,15 @@
         <DatePicker x:Name="DateSelector" Grid.Column="2" Grid.Row="3" Margin="0,0,300,60" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
 
         <TextBlock Grid.Column="2" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="45" Height="45" Text="Legs" FontSize="20" Margin="209,18,0,0"/>
-        <TextBox x:Name="LegsInputBox" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center" Width="45" Height="45" Text="0" FontSize="20" Margin="0,16,0,0"/>
+        <TextBox x:Name="LegsInputBox" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center" Width="45" Height="45" Text="0" FontSize="20" Margin="100,16,0,0"/>
 
         <TextBlock Grid.Column="2" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="45" Height="45" Text="Sets" FontSize="20" Margin="209,18,0,0"/>
-        <TextBox x:Name="SetsInputBox" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center" Width="45" Height="45" Text="0" FontSize="20" Margin="0,16,0,0"/>
+        <TextBox x:Name="SetsInputBox" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center" Width="45" Height="45" Text="0" FontSize="20" Margin="100,16,0,0"/>
 
-        <Button x:Name="btn_next" Grid.Column="2" Grid.Row="6" Content="Volgende" Click="Submit" Margin="10,100,10,20" Padding="280,20,280,20"/>
+        <TextBlock Grid.Column="2" Grid.Row="6" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="auto"  Height="45" Text="Eerste tot" FontSize="20" Margin="209,18,0,0" />
+        <ToggleButton Name="ToggleShortMatch" Style="{StaticResource PointsPerLegToggleButtonStyle}" Grid.Column="2" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="15" Margin="100,16,0,0" />
+
+        <Button x:Name="btn_next" Grid.Column="2" Grid.Row="7" Content="Volgende" Click="Submit" Margin="10,100,10,20" Padding="280,20,280,20"/>
 
     </Grid>
 </Page>
