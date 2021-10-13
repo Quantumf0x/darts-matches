@@ -30,12 +30,6 @@ namespace Darts_matches.Controllers
             _match.NumberOfLegsPerSet = numberOfLegsPerSet;
         }
 
-        public void SetSetsAndLegs(int numberOfSets, int numberOfLegsPerSet)
-        {
-            _match.NumberOfSets = numberOfSets;
-            _match.NumberOfLegsPerSet = numberOfLegsPerSet;
-        }
-
         public void SetPlayersAndNotes(string namePlayerOne, string namePlayerTwo, string notes)
         {
             Player playerOne = new Player(namePlayerOne);
