@@ -78,7 +78,7 @@ namespace Darts_matches.Controllers
                 " '" + legs_won_per_set_player1 + "', '" + legs_won_per_set_player2 + "', '" + average_per_3_darts_total_player1 + "'," +
                 " '" + average_per_3_darts_total_player2 + "', '" + average_per_3_darts_per_set_player1 + "', '" + average_per_3_darts_per_set_player2 + "'," +
                 " '" + average_per_3_darts_per_leg_player1 + "', '" + average_per_3_darts_per_leg_player2 + "', '" + number_180_player1 + "'," +
-                " '" + number_180_player2 + "', '" + date + "')";
+                " '" + number_180_player2 + "', '" + date.Year + date.Month + date.Day + "')";
             if (command.ExecuteNonQuery() == 1)
             {
                 _succes = true;
@@ -93,15 +93,29 @@ namespace Darts_matches.Controllers
             return _succes;
         }
 
-        public object[] PullFromDatabase()
+        public List<object[]> PullAllFromDatabase()
+        {
+            List<object[]> _dataList = new List<object[]>();
+
+            int _numEntries = NumberOfDatabaseEntries();
+
+            for (int i = 1; i < _numEntries + 1; i++)
+            {
+                _dataList.Add(PullOneFromDatabase(i));
+            }
+
+            return _dataList;
+        }
+
+        public object[] PullOneFromDatabase(int id)
         {
             Connect();
             SqlCommand command = _connection.CreateCommand();
-            command.CommandText = "SELECT * FROM dbo.matches WHERE id = 1;";
+            command.CommandText = "SELECT * FROM dbo.matches WHERE id = " + id + ";";
 
             SqlDataReader reader = command.ExecuteReader();
 
-            object[] data = new object[13];
+            object[] data = new object[19];
             while (reader.Read())
             {
                 reader.GetValues(data);          
@@ -109,7 +123,23 @@ namespace Darts_matches.Controllers
            
             reader.Close();
 
+            Close();
+
             return data;
+        }
+
+        public int NumberOfDatabaseEntries()
+        {
+            Connect();
+
+            int _entries = 0;
+
+            SqlCommand command = new SqlCommand("SELECT COUNT(*) FROM dbo.matches", _connection);
+            _entries = (int)command.ExecuteScalar();
+
+            Close();
+
+            return _entries;
         }
     }
 }

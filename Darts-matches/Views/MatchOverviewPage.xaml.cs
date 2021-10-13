@@ -12,7 +12,7 @@ namespace Darts_matches
 
 
             DatabaseController dbc = DatabaseController.GetInstance();
-            object[] data = dbc.PullFromDatabase();
+            object[] data = dbc.PullOneFromDatabase(1);
 
             foreach (var item in data)
             {
