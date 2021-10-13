@@ -44,7 +44,7 @@ namespace Darts_matches
             {
                 case Key.F1:
                 case Key.H:
-                    if(!(_context is HelpPage))
+                    if (!(_context is HelpPage))
                     {
                         HelpPage helpPage = new HelpPage();
                         helpPage.SetPreviousContext(_context);
@@ -53,7 +53,7 @@ namespace Darts_matches
                     break;
                 case Key.F2:
                 case Key.M:
-                    if(!(_context is MainMenuPage))
+                    if (!(_context is MainMenuPage))
                     {
                         SetFrame(new MainMenuPage());
                     }
