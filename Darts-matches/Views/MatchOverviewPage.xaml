@@ -37,5 +37,7 @@
         <DatePicker Margin="34,135,18,359" Grid.Row="1"/>
         <DataGrid x:Name="dg_overview" Grid.Column="1" Grid.Row="1"/>
         <Button x:Name="btn_select_match" Grid.Row="1" Content="Select" HorizontalAlignment="Center" VerticalAlignment="Top" Width="120" Height="44" Margin="0,194,0,0" Click="btn_select_match_Click"/>
+        <Button x:Name="btn_help" Grid.Column="2" Content="H" HorizontalAlignment="Left" VerticalAlignment="Top" Width="45" Height="45" Margin="253,25,0,0" Click="OpenHelpPage"/>
+        <Label Grid.Column="3" Content="Help" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" Margin="1,0,13,518" Grid.RowSpan="2"/>
     </Grid>
 </Page>
