@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 using Darts_matches.Models;
 
 namespace Darts_matches.Controllers
@@ -23,13 +20,12 @@ namespace Darts_matches.Controllers
             }
         }
 
-        public void SetNameAndDate(string name, DateTime date)
+        public void CreateMatchAndSetInputs(string name, DateTime date, int pointsPerLeg, int numberOfLegsPerSet, int numberOfSets)
         {
-            _match = new Match(name, date);
-        }
-
-        public void SetSetsAndLegs(int numberOfSets, int numberOfLegsPerSet)
-        {
+            _match = new Match();
+            _match.Name = name;
+            _match.Date = date;
+            _match.PointsPerLeg = pointsPerLeg;
             _match.NumberOfSets = numberOfSets;
             _match.NumberOfLegsPerSet = numberOfLegsPerSet;
         }

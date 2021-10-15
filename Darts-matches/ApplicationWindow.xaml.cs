@@ -40,19 +40,40 @@ namespace Darts_matches
 
         private void HandleKeyPress(object sender, KeyEventArgs keyEventArgs)
         {
-            if (keyEventArgs.Key == Key.F1 && !(_context is HelpPage))
+            if (Keyboard.FocusedElement.GetType() != this.GetType())
             {
-                HelpPage helpPage = new HelpPage();
-                helpPage.SetPreviousContext(_context);
-                SetFrame(helpPage);
+                if (keyEventArgs.Key == Key.Escape)
+                {
+                    Keyboard.ClearFocus();
+                    FocusManager.SetFocusedElement(this, this);
+                }
+                return;
             }
-            else if (keyEventArgs.Key == Key.F2 && !(_context is MainMenuPage))
+
+            switch (keyEventArgs.Key)
             {
-                SetFrame(new MainMenuPage());
-            }
-            else if (_context is IKeyHandler)
-            {
-                ((IKeyHandler)_context).handleKeyEvent(keyEventArgs);
+                case Key.F1:
+                case Key.H:
+                    if (!(_context is HelpPage))
+                    {
+                        HelpPage helpPage = new HelpPage();
+                        helpPage.SetPreviousContext(_context);
+                        SetFrame(helpPage);
+                    }
+                    break;
+                case Key.F2:
+                case Key.M:
+                    if (!(_context is MainMenuPage))
+                    {
+                        SetFrame(new MainMenuPage());
+                    }
+                    break;
+                default:
+                    if (_context is IKeyHandler)
+                    {
+                        ((IKeyHandler)_context).handleKeyEvent(keyEventArgs);
+                    }
+                    break;
             }
         }
     }

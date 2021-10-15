@@ -11,9 +11,9 @@ namespace Darts_matches
     {
         private string _matchName;
         private DateTime _date;
-
-        public string MatchName { get => _matchName; }
-        public DateTime Date { get => _date; }
+        private int _pointsPerLeg;
+        private int _numberOfLegsPerSet;
+        private int _numberOfSets;
 
         public MatchInputPage()
         {
@@ -24,6 +24,7 @@ namespace Darts_matches
         {
             if (ValidateInputs())
             {
+                MatchController.Instance.CreateMatchAndSetInputs(_matchName, _date, _pointsPerLeg, _numberOfLegsPerSet, _numberOfSets);
                 ApplicationWindow.Instance.SetFrame(new PlayerInputPage());
             }
             else
@@ -43,12 +44,11 @@ namespace Darts_matches
                         break;
                     case Key.Right:
                         ApplicationWindow.Instance.SetFrame(new PlayerInputPage());
+                        MatchController.Instance.CreateMatchAndSetInputs(_matchName, _date, _pointsPerLeg, _numberOfLegsPerSet, _numberOfSets);
                         break;
                     default:
                         break;
                 }
-
-                MatchController.Instance.SetNameAndDate(_matchName, _date);
             }
         }
 
@@ -79,9 +79,38 @@ namespace Darts_matches
                 }
             }
 
-            // TODO: check for valid input for sets and legs and change bordercolor to red when invalid
+            if (ToggleShortMatch.IsChecked == true)
+            {
+                _pointsPerLeg = 301;
+            }
+            else
+            {
+                _pointsPerLeg = 501;
+            }
+            if (SetsInputBox.Text == "0")
+            {
+                SetsInputBox.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+            else
+            {
+                if (SetsInputBox.Text != string.Empty)
+                {
+                    _numberOfSets = Convert.ToInt32(SetsInputBox.Text);
+                }
+            }
+            if (LegsInputBox.Text == "0")
+            {
+                LegsInputBox.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+            else
+            {
+                if (LegsInputBox.Text != string.Empty)
+                {
+                    _numberOfLegsPerSet = Convert.ToInt32(LegsInputBox.Text);
+                }
+            }
 
-            return _matchName != null && _date != null && _date != DateTime.MinValue;
+            return _matchName != null && _date != null && _date != DateTime.MinValue && _numberOfLegsPerSet != 0 && _numberOfSets != 0;
         }
 
         private void MainMenuButtonClick(object sender, RoutedEventArgs e)
