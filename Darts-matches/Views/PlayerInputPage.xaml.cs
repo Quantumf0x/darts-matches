@@ -4,6 +4,7 @@ using System.Windows.Input;
 using System;
 using Darts_matches.Controllers;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace Darts_matches
 {
@@ -48,30 +49,26 @@ namespace Darts_matches
 
         private bool ValidateInputs()
         {
-            if (PlayerOneInputBox.Text == string.Empty)
-            {
-                PlayerOneInputBox.BorderBrush = System.Windows.Media.Brushes.Red;
-            }
-            else
-            {
-                _namePlayerOne = PlayerOneInputBox.Text;
-            }
+            List<TextBox> listname = new List<TextBox>();
+            listname.Add(PlayerOneInputBox);
+            listname.Add(PlayerTwoInputBox);
 
-            if (PlayerTwoInputBox.Text == string.Empty)
+            foreach (TextBox item in listname)
             {
-                PlayerTwoInputBox.BorderBrush = System.Windows.Media.Brushes.Red;
+                var Validation = ValidationController.Instance.PlayerInputValidate(item.Text, null);
+                if (Validation.ErrorContent != null)
+                {
+                    item.BorderBrush = System.Windows.Media.Brushes.Red;
+                } else
+                {
+                    item.BorderBrush = System.Windows.Media.Brushes.Gray;
+                }
             }
-            else
-            {
-                _namePlayerTwo = PlayerTwoInputBox.Text;
-            }
+            _namePlayerOne = PlayerOneInputBox.Text;
+            _namePlayerTwo = PlayerTwoInputBox.Text;
+            _note = NotesInputBox.Text;
 
-            if (NotesInputBox.Text != string.Empty)
-            {
-                _note = NotesInputBox.Text;
-            }
-
-            return (_namePlayerOne != null && _namePlayerTwo != null);
+            return (_namePlayerOne != string.Empty && _namePlayerTwo != string.Empty);
         }
 
         private void MainMenuButtonClick(object sender, RoutedEventArgs e)
