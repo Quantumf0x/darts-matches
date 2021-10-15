@@ -50,12 +50,19 @@ namespace Darts_matches
             object[] rowItemArray = selectedRow.Row.ItemArray;
 
             string showRow = "";
-            foreach (var item in rowItemArray)
+            for (int i = 0; i < rowItemArray.Length; i++)
             {
-                showRow += item.ToString() + "\n";
+                showRow += dg_overview.Columns[i].Header + ":\t\t" + rowItemArray[i].ToString() + "\n";
             }
 
             MessageBox.Show(showRow);
+        }
+
+        private void OpenHelpPage(object sender, RoutedEventArgs eventArguments)
+        {
+            HelpPage helpPage = new HelpPage();
+            helpPage.SetPreviousContext(this);
+            ApplicationWindow.Instance.SetFrame(helpPage);
         }
     }
 }

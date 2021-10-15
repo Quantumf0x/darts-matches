@@ -120,7 +120,9 @@ namespace Darts_matches
 
         private void HelpButtonClick(object sender, RoutedEventArgs e)
         {
-            ApplicationWindow.Instance.SetFrame(new HelpPage());
+            HelpPage helpPage = new HelpPage();
+            helpPage.SetPreviousContext(this);
+            ApplicationWindow.Instance.SetFrame(helpPage);
         }
     }
 }
