@@ -4,6 +4,7 @@ using System.Text;
 using System.Data.SqlClient;
 using System.IO;
 using System.Diagnostics;
+using System.Data;
 
 namespace Darts_matches.Controllers
 {
@@ -93,18 +94,20 @@ namespace Darts_matches.Controllers
             return _succes;
         }
 
-        public List<object[]> PullAllFromDatabase()
+        public DataTable PullAllFromDatabase()
         {
-            List<object[]> _dataList = new List<object[]>();
+            Connect();
+            SqlCommand command = _connection.CreateCommand();
+            command.CommandText = "SELECT * FROM dbo.matches;";
 
-            int _numEntries = NumberOfDatabaseEntries();
+            SqlDataReader reader = command.ExecuteReader();
 
-            for (int i = 1; i < _numEntries + 1; i++)
-            {
-                _dataList.Add(PullOneFromDatabase(i));
-            }
+            DataTable dt = new DataTable();
+            dt.Load(reader);
 
-            return _dataList;
+            Close();
+
+            return dt;
         }
 
         public object[] PullOneFromDatabase(int id)
@@ -126,20 +129,6 @@ namespace Darts_matches.Controllers
             Close();
 
             return data;
-        }
-
-        public int NumberOfDatabaseEntries()
-        {
-            Connect();
-
-            int _entries = 0;
-
-            SqlCommand command = new SqlCommand("SELECT COUNT(*) FROM dbo.matches", _connection);
-            _entries = (int)command.ExecuteScalar();
-
-            Close();
-
-            return _entries;
         }
     }
 }
