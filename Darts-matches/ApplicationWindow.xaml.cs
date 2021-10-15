@@ -40,6 +40,16 @@ namespace Darts_matches
 
         private void HandleKeyPress(object sender, KeyEventArgs keyEventArgs)
         {
+            if (Keyboard.FocusedElement.GetType() != this.GetType())
+            {
+                if (keyEventArgs.Key == Key.Escape)
+                {
+                    Keyboard.ClearFocus();
+                    FocusManager.SetFocusedElement(this, this);
+                }
+                return;
+            }
+
             switch (keyEventArgs.Key)
             {
                 case Key.F1:
