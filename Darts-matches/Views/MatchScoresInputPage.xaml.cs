@@ -19,8 +19,9 @@ namespace Darts_matches
             lbl_name_player1.Text = _match.PlayerOne.Name;
             lbl_name_player2.Text = _match.PlayerTwo.Name;
 
+            //Selected Player is always selected first.
             _selectedPlayer = _match.PlayerOne;
-            lbl_name_player1.Background = System.Windows.Media.Brushes.Blue;
+            lbl_name_player1.Background = Brushes.LightBlue;
         }
 
         private void MatchResultsPage(object sender, RoutedEventArgs eventArguments)
@@ -67,8 +68,6 @@ namespace Darts_matches
                 lbl_name_player1.Background = Brushes.Blue;
                 lbl_name_player2.Background = Brushes.Transparent;
             }
-
-            System.Console.WriteLine("Changed to player: " + _selectedPlayer.Name);
         }
     }
 }
