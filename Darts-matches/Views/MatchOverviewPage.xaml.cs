@@ -11,6 +11,8 @@ namespace Darts_matches
 {
     public partial class MatchOverviewPage : Page
     {
+        private bool _sortingOn = false;
+
         public MatchOverviewPage()
         {
             InitializeComponent();
@@ -20,6 +22,9 @@ namespace Darts_matches
             dg_overview.ItemsSource = dt.AsDataView();
 
             Loaded += MatchOverviewPage_loaded;
+
+            zoekTextBox.GotFocus += RemoveText;
+            zoekTextBox.LostFocus += AddText;
         }
 
         private void MatchOverviewPage_loaded(object sender, RoutedEventArgs e)
@@ -63,6 +68,24 @@ namespace Darts_matches
             HelpPage helpPage = new HelpPage();
             helpPage.SetPreviousContext(this);
             ApplicationWindow.Instance.SetFrame(helpPage);
+        }
+
+        private void RemoveText(object sender, RoutedEventArgs eventArgument)
+        {
+            if (zoekTextBox.Text == "Zoeken")
+            {
+                zoekTextBox.Text = "";
+                _sortingOn = true;
+            }
+        }
+
+        private void AddText(object sender, RoutedEventArgs eventArgument)
+        {
+            if (string.IsNullOrWhiteSpace(zoekTextBox.Text))
+            {
+                zoekTextBox.Text = "Zoeken";
+                _sortingOn = false;
+            }
         }
     }
 }
