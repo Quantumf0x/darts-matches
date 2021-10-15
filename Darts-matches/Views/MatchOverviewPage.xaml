@@ -36,5 +36,6 @@
         <DatePicker Margin="34,89,18,405" Grid.Row="1"/>
         <DatePicker Margin="34,135,18,359" Grid.Row="1"/>
         <DataGrid x:Name="dg_overview" Grid.Column="1" Grid.Row="1"/>
+        <Button x:Name="btn_select_match" Grid.Row="1" Content="Select" HorizontalAlignment="Center" VerticalAlignment="Top" Width="120" Height="44" Margin="0,194,0,0" Click="btn_select_match_Click"/>
     </Grid>
 </Page>
