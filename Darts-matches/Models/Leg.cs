@@ -2,7 +2,7 @@
 
 namespace Darts_matches.Models
 {
-    internal class Leg
+    public class Leg
     {
         private int _legNumber;
         private Player _winner;

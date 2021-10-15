@@ -2,7 +2,7 @@
 
 namespace Darts_matches.Models
 {
-    internal class Player
+    public class Player
     {
         private string _name;
         private List<Throw> _throws;
