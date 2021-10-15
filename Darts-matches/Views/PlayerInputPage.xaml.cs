@@ -1,42 +1,85 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System;
+using Darts_matches.Controllers;
+using System.Diagnostics;
 
 namespace Darts_matches
 {
     public partial class PlayerInputPage : Page, IKeyHandler
     {
+        private string _namePlayerOne;
+        private string _namePlayerTwo;
+        private string _note;
+
         public PlayerInputPage()
         {
             InitializeComponent();
         }
 
-        private void btn_next_Click(object sender, RoutedEventArgs eventArguments)
+        private void Submit(object sender, RoutedEventArgs eventArguments)
         {
-            ApplicationWindow.Instance.SetFrame(new MatchScoresInputPage());
+            if (ValidateInputs())
+            {
+                MatchController.Instance.SetPlayersAndNotes(_namePlayerOne, _namePlayerTwo, _note);
+                ApplicationWindow.Instance.SetFrame(new MatchScoresInputPage());
+            }
         }
 
         void IKeyHandler.handleKeyEvent(KeyEventArgs keyEventArgs)
         {
-            switch (keyEventArgs.Key)
-            {
-                case Key.Left:
-                    ApplicationWindow.Instance.SetFrame(new MatchInputPage());
-                    break;
-                case Key.Right:
-                    ApplicationWindow.Instance.SetFrame(new MatchScoresInputPage());
-                    break;
-                default:
-                    break;
-            }
+                switch (keyEventArgs.Key)
+                {
+                    case Key.Left:
+                        ApplicationWindow.Instance.SetFrame(new MatchInputPage());
+                        break;
+                    case Key.Right:
+                        if (ValidateInputs())
+                        {
+                            ApplicationWindow.Instance.SetFrame(new MatchScoresInputPage());
+                            MatchController.Instance.SetPlayersAndNotes(_namePlayerOne, _namePlayerTwo, "test");
+                        }
+                        break;
+                    default:
+                        break;
+                }
         }
 
-        private void btn_main_Click(object sender, RoutedEventArgs e)
+        private bool ValidateInputs()
+        {
+            if (PlayerOneInputBox.Text == string.Empty)
+            {
+                PlayerOneInputBox.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+            else
+            {
+                _namePlayerOne = PlayerOneInputBox.Text;
+            }
+
+            if (PlayerTwoInputBox.Text == string.Empty)
+            {
+                PlayerTwoInputBox.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+            else
+            {
+                _namePlayerTwo = PlayerTwoInputBox.Text;
+            }
+
+            if (NotesInputBox.Text != string.Empty)
+            {
+                _note = NotesInputBox.Text;
+            }
+
+            return (_namePlayerOne != null && _namePlayerTwo != null);
+        }
+
+        private void MainMenuButtonClick(object sender, RoutedEventArgs e)
         {
             ApplicationWindow.Instance.SetFrame(new MainMenuPage());
         }
 
-        private void btn_help_Click(object sender, RoutedEventArgs e)
+        private void HelpButtonClick(object sender, RoutedEventArgs e)
         {
             ApplicationWindow.Instance.SetFrame(new HelpPage());
         }

@@ -9,13 +9,15 @@
         Title="MainWindow">
     <Grid>
         <UserControl Loaded="UserControlOnLoaded"/>
-        <Frame x:Name="frame" 
+        <Viewbox Stretch="Uniform">
+            <Frame x:Name="frame" 
                Content="Frame" 
                Margin="0" HorizontalAlignment="Stretch" 
                VerticalAlignment="Stretch" 
                HorizontalContentAlignment="Stretch"
                VerticalContentAlignment="Stretch" 
                NavigationUIVisibility="Hidden">
-        </Frame>
+            </Frame>
+        </Viewbox>
     </Grid>
 </Window>

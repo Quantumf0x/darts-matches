@@ -6,7 +6,6 @@ namespace Darts_matches.Models
     internal class Match
     {
         private string _name;
-        private string _tournament;
         private string _notes;
         private DateTime _date;
         private Player _playerOne;
@@ -14,30 +13,25 @@ namespace Darts_matches.Models
         private Player _winner;
         private int _numberOfSets;
         private int _numberOfLegsPerSet;
+        private int _pointsPerLeg;
         private List<Set> _sets;
 
-        public string Name { get => _name; }
-        public string Tournament { get => _tournament; }
-        public string FreeInput { get => _notes; }
+        public string Name { get => _name; set => _name = value; }
+        public string Notes { get => _notes; set => _notes = value; }
         public DateTime Date { get => _date; set => _date = value; }
-        public Player PlayerOne { get => _playerOne; }
-        public Player PlayerTwo { get => _playerTwo; }
-        public Player Winner { get => _winner; }
+        public Player PlayerOne { get => _playerOne; set => _playerOne = value; }
+        public Player PlayerTwo { get => _playerTwo; set => _playerTwo = value; }
+        public Player Winner { get => _winner; set => _winner = value; }
         public int NumberOfSets { get => _numberOfSets; set => _numberOfSets = value; }
+        public int NumberOfLegsPerSet { get => _numberOfLegsPerSet; set => _numberOfLegsPerSet = value; }
+        public int PointsPerLeg { get => _pointsPerLeg; set => _pointsPerLeg = value; }
 
+        public Match() { }
 
-        public Match(string name, string tournament, string notes, Player playerOne, Player playerTwo, int numberOfSets, int numberOfLegsPerSet)
+        // TODO: change to work when all parameters have a value (last step before starting match)
+        public void SetupMatch()
         {
-            _name = name;
-            _tournament = tournament;
-            _notes = notes;
-            _date = DateTime.Today;
-            _playerOne = playerOne;
-            _playerTwo = playerTwo;
-            _numberOfSets = numberOfSets;
-            _numberOfLegsPerSet = numberOfLegsPerSet;
-
-            for (int i = 0; i < numberOfSets; i++)
+            for (int i = 0; i < _numberOfSets; i++)
             {
                 CreateNewSet();
             }

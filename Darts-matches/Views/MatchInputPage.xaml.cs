@@ -2,52 +2,41 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using System;
-using Darts_matches.Models;
-using System.Globalization;
+using Darts_matches.Controllers;
+using System.Diagnostics;
 
 namespace Darts_matches
 {
     public partial class MatchInputPage : Page, IKeyHandler
     {
-        private Match _match;
-        private Player _playerOne;
-        private Player _playerTwo;
+        private string _matchName;
+        private DateTime _date;
+        private int _pointsPerLeg;
+        private int _numberOfLegsPerSet;
+        private int _numberOfSets;
 
         public MatchInputPage()
         {
             InitializeComponent();
-            this._playerOne = new Player("");
-            this._playerTwo = new Player("");
-            this._match = new Match("", "", "", this._playerOne, this._playerTwo, -1, -1);
         }
 
-        private void btn_next_Click(object sender, RoutedEventArgs eventArguments)
+        private void Submit(object sender, RoutedEventArgs eventArguments)
         {
-            ApplicationWindow.Instance.SetFrame(new PlayerInputPage());
-        }
-
-        private void PlayerInputPage(object sender, RoutedEventArgs eventArguments)
-        {
-            DateTime datetime = new DateTime();
-            int numberOfSets = 0;
-
-            if (this.validateInput(datetime) && this.validateInputSets(numberOfSets))
+            if (ValidateInputs())
             {
-                this._match.Date = datetime;
-                this._match.NumberOfSets = numberOfSets;
+                MatchController.Instance.CreateMatchAndSetInputs(_matchName, _date, _pointsPerLeg, _numberOfLegsPerSet, _numberOfSets);
                 ApplicationWindow.Instance.SetFrame(new PlayerInputPage());
+            }
+            else
+            {
+                _matchName = null;
             }
         }
 
         void IKeyHandler.handleKeyEvent(KeyEventArgs keyEventArgs)
         {
-            DateTime datetime = new DateTime();
-            int numberOfSets = 0;
-
-            if (this.validateInput(datetime) && this.validateInputSets(numberOfSets))
+            if (ValidateInputs())
             {
-                this._match.Date = datetime;
-                this._match.NumberOfSets = numberOfSets;
                 switch (keyEventArgs.Key)
                 {
                     case Key.Left:
@@ -55,6 +44,7 @@ namespace Darts_matches
                         break;
                     case Key.Right:
                         ApplicationWindow.Instance.SetFrame(new PlayerInputPage());
+                        MatchController.Instance.CreateMatchAndSetInputs(_matchName, _date, _pointsPerLeg, _numberOfLegsPerSet, _numberOfSets);
                         break;
                     default:
                         break;
@@ -62,82 +52,75 @@ namespace Darts_matches
             }
         }
 
-        private bool validateInput(DateTime date)
+        private bool ValidateInputs()
         {
-            //if (DateInputBox.Text != "")
-            //{
-            //    var formats = new[] { "dd/MM/yyyy", "yyyy-MM-dd" };
-            //    if (DateTime.TryParseExact(DateInputBox.Text, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
-            //    {
-            //        DateInputBox.BorderBrush = System.Windows.Media.Brushes.Gray;
-            //        return true;
-            //    }
-            //    else
-            //    {
-            //        DateInputBox.BorderBrush = System.Windows.Media.Brushes.Red;
-            //        return false;
-            //    }
-            //}
-            //else
-            //{
-            //    DateInputBox.BorderBrush = System.Windows.Media.Brushes.Gray;
-            //    return true;
-            //}
-            return true;
-        }
-
-        private bool validateInputSets(int sets)
-        {
-            if (int.TryParse(lbl_nr_of_sets.Text, out sets))
+            if (NameInputBox.Text == string.Empty)
             {
-                lbl_nr_of_sets.BorderBrush = System.Windows.Media.Brushes.Gray;
-                return true;
+                NameInputBox.BorderBrush = System.Windows.Media.Brushes.Red;
             }
             else
             {
-                lbl_nr_of_sets.BorderBrush = System.Windows.Media.Brushes.Red;
-                return false;
+                _matchName = NameInputBox.Text;
             }
+
+            if (DateSelector.SelectedDate == null || DateSelector.Text == string.Empty)
+            {
+                DateSelector.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+            else
+            {
+                try
+                {
+                    _date = Convert.ToDateTime(DateSelector.SelectedDate.Value.ToShortDateString());
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e.Message);
+                }
+            }
+
+            if (ToggleShortMatch.IsChecked == true)
+            {
+                _pointsPerLeg = 301;
+            }
+            else
+            {
+                _pointsPerLeg = 501;
+            }
+            if (SetsInputBox.Text == "0")
+            {
+                SetsInputBox.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+            else
+            {
+                if (SetsInputBox.Text != string.Empty)
+                {
+                    _numberOfSets = Convert.ToInt32(SetsInputBox.Text);
+                }
+            }
+            if (LegsInputBox.Text == "0")
+            {
+                LegsInputBox.BorderBrush = System.Windows.Media.Brushes.Red;
+            }
+            else
+            {
+                if (LegsInputBox.Text != string.Empty)
+                {
+                    _numberOfLegsPerSet = Convert.ToInt32(LegsInputBox.Text);
+                }
+            }
+
+            return _matchName != null && _date != null && _date != DateTime.MinValue && _numberOfLegsPerSet != 0 && _numberOfSets != 0;
         }
 
-        private void btn_main_Click(object sender, RoutedEventArgs e)
+        private void MainMenuButtonClick(object sender, RoutedEventArgs e)
         {
             ApplicationWindow.Instance.SetFrame(new MainMenuPage());
         }
 
-        private void btn_help_Click(object sender, RoutedEventArgs e)
+        private void HelpButtonClick(object sender, RoutedEventArgs e)
         {
             ApplicationWindow.Instance.SetFrame(new HelpPage());
-        }
-
-        private void btn_add_leg_Click(object sender, RoutedEventArgs e)
-        {
-            int currentNrOfLegs = int.Parse(lbl_nr_of_legs.Text);
-            currentNrOfLegs++;
-            lbl_nr_of_legs.Text = currentNrOfLegs.ToString();
-        }
-
-        private void btn_del_leg_Click(object sender, RoutedEventArgs e)
-        {
-            int currentNrOfLegs = int.Parse(lbl_nr_of_legs.Text);
-            currentNrOfLegs--;
-            if (currentNrOfLegs > 0) lbl_nr_of_legs.Text = currentNrOfLegs.ToString();
-            else lbl_nr_of_legs.Text = "0";
-        }
-
-        private void btn_add_set_Click(object sender, RoutedEventArgs e)
-        {
-            int currentNrOfSets = int.Parse(lbl_nr_of_sets.Text);
-            currentNrOfSets++;
-            lbl_nr_of_sets.Text = currentNrOfSets.ToString();
-        }
-
-        private void btn_del_set_Click(object sender, RoutedEventArgs e)
-        {
-            int currentNrOfSets = int.Parse(lbl_nr_of_sets.Text);
-            currentNrOfSets--;
-            if (currentNrOfSets > 0) lbl_nr_of_sets.Text = currentNrOfSets.ToString();
-            else lbl_nr_of_sets.Text = "0";
         }
     }
 }
