@@ -49,17 +49,18 @@ namespace Darts_matches
 
         private bool ValidateInputs()
         {
-            List<TextBox> listname = new List<TextBox>();
-            listname.Add(PlayerOneInputBox);
-            listname.Add(PlayerTwoInputBox);
+            List<TextBox> textBoxList = new List<TextBox>();
+            textBoxList.Add(PlayerOneInputBox);
+            textBoxList.Add(PlayerTwoInputBox);
 
-            foreach (TextBox item in listname)
+            foreach (TextBox item in textBoxList)
             {
-                var Validation = ValidationController.Instance.PlayerInputValidate(item.Text, null);
-                if (Validation.ErrorContent != null)
+                var validation = ValidationController.Instance.PlayerInputValidate(item.Text);
+                if (validation.ErrorContent != null)
                 {
                     item.BorderBrush = System.Windows.Media.Brushes.Red;
-                } else
+                } 
+                else
                 {
                     item.BorderBrush = System.Windows.Media.Brushes.Gray;
                 }
