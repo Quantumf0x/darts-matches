@@ -42,7 +42,7 @@ namespace Darts_matches.Controllers
             var datevalue = value.ToString();
             if (datevalue == null || datevalue == string.Empty)
             {
-                error = "You cannot leave the field empty";
+                error = "You cannot leave the datefield empty";
             }
             if (string.IsNullOrEmpty(error) || error == null)
             {
