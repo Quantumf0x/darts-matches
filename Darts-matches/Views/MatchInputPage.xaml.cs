@@ -55,7 +55,7 @@ namespace Darts_matches
 
         private bool ValidateInputs()
         {
-            var nameInputValidation = ValidationController.Instance.MatchInputValidate(NameInputBox.Text);
+            var nameInputValidation = ValidationController.Instance.StringInputValidate(NameInputBox.Text);
             if (nameInputValidation.ErrorContent != null)
             {
                 NameInputBox.BorderBrush = System.Windows.Media.Brushes.Red;

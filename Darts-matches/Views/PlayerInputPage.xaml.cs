@@ -55,7 +55,7 @@ namespace Darts_matches
 
             foreach (TextBox item in textBoxList)
             {
-                var validation = ValidationController.Instance.PlayerInputValidate(item.Text);
+                var validation = ValidationController.Instance.StringInputValidate(item.Text);
                 if (validation.ErrorContent != null)
                 {
                     item.BorderBrush = System.Windows.Media.Brushes.Red;

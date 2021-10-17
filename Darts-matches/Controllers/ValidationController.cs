@@ -27,17 +27,7 @@ namespace Darts_matches.Controllers
             }
             return errorMessage;
         }
-        //maybe a string function for checking
-        public ValidationResult PlayerInputValidate(object value)
-        {
-            string error = GetErrorMessage(value);
-            if (string.IsNullOrEmpty(error))
-            {
-                return new ValidationResult(true, null);
-            }
-            return new ValidationResult(false, error);
-        }
-        public ValidationResult MatchInputValidate(object value)
+        public ValidationResult StringInputValidate(object value)
         {
             string error = GetErrorMessage(value);
             if (string.IsNullOrEmpty(error))
@@ -63,7 +53,8 @@ namespace Darts_matches.Controllers
         public ValidationResult SetsAndLegValidate(string value)
         {
             string error = string.Empty;
-            if (value == "0" || value.Contains("-")){
+            if (value == "0" || value.Contains("-"))
+            {
                 error = "error";
             }
             if (string.IsNullOrEmpty(error) || error == null)
