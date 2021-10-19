@@ -15,6 +15,7 @@ namespace Darts_matches_tests
 
             Assert.AreEqual(expected, result);
         }
+
         [TestMethod]
         public void StringInputValidateTest()
         {
@@ -24,6 +25,7 @@ namespace Darts_matches_tests
 
             Assert.AreEqual(expected, resultErrorContent);
         }
+
         [TestMethod]
         public void MatchDateValidateTest()
         {
@@ -35,13 +37,14 @@ namespace Darts_matches_tests
 
             Assert.AreEqual(expected, resultErrorContent);
         }
+
         [TestMethod]
         public void SetsAndLegValidateTest()
         {
             var result = ValidationController.Instance.SetsAndLegValidate("0");
             var resultErrorContent = result.ErrorContent;
 
-            string expected = "error";
+            string expected = "Number of sets must be 1 or higher";
 
             Assert.AreEqual(expected, resultErrorContent);
         }

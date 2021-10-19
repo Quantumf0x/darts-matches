@@ -81,9 +81,11 @@ namespace Darts_matches
                 }
             }
             _matchName = NameInputBox.Text;
-            _numberOfSets = Convert.ToInt32(SetsInputBox.Text);
-            _numberOfLegsPerSet = Convert.ToInt32(LegsInputBox.Text);
-
+            if (SetsInputBox.Text != string.Empty || LegsInputBox.Text != string.Empty)
+            {
+                _numberOfSets = Convert.ToInt32(SetsInputBox.Text);
+                _numberOfLegsPerSet = Convert.ToInt32(LegsInputBox.Text);
+            }
             var dateValidation = ValidationController.Instance.MatchDateValidate(DateSelector.SelectedDate);
             if (dateValidation.ErrorContent != null)
             {
@@ -110,6 +112,7 @@ namespace Darts_matches
             {
                 _pointsPerLeg = 501;
             }
+            
             return _matchName != null && _date != null && _date != DateTime.MinValue && _numberOfLegsPerSet != 0 && _numberOfSets != 0;
         }
 

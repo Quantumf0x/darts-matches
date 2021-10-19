@@ -18,15 +18,17 @@ namespace Darts_matches.Controllers
                 return _instance;
             }
         }
-        public static string GetErrorMessage(object fieldValue)
+
+        public static string GetErrorMessage(object value)
         {
             string errorMessage = string.Empty;
-            if (fieldValue == null || string.IsNullOrEmpty(fieldValue.ToString()))
+            if (value == null || string.IsNullOrEmpty(value.ToString()))
             {
                 errorMessage = "You cannot leave the field empty";
             }
             return errorMessage;
         }
+
         public ValidationResult StringInputValidate(object value)
         {
             string error = GetErrorMessage(value);
@@ -36,6 +38,7 @@ namespace Darts_matches.Controllers
             }
             return new ValidationResult(false, error);
         }
+
         public ValidationResult MatchDateValidate(DateTime? value)
         {
             string error = string.Empty;
@@ -50,6 +53,7 @@ namespace Darts_matches.Controllers
             }
             return new ValidationResult(false, error);
         }
+
         public ValidationResult SetsAndLegValidate(string value)
         {
             string error = string.Empty;
@@ -63,6 +67,7 @@ namespace Darts_matches.Controllers
             }
             return new ValidationResult(false, error);
         }
+
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
             throw new NotImplementedException();
