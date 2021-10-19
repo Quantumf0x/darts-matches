@@ -16,27 +16,27 @@ namespace Darts_matches_tests
             Assert.AreEqual(expected, result);
         }
         [TestMethod]
-        public static void StringInputValidateTest()
+        public void StringInputValidateTest()
         {
-            var result = ValidationController.Instance.StringInputValidate("string");
+            var result = ValidationController.Instance.StringInputValidate(string.Empty);
             var resultErrorContent = result.ErrorContent;
             string expected = "You cannot leave the field empty";
 
             Assert.AreEqual(expected, resultErrorContent);
         }
         [TestMethod]
-        public static void MatchDateValidateTest()
+        public void MatchDateValidateTest()
         {
             var date = new DateTime(2008, 3, 1);
             var result = ValidationController.Instance.MatchDateValidate(date);
             var resultErrorContent = result.ErrorContent;
 
-            string expected = "You cannot leave the datefield empty";
+            string expected = null;
 
             Assert.AreEqual(expected, resultErrorContent);
         }
         [TestMethod]
-        public static void SetsAndLegValidateTest()
+        public void SetsAndLegValidateTest()
         {
             var result = ValidationController.Instance.SetsAndLegValidate("0");
             var resultErrorContent = result.ErrorContent;
