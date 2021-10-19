@@ -112,7 +112,6 @@ namespace Darts_matches
             {
                 _pointsPerLeg = 501;
             }
-            
             return _matchName != null && _date != null && _date != DateTime.MinValue && _numberOfLegsPerSet != 0 && _numberOfSets != 0;
         }
 
