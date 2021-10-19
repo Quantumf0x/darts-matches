@@ -59,7 +59,7 @@ namespace Darts_matches.Controllers
             string error = string.Empty;
             if (value == "0" || value.Contains("-"))
             {
-                error = "error";
+                error = "Number of sets must be 1 or higher";
             }
             if (string.IsNullOrEmpty(error) || error == null)
             {
