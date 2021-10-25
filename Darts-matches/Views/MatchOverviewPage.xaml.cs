@@ -98,96 +98,186 @@ namespace Darts_matches
             {
                 reset = true;
 
-                //matchname
+                // searchPlayerName.Text
+
+                bool matchNameSearch = searchMatchName.Text != "";
+                bool playerNameSearch = searchPlayerName.Text != "";
+                bool dateSearch = _datePicker1.SelectedDate != null && _datePicker1.SelectedDate != null;
+
+                if (matchNameSearch && !playerNameSearch && !dateSearch)
                 {
-                    Dispatcher.Invoke(() =>
-                    {
-                        if (searchMatchName.Text != "Zoeken" && searchMatchName.Text != "" && searchMatchName.Text != null)
-                        {
-                            int index = 0;
-                            foreach (DataRowView row in dg_overview.Items)
-                            {
-                                if (row.Row[1].ToString().Contains(searchMatchName.Text))
-                                {
-                                    Trace.WriteLine("test1");
-                                    var rowToHide = dg_overview.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
-                                    rowToHide.Visibility = Visibility.Visible;
-                                }
-                                else
-                                {
-                                    Trace.WriteLine("test2");
-                                    Trace.WriteLine(row.Row[0]);
-                                    var rowToHide = dg_overview.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
-                                    rowToHide.Visibility = Visibility.Collapsed;
-                                }
-                                index++;
-                            }
-                            reset = false;
-                        }
-                    });
+                    // only search match name
+                    SortDataMatchName();
                 }
-
-                //date
+                else if (!matchNameSearch && !playerNameSearch && dateSearch)
                 {
-                    DateTime _date1 = DateTime.Now;
-                    DateTime _date2 = DateTime.Now;
-
-                    Dispatcher.Invoke(() =>
-                    {
-                        if (_datePicker1.SelectedDate != null && _datePicker2.SelectedDate != null)
-                        {
-                            if (_datePicker1.SelectedDate.Value < _datePicker2.SelectedDate.Value)
-                            {
-                                _date1 = _datePicker1.SelectedDate.Value;
-                                _date2 = _datePicker2.SelectedDate.Value;
-                            }
-                            else
-                            {
-                                _date1 = _datePicker2.SelectedDate.Value;
-                                _date2 = _datePicker1.SelectedDate.Value;
-                            }
-
-                            int index = 0;
-                            foreach (DataRowView row in dg_overview.Items)
-                            {
-                                if (Convert.ToDateTime(row.Row[18]) < _date1 || Convert.ToDateTime(row.Row[18]) > _date2)
-                                {
-                                    Trace.WriteLine(row.Row[0]);
-                                    var rowToHide = dg_overview.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
-                                    rowToHide.Visibility = Visibility.Collapsed;
-                                }
-                                else
-                                {
-                                    Trace.WriteLine(row.Row[0]);
-                                    var rowToHide = dg_overview.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
-                                    rowToHide.Visibility = Visibility.Visible;
-                                }
-                                index++;
-                            }
-
-                            reset = false;
-                        }
-                    });
-
-                    Dispatcher.Invoke(() =>
-                    {
-                        if (reset)
-                        {
-                            int index = 0;
-                            foreach (DataRowView row in dg_overview.Items)
-                            {
-                                Trace.WriteLine(row.Row[0]);
-                                var rowToHide = dg_overview.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
-                                rowToHide.Visibility = Visibility.Visible;
-
-                                index++;
-                            }
-                        }
-                    });
+                    // only search date
+                    SortDataDate();
+                }
+                else if (!matchNameSearch && playerNameSearch && !dateSearch)
+                {
+                    SortDataPlayerName();
+                }
+                else if (matchNameSearch && !playerNameSearch && dateSearch)
+                {
+                    // search match name and date
+                    SortDateMatchNameAndDate();
+                }
+                else if (matchNameSearch && playerNameSearch && !dateSearch)
+                {
+                    // search match name and playername
+                    SortMatchNameAndPlayerName();
+                }
+                else if (!matchNameSearch && playerNameSearch && dateSearch)
+                {
+                    // search playername and date
+                    SortPlayerNameAndDate();
+                }
+                else if (matchNameSearch && playerNameSearch && dateSearch)
+                {
+                    // search match name and date
+                    SortAll();
                 }
 
                 Thread.Sleep(100);
             }
+        }
+
+        private void SortDataMatchName()
+        {
+            Dispatcher.Invoke(() =>
+            {
+                if (searchMatchName.Text != "Zoeken" && searchMatchName.Text != "" && searchMatchName.Text != null)
+                {
+                    int index = 0;
+                    foreach (DataRowView row in dg_overview.Items)
+                    {
+                        if (row.Row[1].ToString().Contains(searchMatchName.Text))
+                        {
+                            Trace.WriteLine("test1");
+                            var rowToHide = dg_overview.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+                            rowToHide.Visibility = Visibility.Visible;
+                        }
+                        else
+                        {
+                            Trace.WriteLine("test2");
+                            Trace.WriteLine(row.Row[0]);
+                            var rowToHide = dg_overview.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+                            rowToHide.Visibility = Visibility.Collapsed;
+                        }
+                        index++;
+                    }
+                    reset = false;
+                }
+            });
+        }
+
+        private void SortDataPlayerName()
+        {
+            Dispatcher.Invoke(() =>
+            {
+                if (searchMatchName.Text != "Zoeken" && searchMatchName.Text != "" && searchMatchName.Text != null)
+                {
+                    int index = 0;
+                    foreach (DataRowView row in dg_overview.Items)
+                    {
+                        if (row.Row[1].ToString().Contains(searchMatchName.Text))
+                        {
+                            Trace.WriteLine("test1");
+                            var rowToHide = dg_overview.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+                            rowToHide.Visibility = Visibility.Visible;
+                        }
+                        else
+                        {
+                            Trace.WriteLine("test2");
+                            Trace.WriteLine(row.Row[0]);
+                            var rowToHide = dg_overview.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+                            rowToHide.Visibility = Visibility.Collapsed;
+                        }
+                        index++;
+                    }
+                    reset = false;
+                }
+            });
+        }
+
+        private void SortDataDate()
+        {
+            DateTime _date1 = DateTime.Now;
+            DateTime _date2 = DateTime.Now;
+
+            Dispatcher.Invoke(() =>
+            {
+                if (_datePicker1.SelectedDate != null && _datePicker2.SelectedDate != null)
+                {
+                    if (_datePicker1.SelectedDate.Value < _datePicker2.SelectedDate.Value)
+                    {
+                        _date1 = _datePicker1.SelectedDate.Value;
+                        _date2 = _datePicker2.SelectedDate.Value;
+                    }
+                    else
+                    {
+                        _date1 = _datePicker2.SelectedDate.Value;
+                        _date2 = _datePicker1.SelectedDate.Value;
+                    }
+
+                    int index = 0;
+                    foreach (DataRowView row in dg_overview.Items)
+                    {
+                        if (Convert.ToDateTime(row.Row[18]) < _date1 || Convert.ToDateTime(row.Row[18]) > _date2)
+                        {
+                            Trace.WriteLine(row.Row[0]);
+                            var rowToHide = dg_overview.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+                            rowToHide.Visibility = Visibility.Collapsed;
+                        }
+                        else
+                        {
+                            Trace.WriteLine(row.Row[0]);
+                            var rowToHide = dg_overview.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+                            rowToHide.Visibility = Visibility.Visible;
+                        }
+                        index++;
+                    }
+
+                    reset = false;
+                }
+            });
+
+            Dispatcher.Invoke(() =>
+            {
+                if (reset)
+                {
+                    int index = 0;
+                    foreach (DataRowView row in dg_overview.Items)
+                    {
+                        Trace.WriteLine(row.Row[0]);
+                        var rowToHide = dg_overview.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+                        rowToHide.Visibility = Visibility.Visible;
+
+                        index++;
+                    }
+                }
+            });
+        }
+
+        private void SortDateMatchNameAndDate()
+        {
+
+        }
+
+        private void SortMatchNameAndPlayerName()
+        {
+
+        }
+
+        private void SortPlayerNameAndDate()
+        {
+
+        }
+
+        private void SortAll()
+        {
+
         }
     }
 }
