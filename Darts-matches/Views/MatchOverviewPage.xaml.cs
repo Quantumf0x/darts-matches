@@ -27,8 +27,11 @@ namespace Darts_matches
 
             Loaded += MatchOverviewPage_loaded;
 
-            searchMatchName.GotFocus += RemoveText;
-            searchMatchName.LostFocus += AddText;
+            searchMatchName.GotFocus += RemoveText1;
+            searchMatchName.LostFocus += AddText1;
+
+            searchPlayerName.GotFocus += RemoveText2;
+            searchPlayerName.LostFocus += AddText2;
         }
 
         private void MatchOverviewPage_loaded(object sender, RoutedEventArgs e)
@@ -69,7 +72,7 @@ namespace Darts_matches
             ApplicationWindow.Instance.SetFrame(helpPage);
         }
 
-        private void RemoveText(object sender, RoutedEventArgs eventArgument)
+        private void RemoveText1(object sender, RoutedEventArgs eventArgument)
         {
             if (searchMatchName.Text == "Zoeken")
             {
@@ -78,11 +81,29 @@ namespace Darts_matches
             }
         }
 
-        private void AddText(object sender, RoutedEventArgs eventArgument)
+        private void AddText1(object sender, RoutedEventArgs eventArgument)
         {
             if (string.IsNullOrWhiteSpace(searchMatchName.Text))
             {
                 searchMatchName.Text = "Zoeken";
+                _sortingOn = false;
+            }
+        }
+
+        private void RemoveText2(object sender, RoutedEventArgs eventArgument)
+        {
+            if (searchPlayerName.Text == "Zoeken")
+            {
+                searchPlayerName.Text = "";
+                _sortingOn = true;
+            }
+        }
+
+        private void AddText2(object sender, RoutedEventArgs eventArgument)
+        {
+            if (string.IsNullOrWhiteSpace(searchPlayerName.Text))
+            {
+                searchPlayerName.Text = "Zoeken";
                 _sortingOn = false;
             }
         }
@@ -108,6 +129,35 @@ namespace Darts_matches
                             foreach (DataRowView row in dg_overview.Items)
                             {
                                 if (row.Row[1].ToString().Contains(searchMatchName.Text))
+                                {
+                                    Trace.WriteLine("test1");
+                                    var rowToHide = dg_overview.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+                                    rowToHide.Visibility = Visibility.Visible;
+                                }
+                                else
+                                {
+                                    Trace.WriteLine("test2");
+                                    Trace.WriteLine(row.Row[0]);
+                                    var rowToHide = dg_overview.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+                                    rowToHide.Visibility = Visibility.Collapsed;
+                                }
+                                index++;
+                            }
+                            reset = false;
+                        }
+                    });
+                }
+
+                //playername
+                {
+                    Dispatcher.Invoke(() =>
+                    {
+                        if (searchPlayerName.Text != "Zoeken" && searchPlayerName.Text != "" && searchPlayerName.Text != null)
+                        {
+                            int index = 0;
+                            foreach (DataRowView row in dg_overview.Items)
+                            {
+                                if (row.Row[5].ToString().Contains(searchPlayerName.Text) || row.Row[6].ToString().Contains(searchPlayerName.Text))
                                 {
                                     Trace.WriteLine("test1");
                                     var rowToHide = dg_overview.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
