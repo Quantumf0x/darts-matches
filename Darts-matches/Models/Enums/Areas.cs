@@ -1,6 +1,6 @@
 ﻿namespace Darts_matches.Models
 {
-    internal enum Area
+    public enum Area
     {
         Single,
         Double,

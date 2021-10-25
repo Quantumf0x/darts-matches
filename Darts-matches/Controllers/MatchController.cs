@@ -38,5 +38,10 @@ namespace Darts_matches.Controllers
             _match.PlayerTwo = playerTwo;
             _match.Notes = notes;
         }
+
+        public ref readonly Match getMatch()
+        {
+            return ref _match;
+        }
     }
 }
