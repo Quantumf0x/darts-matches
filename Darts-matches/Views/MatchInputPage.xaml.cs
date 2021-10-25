@@ -129,7 +129,7 @@ namespace Darts_matches
 
         private void HandleNumberInput(object sender, KeyEventArgs e)
         {
-            if (!(e.Key >= Key.D0 && e.Key <= Key.D9))
+            if (!(e.Key >= Key.D0 && e.Key <= Key.D9) && !(e.Key == Key.Tab))
             {
                 e.Handled = true;
             }
