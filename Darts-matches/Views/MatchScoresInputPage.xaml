@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Darts_matches"
         mc:Ignorable="d"
         Title="MatchScoresInputWindow" >
-    <Grid Name="MatchScoresInputGrid" HorizontalAlignment="Center">
+    <Grid Name="MatchScoresInputGrid" HorizontalAlignment="Center" Focusable="False">
         <Grid.Resources>
             <Style TargetType="Button">
                 <Setter Property="BorderThickness" Value="0" />
@@ -28,8 +28,19 @@
             <RowDefinition Height="300" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
-        <Button x:Name="btn_main" Grid.Column="0" Content="M" HorizontalAlignment="Left" VerticalAlignment="Center" Width="45" Height="45" Click="btn_main_Click"/>
-        <Button x:Name="btn_help" Grid.Column="3" Content="H" HorizontalAlignment="Right" VerticalAlignment="Center" Width="45" Height="45" Click="btn_help_Click"/>
+
+        <Border x:Name="playerOneColumn" 
+            Grid.Column="1" 
+            Grid.Row="2"
+            Background="Transparent"/>
+
+        <Border x:Name="playerTwoColumn" 
+            Grid.Column="3" 
+            Grid.Row="2"
+            Background="Transparent"/>
+
+        <Button x:Name="btn_main" Grid.Column="0" Content="M" HorizontalAlignment="Left" VerticalAlignment="Center" Width="45" Height="45" Click="btn_main_Click" Focusable="False"/>
+        <Button x:Name="btn_help" Grid.Column="3" Content="H" HorizontalAlignment="Right" VerticalAlignment="Center" Width="45" Height="45" Click="btn_help_Click" Focusable="False"/>
         <Label Grid.Column="1" Content="Hoofdscherm" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="15" Margin="0,-3,5,0"/>
         <Label Grid.Column="4" Content="Help" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" Margin="0,-3,5,0"/>
         <Label Grid.Column="2" Content="Dartapplicatie" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontSize="40" Margin="0,-3,5,0"/>
@@ -39,36 +50,35 @@
 
         <TextBlock x:Name="lbl_set_leg_player1" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="2" Text="0 Set - 0 Leg" FontSize="15" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
         <TextBlock x:Name="lbl_name_player1" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="2" Text="Speler 1" FontSize="30" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Margin="0,24,0,0"/>
-        <TextBlock x:Name="lbl_score_remain_player1" HorizontalAlignment="Center" Grid.Row="2" TextWrapping="Wrap" Text="501" TextAlignment="Center" FontSize="20" VerticalAlignment="Top" Width="300" Margin="0,62,0,0" Grid.Column="1"></TextBlock>
+        <TextBlock x:Name="lbl_score_remain_player1" HorizontalAlignment="Center" Grid.Row="2" TextWrapping="Wrap" Text="501" TextAlignment="Center" FontSize="20" VerticalAlignment="Top" Width="300" Margin="0,62,0,0" Grid.Column="1"/>
         <TextBlock HorizontalAlignment="Center" Grid.Row="2" Text="Gemiddelde beurt:" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Margin="0,93,0,0" Grid.Column="1"/>
         <TextBlock x:Name="lbl_average_turn_player1" HorizontalAlignment="Center" Grid.Row="2" Text="50" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="1" Margin="0,111,0,0"/>
         <TextBlock HorizontalAlignment="Center" Grid.Row="2" Text="Vorige beurt" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="300" Grid.Column="1"/>
         <TextBlock x:Name="lbl_previous_turn_player1" HorizontalAlignment="Center" Grid.Row="2" Text="50" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="1" Margin="0,159,0,0"/>
         <TextBlock HorizontalAlignment="Center" Grid.Row="2" Text="Huidige beurt" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="1" Margin="0,186,0,0"/>
         <TextBlock x:Name="lbl_current_turn_player1" HorizontalAlignment="Center" Grid.Row="2" Text="50" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="1" Margin="0,207,0,0"/>
-        <TextBox x:Name="lbl_throw1_player1" Grid.Column="1" BorderThickness="0" Foreground="White" Background="#FF2497F1" HorizontalAlignment="Left" Margin="0,259,0,0" Grid.Row="2" Text="50" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="30"/>
-        <TextBox x:Name="lbl_throw2_player1" Grid.Column="1" BorderThickness="0" Foreground="White" Background="#0078D7" HorizontalAlignment="Center" Margin="0,259,0,0" Grid.Row="2" Text="50" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="30"/>
-        <TextBox x:Name="lbl_throw3_player1" Grid.Column="1" BorderThickness="0" Foreground="White" Background="#FF2497F1" HorizontalAlignment="Left" Margin="200,259,0,0" Grid.Row="2" Text="50" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="30"/>
+        <TextBox x:Name="lbl_throw1_player1" Grid.Column="1" BorderThickness="0" Foreground="White" Background="#FF2497F1" HorizontalAlignment="Left" Margin="0,259,0,0" Grid.Row="2" Text="50" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="30" Focusable="False"/>
+        <TextBox x:Name="lbl_throw2_player1" Grid.Column="1" BorderThickness="0" Foreground="White" Background="#0078D7" HorizontalAlignment="Center" Margin="0,259,0,0" Grid.Row="2" Text="50" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="30" Focusable="False"/>
+        <TextBox x:Name="lbl_throw3_player1" Grid.Column="1" BorderThickness="0" Foreground="White" Background="#FF2497F1" HorizontalAlignment="Left" Margin="200,259,0,0" Grid.Row="2" Text="50" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="30" Focusable="False"/>
         <TextBlock Grid.Column="1" Foreground="White" Background="#FF2497F1" HorizontalAlignment="Left" Margin="0,231,0,0" Grid.Row="2" Text="Worp 1" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="29"/>
         <TextBlock Grid.Column="1" Foreground="White" Background="#0078D7" HorizontalAlignment="Center" Margin="0,231,0,0" Grid.Row="2" Text="Worp 2" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="29"/>
         <TextBlock Grid.Column="1" Foreground="White" Background="#FF2497F1" HorizontalAlignment="Left" Margin="200,231,0,0" Grid.Row="2" Text="Worp 3" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="29"/>
 
         <TextBlock x:Name="lbl_set_leg_player2" Grid.Column="3" HorizontalAlignment="Center" Grid.Row="2" Text="0 Set - 0 Leg" FontSize="15" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
         <TextBlock x:Name="lbl_name_player2" Grid.Column="3" HorizontalAlignment="Center" Grid.Row="2" Text="Speler 2" FontSize="30" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Margin="0,24,0,0"/>
-        <TextBlock x:Name="lbl_score_remain_player2" HorizontalAlignment="Center" Grid.Row="2" TextWrapping="Wrap" Text="501" TextAlignment="Center" FontSize="20" VerticalAlignment="Top" Width="300" Margin="0,62,0,0" Grid.Column="3"></TextBlock>
+        <TextBlock x:Name="lbl_score_remain_player2" HorizontalAlignment="Center" Grid.Row="2" TextWrapping="Wrap" Text="501" TextAlignment="Center" FontSize="20" VerticalAlignment="Top" Width="300" Margin="0,62,0,0" Grid.Column="3"/>
         <TextBlock HorizontalAlignment="Center" Grid.Row="2" Text="Gemiddelde beurt:" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Margin="0,93,0,0" Grid.Column="3"/>
         <TextBlock x:Name="lbl_average_turn_player2" HorizontalAlignment="Center" Grid.Row="2" Text="50" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="3" Margin="0,111,0,0"/>
         <TextBlock HorizontalAlignment="Center" Grid.Row="2" Text="Vorige beurt" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Width="300" Grid.Column="3"/>
         <TextBlock x:Name="lbl_previous_turn_player2" HorizontalAlignment="Center" Grid.Row="2" Text="50" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="3" Margin="0,159,0,0"/>
         <TextBlock HorizontalAlignment="Center" Grid.Row="2" Text="Huidige beurt" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="3" Margin="0,186,0,0"/>
         <TextBlock x:Name="lbl_current_turn_player2" HorizontalAlignment="Center" Grid.Row="2" Text="50" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="3" Margin="0,207,0,0"/>
-        <TextBox x:Name="lbl_throw1_player2" Grid.Column="3" BorderThickness="0" Foreground="White" Background="#FF2497F1" HorizontalAlignment="Left" Margin="0,259,0,0" Grid.Row="2" Text="50" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="30"/>
-        <TextBox x:Name="lbl_throw2_player2" Grid.Column="3" BorderThickness="0" Foreground="White" Background="#0078D7" HorizontalAlignment="Center" Margin="0,259,0,0" Grid.Row="2" Text="50" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="30"/>
-        <TextBox x:Name="lbl_throw3_player2" Grid.Column="3" BorderThickness="0" Foreground="White" Background="#FF2497F1" HorizontalAlignment="Left" Margin="200,259,0,0" Grid.Row="2" Text="50" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="30"/>
+        <TextBox x:Name="lbl_throw1_player2" Grid.Column="3" BorderThickness="0" Foreground="White" Background="#FF2497F1" HorizontalAlignment="Left" Margin="0,259,0,0" Grid.Row="2" Text="50" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="30" Focusable="False"/>
+        <TextBox x:Name="lbl_throw2_player2" Grid.Column="3" BorderThickness="0" Foreground="White" Background="#0078D7" HorizontalAlignment="Center" Margin="0,259,0,0" Grid.Row="2" Text="50" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="30" Focusable="False"/>
+        <TextBox x:Name="lbl_throw3_player2" Grid.Column="3" BorderThickness="0" Foreground="White" Background="#FF2497F1" HorizontalAlignment="Left" Margin="200,259,0,0" Grid.Row="2" Text="50" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="30" Focusable="False"/>
         <TextBlock Grid.Column="3" Foreground="White" Background="#FF2497F1" HorizontalAlignment="Left" Margin="0,231,0,0" Grid.Row="2" Text="Worp 1" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="29"/>
         <TextBlock Grid.Column="3" Foreground="White" Background="#0078D7" HorizontalAlignment="Center" Margin="0,231,0,0" Grid.Row="2" Text="Worp 2" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="29"/>
         <TextBlock Grid.Column="3" Foreground="White" Background="#FF2497F1" HorizontalAlignment="Left" Margin="200,231,0,0" Grid.Row="2" Text="Worp 3" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Height="29"/>
-
-
+    
     </Grid>
 </Page>

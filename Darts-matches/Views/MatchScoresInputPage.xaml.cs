@@ -3,14 +3,24 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using Darts_matches.Controllers;
+using Darts_matches.Models;
 
 namespace Darts_matches
 {
     public partial class MatchScoresInputPage : Page, IKeyHandler
     {
-        private Models.Match _match;
-        private Models.Player _selectedPlayer;
+        #region [Fields]: UI
+        private static readonly Brush _selectedPlayerBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#0078D7"));
+        #endregion
 
+        #region [Fields]: Models
+        private Match _match;
+        private Player _selectedPlayer;
+        #endregion
+
+
+
+        #region [Constructors]
         public MatchScoresInputPage()
         {
             InitializeComponent();
@@ -19,10 +29,13 @@ namespace Darts_matches
             lbl_name_player1.Text = _match.PlayerOne.Name;
             lbl_name_player2.Text = _match.PlayerTwo.Name;
 
-            //Selected Player is always selected first.
             _selectedPlayer = _match.PlayerOne;
-            lbl_name_player1.Background = Brushes.LightBlue;
+            lbl_name_player1.Background = _selectedPlayerBrush;
+
+            playerTwoColumn.Background.Opacity = 0.5;
         }
+        #endregion
+
 
         private void MatchResultsPage(object sender, RoutedEventArgs eventArguments)
         {
@@ -35,6 +48,8 @@ namespace Darts_matches
             {
                 case Key.Left:
                 case Key.Right:
+                    break;
+                case Key.Tab:
                     ChangePlayer();
                     break;
                 default:
@@ -59,14 +74,20 @@ namespace Darts_matches
                 _selectedPlayer = _match.PlayerTwo;
 
                 lbl_name_player1.Background = Brushes.Transparent;
-                lbl_name_player2.Background = Brushes.Blue;
+                lbl_name_player2.Background = _selectedPlayerBrush;
+
+                playerOneColumn.Background.Opacity = 1.0;
+                playerTwoColumn.Background.Opacity = 0.5;
             }
             else if (_match.PlayerTwo.Equals(_selectedPlayer))
             {
                 _selectedPlayer = _match.PlayerOne;
 
-                lbl_name_player1.Background = Brushes.Blue;
+                lbl_name_player1.Background = _selectedPlayerBrush;
                 lbl_name_player2.Background = Brushes.Transparent;
+
+                playerOneColumn.Background.Opacity = 0.5;
+                playerTwoColumn.Background.Opacity = 1.0;
             }
         }
     }
