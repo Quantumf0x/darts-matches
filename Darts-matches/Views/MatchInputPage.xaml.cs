@@ -23,7 +23,7 @@ namespace Darts_matches
 
             Match match = MatchController.Instance.getMatch();
 
-            if(match != null)
+            if (match != null)
             {
                 NameInputBox.Text = match.Name;
                 SetsInputBox.Text = match.NumberOfSets.ToString();
