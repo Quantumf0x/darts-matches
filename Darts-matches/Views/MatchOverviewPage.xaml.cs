@@ -135,7 +135,8 @@ namespace Darts_matches
                             if (Convert.ToDateTime(row.Row[18]) >= _date1 && Convert.ToDateTime(row.Row[18]) <= _date2)
                             {
                                 Trace.WriteLine(row.Row[0]);
-                                dg_overview.Items[index] = Visibility.Hidden;
+                                var rowToHide = dg_overview.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+                                rowToHide.Visibility = Visibility.Hidden;
                             }
                             index++;
                         }
