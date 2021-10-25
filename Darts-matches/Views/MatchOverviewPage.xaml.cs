@@ -146,22 +146,7 @@ namespace Darts_matches
                                 _date1 = _datePicker2.SelectedDate.Value;
                                 _date2 = _datePicker1.SelectedDate.Value;
                             }
-                        }
-                    });
 
-                    List<int> correctDates = new List<int>();
-                    for (int i = 0; i < dt.Rows.Count; i++)
-                    {
-                        if (Convert.ToDateTime(dt.Rows[i][18]) >= _date1 && Convert.ToDateTime(dt.Rows[i][18]) <= _date2)
-                        {
-                            correctDates.Add(Convert.ToInt32(dt.Rows[i][0]));
-                        }
-                    }
-
-                    Dispatcher.Invoke(() =>
-                    {
-                        if (_datePicker1.SelectedDate != null && _datePicker2.SelectedDate != null)
-                        {
                             int index = 0;
                             foreach (DataRowView row in dg_overview.Items)
                             {
