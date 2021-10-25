@@ -18,9 +18,11 @@ namespace Darts_matches.Views
     /// </summary>
     public partial class MatchDetails : Window
     {
-        public MatchDetails(object[] rowItemArray)
+        public MatchDetails(object[] rowItemArray, bool bg)
         {
             InitializeComponent();
+
+            if (bg) gbg.Opacity = 0.5;
 
             lbl_name_player1.Text = (string)rowItemArray[5];
             lbl_name_player2.Text = (string)rowItemArray[6];

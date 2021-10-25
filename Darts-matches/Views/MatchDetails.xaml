@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Darts_matches.Views"
         mc:Ignorable="d"
         Title="MatchDetails" Height="450" Width="977">
-    <Grid Name="MatchScoresInputGrid" HorizontalAlignment="Center">
+    <Grid Name="MatchDetailsGrid" HorizontalAlignment="Center" Width="977" Opacity="0.995">
         <Grid.Resources>
             <Style TargetType="Button">
                 <Setter Property="BorderThickness" Value="0" />
@@ -15,6 +15,9 @@
                 <Setter Property="Foreground" Value="White" />
             </Style>
         </Grid.Resources>
+        <Grid.Background>
+            <ImageBrush x:Name="gbg" ImageSource="/Views/bg.jpg" Opacity="0"/>
+        </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="300" />

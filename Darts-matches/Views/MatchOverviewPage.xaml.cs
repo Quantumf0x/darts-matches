@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Threading;
 using System;
+using System.Windows.Input;
 
 namespace Darts_matches
 {
@@ -57,7 +58,7 @@ namespace Darts_matches
         {
             DataRowView selectedRow = (DataRowView)dg_overview.SelectedItems[0];
             object[] rowItemArray = selectedRow.Row.ItemArray;
-            MatchDetails md = new MatchDetails(rowItemArray);
+            MatchDetails md = new MatchDetails(rowItemArray, Keyboard.Modifiers == ModifierKeys.Control);
             md.Show();
         }
 
