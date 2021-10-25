@@ -97,51 +97,72 @@ namespace Darts_matches
 
             while (true)
             {
-                Dispatcher.Invoke(() =>
+                //date
                 {
-                    if (_datePicker1.SelectedDate != null && _datePicker2.SelectedDate != null)
+                    Dispatcher.Invoke(() =>
                     {
-                        if (_datePicker1.SelectedDate.Value < _datePicker2.SelectedDate.Value)
+                        if (_datePicker1.SelectedDate != null && _datePicker2.SelectedDate != null)
                         {
-                            _date1 = _datePicker1.SelectedDate.Value;
-                            _date2 = _datePicker2.SelectedDate.Value;
+                            if (_datePicker1.SelectedDate.Value < _datePicker2.SelectedDate.Value)
+                            {
+                                _date1 = _datePicker1.SelectedDate.Value;
+                                _date2 = _datePicker2.SelectedDate.Value;
+                            }
+                            else
+                            {
+                                _date1 = _datePicker2.SelectedDate.Value;
+                                _date2 = _datePicker1.SelectedDate.Value;
+                            }
+                            Trace.WriteLine(_date1);
+                            Trace.WriteLine(_date2);
+                        }
+                    });
+
+                    List<int> correctDates = new List<int>();
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        if (Convert.ToDateTime(dt.Rows[i][18]) >= _date1 && Convert.ToDateTime(dt.Rows[i][18]) <= _date2)
+                        {
+                            correctDates.Add(Convert.ToInt32(dt.Rows[i][0]));
+                        }
+                    }
+
+                    Dispatcher.Invoke(() =>
+                    {
+                        if (_datePicker1.SelectedDate != null && _datePicker2.SelectedDate != null)
+                        {
+                            int index = 0;
+                            foreach (DataRowView row in dg_overview.Items)
+                            {
+                                if (Convert.ToDateTime(row.Row[18]) < _date1 || Convert.ToDateTime(row.Row[18]) > _date2)
+                                {
+                                    Trace.WriteLine(row.Row[0]);
+                                    var rowToHide = dg_overview.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+                                    rowToHide.Visibility = Visibility.Collapsed;
+                                }
+                                else
+                                {
+                                    Trace.WriteLine(row.Row[0]);
+                                    var rowToHide = dg_overview.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+                                    rowToHide.Visibility = Visibility.Visible;
+                                }
+                                index++;
+                            }
                         }
                         else
                         {
-                            _date1 = _datePicker2.SelectedDate.Value;
-                            _date2 = _datePicker1.SelectedDate.Value;
-                        }
-                        Trace.WriteLine(_date1);
-                        Trace.WriteLine(_date2);
-                    }
-                });
-
-                List<int> correctDates = new List<int>();
-                for (int i = 0; i < dt.Rows.Count; i++)
-                {
-                    if (Convert.ToDateTime(dt.Rows[i][18]) >= _date1 && Convert.ToDateTime(dt.Rows[i][18]) <= _date2)
-                    {
-                        correctDates.Add(Convert.ToInt32(dt.Rows[i][0]));
-                    }
-                }
-
-                Dispatcher.Invoke(() =>
-                {
-                    if (_datePicker1.SelectedDate != null && _datePicker2.SelectedDate != null)
-                    {
-                        int index = 0;
-                        foreach (DataRowView row in dg_overview.Items)
-                        {
-                            if (Convert.ToDateTime(row.Row[18]) >= _date1 && Convert.ToDateTime(row.Row[18]) <= _date2)
+                            int index = 0;
+                            foreach (DataRowView row in dg_overview.Items)
                             {
                                 Trace.WriteLine(row.Row[0]);
                                 var rowToHide = dg_overview.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
-                                rowToHide.Visibility = Visibility.Hidden;
+                                rowToHide.Visibility = Visibility.Visible;
+
+                                index++;
                             }
-                            index++;
                         }
-                    }
-                });
+                    });
+                }
 
                 Thread.Sleep(100);
             }
