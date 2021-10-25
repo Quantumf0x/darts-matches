@@ -7,6 +7,8 @@ using System.Data;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using System.Threading;
+using System;
 
 namespace Darts_matches
 {
@@ -47,6 +49,8 @@ namespace Darts_matches
 
             dg_overview.Columns[2].DisplayIndex = 17;
 
+            Thread _sortingThread = new Thread(SortData);
+            _sortingThread.Start();
         }
 
         private void btn_select_match_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -79,6 +83,65 @@ namespace Darts_matches
             {
                 zoekTextBox.Text = "Zoeken";
                 _sortingOn = false;
+            }
+        }
+
+        private void SortData()
+        {
+            DatabaseController dbc = DatabaseController.GetInstance();
+            DataTable dt = dbc.PullAllFromDatabase();
+
+            DateTime _date1 = DateTime.Now;
+            DateTime _date2 = DateTime.Now;
+
+            while (true)
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    if (_datePicker1.SelectedDate != null && _datePicker2.SelectedDate != null)
+                    {
+                        if (_datePicker1.SelectedDate.Value < _datePicker2.SelectedDate.Value)
+                        {
+                            _date1 = _datePicker1.SelectedDate.Value;
+                            _date2 = _datePicker2.SelectedDate.Value;
+                        }
+                        else
+                        {
+                            _date1 = _datePicker2.SelectedDate.Value;
+                            _date2 = _datePicker1.SelectedDate.Value;
+                        }
+                        Trace.WriteLine(_date1);
+                        Trace.WriteLine(_date2);
+                    }
+                });
+
+                List<int> correctDates = new List<int>();
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    if (Convert.ToDateTime(dt.Rows[i][18]) >= _date1 && Convert.ToDateTime(dt.Rows[i][18]) <= _date2)
+                    {
+                        correctDates.Add(Convert.ToInt32(dt.Rows[i][0]));
+                    }
+                }
+
+                Dispatcher.Invoke(() =>
+                {
+                    if (_datePicker1.SelectedDate != null && _datePicker2.SelectedDate != null)
+                    {
+                        int index = 0;
+                        foreach (DataRowView row in dg_overview.Items)
+                        {
+                            if (Convert.ToDateTime(row.Row[18]) >= _date1 && Convert.ToDateTime(row.Row[18]) <= _date2)
+                            {
+                                Trace.WriteLine(row.Row[0]);
+                                dg_overview.Items[index] = Visibility.Hidden;
+                            }
+                            index++;
+                        }
+                    }
+                });
+
+                Thread.Sleep(100);
             }
         }
     }
