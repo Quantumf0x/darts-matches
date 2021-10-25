@@ -24,17 +24,31 @@ namespace Darts_matches.Views
 
             if (bg) gbg.Opacity = 0.5;
 
-            lbl_name_player1.Text = (string)rowItemArray[5];
-            lbl_name_player2.Text = (string)rowItemArray[6];
+            lbl_name_player1.Text = rowItemArray[5].ToString();
+            lbl_name_player2.Text = rowItemArray[6].ToString();
 
-            lbl_average_per_set_player1.Text = (string)rowItemArray[12];
-            lbl_average_per_set_player2.Text = (string)rowItemArray[13];
 
-            lbl_average_per_leg_player1.Text = (string)rowItemArray[14];
-            lbl_average_per_leg_player2.Text = (string)rowItemArray[15];
+            lbl_average_per_set_player1.Text = DetailsFormatter(rowItemArray[12], "Set");
+            lbl_average_per_set_player2.Text = DetailsFormatter(rowItemArray[13], "Set");
+
+            lbl_average_per_leg_player1.Text = DetailsFormatter(rowItemArray[14], "Leg");
+            lbl_average_per_leg_player2.Text = DetailsFormatter(rowItemArray[15], "Leg");
 
             lbl_average_per_turn_player1.Text = rowItemArray[10].ToString();
             lbl_average_per_turn_player2.Text = rowItemArray[11].ToString();
+        }
+
+        public string DetailsFormatter(object input, string setOrLeg)
+        {
+            var input_split = input.ToString().Split(new char[] { ':', ';' }, StringSplitOptions.RemoveEmptyEntries);
+            string input_formatted = "";
+
+            for (int i = 0; i < input_split.Length; i++)
+            {
+                input_formatted += $"{setOrLeg} {i + 1}: {input_split[i]}\n";
+            }
+
+            return input_formatted;
         }
     }
 }
