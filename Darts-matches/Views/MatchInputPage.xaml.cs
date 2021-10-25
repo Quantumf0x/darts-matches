@@ -115,6 +115,14 @@ namespace Darts_matches
             return _matchName != null && _date != null && _date != DateTime.MinValue && _numberOfLegsPerSet != 0 && _numberOfSets != 0;
         }
 
+        private void HandleNumberInput(object sender, KeyEventArgs e)
+        {
+            if (!(e.Key >= Key.D0 && e.Key <= Key.D9))
+            {
+                e.Handled = true;
+            }
+        }
+
         private void MainMenuButtonClick(object sender, RoutedEventArgs e)
         {
             ApplicationWindow.Instance.SetFrame(new MainMenuPage());
