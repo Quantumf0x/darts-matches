@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:Darts_matches"
         mc:Ignorable="d"
         Title="MatchInputWindow" >
@@ -75,7 +76,7 @@
         <Label Grid.Column="2" Content="Wedstrijdnaam" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontSize="15" Grid.ColumnSpan="2" Margin="0,45,300,50" Grid.Row="1" Grid.RowSpan="2"/>
         <TextBox x:Name="NameInputBox" Grid.Column="2" Grid.Row="2" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" FontSize="15" Grid.ColumnSpan="2" Margin="0,0,300,25"/>
         <Label Grid.Column="1" Content="Wedstrijddatum" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontSize="15" Grid.ColumnSpan="2" Margin="297,20,3,50" Grid.Row="2" Grid.RowSpan="2"/>
-        <DatePicker x:Name="DateSelector" Grid.Column="2" Grid.Row="3" Margin="0,0,300,60" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+        <DatePicker x:Name="DateSelector" SelectedDate="{x:Static sys:DateTime.Now}" Grid.Column="2" Grid.Row="3" Margin="0,0,300,60" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
 
         <TextBlock Grid.Column="2" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Top" Width="45" Height="45" Text="Legs" FontSize="20" Margin="209,18,0,0"/>
         <TextBox x:Name="LegsInputBox" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center" Width="45" Height="45" Text="0" FontSize="20" Margin="100,16,0,0"/>
