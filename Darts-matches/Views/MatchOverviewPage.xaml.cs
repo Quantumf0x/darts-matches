@@ -27,8 +27,8 @@ namespace Darts_matches
 
             Loaded += MatchOverviewPage_loaded;
 
-            zoekTextBox.GotFocus += RemoveText;
-            zoekTextBox.LostFocus += AddText;
+            searchMatchName.GotFocus += RemoveText;
+            searchMatchName.LostFocus += AddText;
         }
 
         private void MatchOverviewPage_loaded(object sender, RoutedEventArgs e)
@@ -71,18 +71,18 @@ namespace Darts_matches
 
         private void RemoveText(object sender, RoutedEventArgs eventArgument)
         {
-            if (zoekTextBox.Text == "Zoeken")
+            if (searchMatchName.Text == "Zoeken")
             {
-                zoekTextBox.Text = "";
+                searchMatchName.Text = "";
                 _sortingOn = true;
             }
         }
 
         private void AddText(object sender, RoutedEventArgs eventArgument)
         {
-            if (string.IsNullOrWhiteSpace(zoekTextBox.Text))
+            if (string.IsNullOrWhiteSpace(searchMatchName.Text))
             {
-                zoekTextBox.Text = "Zoeken";
+                searchMatchName.Text = "Zoeken";
                 _sortingOn = false;
             }
         }
@@ -92,13 +92,46 @@ namespace Darts_matches
             DatabaseController dbc = DatabaseController.GetInstance();
             DataTable dt = dbc.PullAllFromDatabase();
 
-            DateTime _date1 = DateTime.Now;
-            DateTime _date2 = DateTime.Now;
+            bool reset = true;
 
             while (true)
             {
+                reset = true;
+
+                //matchname
+                {
+                    Dispatcher.Invoke(() =>
+                    {
+                        if (searchMatchName.Text != "Zoeken" && searchMatchName.Text != "" && searchMatchName.Text != null)
+                        {
+                            int index = 0;
+                            foreach (DataRowView row in dg_overview.Items)
+                            {
+                                if (row.Row[1].ToString().Contains(searchMatchName.Text))
+                                {
+                                    Trace.WriteLine("test1");
+                                    var rowToHide = dg_overview.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+                                    rowToHide.Visibility = Visibility.Visible;
+                                }
+                                else
+                                {
+                                    Trace.WriteLine("test2");
+                                    Trace.WriteLine(row.Row[0]);
+                                    var rowToHide = dg_overview.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+                                    rowToHide.Visibility = Visibility.Collapsed;
+                                }
+                                index++;
+                            }
+                            reset = false;
+                        }
+                    });
+                }
+
                 //date
                 {
+                    DateTime _date1 = DateTime.Now;
+                    DateTime _date2 = DateTime.Now;
+
                     Dispatcher.Invoke(() =>
                     {
                         if (_datePicker1.SelectedDate != null && _datePicker2.SelectedDate != null)
@@ -113,8 +146,6 @@ namespace Darts_matches
                                 _date1 = _datePicker2.SelectedDate.Value;
                                 _date2 = _datePicker1.SelectedDate.Value;
                             }
-                            Trace.WriteLine(_date1);
-                            Trace.WriteLine(_date2);
                         }
                     });
 
@@ -148,8 +179,14 @@ namespace Darts_matches
                                 }
                                 index++;
                             }
+
+                            reset = false;
                         }
-                        else
+                    });
+
+                    Dispatcher.Invoke(() =>
+                    {
+                        if (reset)
                         {
                             int index = 0;
                             foreach (DataRowView row in dg_overview.Items)
