@@ -2,7 +2,7 @@
 
 namespace Darts_matches.Models
 {
-    internal class Set
+    public class Set
     {
         private int _setNumber;
         private int _numberOfLegs;

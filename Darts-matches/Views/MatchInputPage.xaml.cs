@@ -5,6 +5,7 @@ using System;
 using Darts_matches.Controllers;
 using System.Diagnostics;
 using System.Collections.Generic;
+using Darts_matches.Models;
 
 namespace Darts_matches
 {
@@ -19,6 +20,17 @@ namespace Darts_matches
         public MatchInputPage()
         {
             InitializeComponent();
+
+            Match match = MatchController.Instance.getMatch();
+
+            if (match != null)
+            {
+                NameInputBox.Text = match.Name;
+                SetsInputBox.Text = match.NumberOfSets.ToString();
+                LegsInputBox.Text = match.NumberOfLegsPerSet.ToString();
+                DateSelector.SelectedDate = match.Date;
+                ToggleShortMatch.IsChecked = match.PointsPerLeg == 301 ? true : false;
+            }
         }
 
         private void Submit(object sender, RoutedEventArgs eventArguments)
