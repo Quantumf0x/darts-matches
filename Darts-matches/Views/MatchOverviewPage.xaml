@@ -40,8 +40,8 @@
         <Button x:Name="btn_select_match" Grid.Row="1" Content="Select" HorizontalAlignment="Center" VerticalAlignment="Top" Width="120" Height="44" Margin="0,240,0,0" Click="btn_select_match_Click"/>
         <Button x:Name="btn_help" Grid.Column="2" Content="H" HorizontalAlignment="Left" VerticalAlignment="Top" Width="45" Height="45" Margin="253,25,0,0" Click="OpenHelpPage"/>
         <Label Grid.Column="3" Content="Help" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" Margin="1,0,13,518" Grid.RowSpan="2"/>
-        <Label Content="Search match name" HorizontalAlignment="Left" Margin="31,21,0,0" Grid.Row="1" VerticalAlignment="Top" VerticalContentAlignment="Bottom" Height="22" Width="248" FontSize = "8"/>
-        <Label Content="Search player name" HorizontalAlignment="Left" Margin="30,72,0,0" Grid.Row="1" VerticalAlignment="Top" VerticalContentAlignment="Bottom" Height="22" Width="248" FontSize = "8"/>
+        <Label Content="Search by match name" HorizontalAlignment="Left" Margin="31,21,0,0" Grid.Row="1" VerticalAlignment="Top" VerticalContentAlignment="Bottom" Height="22" Width="248" FontSize = "8"/>
+        <Label Content="Search by player name" HorizontalAlignment="Left" Margin="30,72,0,0" Grid.Row="1" VerticalAlignment="Top" VerticalContentAlignment="Bottom" Height="22" Width="248" FontSize = "8"/>
         <Label Content="Search by date:" HorizontalAlignment="Left" Margin="30,128,0,0" Grid.Row="1" VerticalAlignment="Top" VerticalContentAlignment="Bottom" Height="22" Width="252" FontSize = "8"/>
         <Label Content="Begin:" HorizontalAlignment="Left" Margin="30,150,0,0" Grid.Row="1" VerticalAlignment="Top" VerticalContentAlignment="Bottom" Height="24" Width="56" FontSize = "8"/>
         <Label Content="End:" HorizontalAlignment="Left" Margin="30,179,0,0" Grid.Row="1" VerticalAlignment="Top" VerticalContentAlignment="Bottom" Height="26" Width="56" FontSize = "8"/>
