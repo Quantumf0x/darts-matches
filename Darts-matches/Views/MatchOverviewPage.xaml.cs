@@ -37,20 +37,11 @@ namespace Darts_matches
             dg_overview.ItemsSource = sourceList;
 
             Loaded += MatchOverviewPage_loaded;
-
-            //searchMatchName.GotFocus += RemoveText1;
-            //searchMatchName.LostFocus += AddText1;
-
-            //searchPlayerName.GotFocus += RemoveText2;
-            //searchPlayerName.LostFocus += AddText2;
         }
 
         private void MatchOverviewPage_loaded(object sender, RoutedEventArgs e)
         {
             fixCollumns();
-
-            //Thread _sortingThread = new Thread(SortData);
-            //_sortingThread.Start();
         }
 
         private void fixCollumns()
@@ -95,43 +86,6 @@ namespace Darts_matches
             ApplicationWindow.Instance.SetFrame(helpPage);
         }
 
-        //private void RemoveText1(object sender, RoutedEventArgs eventArgument)
-        //{
-        //    if (searchMatchName.Text == "Zoeken")
-        //    {
-        //        searchMatchName.Text = "";
-        //        _sortingOn = true;
-        //    }
-        //}
-
-        //private void AddText1(object sender, RoutedEventArgs eventArgument)
-        //{
-        //    if (string.IsNullOrWhiteSpace(searchMatchName.Text))
-        //    {
-        //        searchMatchName.Text = "Zoeken";
-        //        _sortingOn = false;
-        //    }
-        //}
-
-        //private void RemoveText2(object sender, RoutedEventArgs eventArgument)
-        //{
-        //    if (searchPlayerName.Text == "Zoeken")
-        //    {
-        //        searchPlayerName.Text = "";
-        //        _sortingOn = true;
-        //    }
-        //}
-
-        //private void AddText2(object sender, RoutedEventArgs eventArgument)
-        //{
-        //    if (string.IsNullOrWhiteSpace(searchPlayerName.Text))
-        //    {
-        //        searchPlayerName.Text = "Zoeken";
-        //        _sortingOn = false;
-        //    }
-        //}
-
-        // TextChangedEventHandler delegate method.
         private void searchMatchNameChangedEventHandler(object sender, TextChangedEventArgs args)
         {
             Thread _sortingThread = new Thread(SortData);
@@ -196,7 +150,8 @@ namespace Darts_matches
                     string col_playerName2 = row[6].ToString();
                     DateTime col_date = (DateTime)row[18];
 
-                    if ((col_matchName.Contains(matchNameFilter) || !matchNameSearch) && 
+                    if (
+                    (col_matchName.Contains(matchNameFilter) || !matchNameSearch) && 
                     (col_playerName1.Contains(playerNameFilter) || col_playerName2.Contains(playerNameFilter) || !playerNameSearch) &&
                     ((col_date > _date1 && col_date < _date2) || !dateSearch))
                     {
@@ -207,6 +162,7 @@ namespace Darts_matches
                         return false;
                     }
                 };
+
                 dg_overview.ItemsSource = sortableCollection;
                 dg_overview.Items.Refresh();
 
@@ -214,7 +170,6 @@ namespace Darts_matches
                 {
                     fixCollumns();
                 }
-
             });
         }
     }

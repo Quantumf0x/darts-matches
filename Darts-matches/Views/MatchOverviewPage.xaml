@@ -32,13 +32,18 @@
         <Label Grid.Column="0" Grid.Row="0" Content="Hoofdscherm" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="15" Margin="63,31,5,27"/>
         <Label Grid.Column="1" Grid.Row="0"  Content="Zoekscherm" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontSize="50"/>
         <Rectangle Grid.Row="1" Width="300" Fill="White" Stroke="Black" StrokeThickness="1" Grid.ColumnSpan="2" Margin="8,0,656,0"/>
-        <TextBox x:Name="searchMatchName" TextChanged="searchMatchNameChangedEventHandler" Text="" FontSize="15" Margin="34,44,18,495" Grid.Row="1"/>
-        <TextBox x:Name="searchPlayerName" TextChanged="searchPlayerNameChangedEventHandler" Text="" FontSize="15" Margin="34,88,18,451" Grid.Row="1"/>
-        <DatePicker x:Name="_datePicker1" Margin="34,132,18,405" Grid.Row="1" SelectedDateChanged="_datePicker1_SelectedDateChanged"/>
-        <DatePicker x:Name="_datePicker2" Margin="34,176,18,359" Grid.Row="1" SelectedDateChanged="_datePicker2_SelectedDateChanged"/>
+        <TextBox x:Name="searchMatchName" TextChanged="searchMatchNameChangedEventHandler" Text="" FontSize="12" Margin="34,44,18,495" VerticalContentAlignment="Center" Grid.Row="1"/>
+        <TextBox x:Name="searchPlayerName" TextChanged="searchPlayerNameChangedEventHandler" Text="" FontSize="12" Margin="34,95,18,444" VerticalContentAlignment="Center" Grid.Row="1"/>
+        <DatePicker x:Name="_datePicker1" Margin="86,150,108,387" Grid.Row="1" SelectedDateChanged="_datePicker1_SelectedDateChanged"/>
+        <DatePicker x:Name="_datePicker2" Margin="86,179,109,356" Grid.Row="1" SelectedDateChanged="_datePicker2_SelectedDateChanged"/>
         <DataGrid x:Name="dg_overview" Grid.Column="1" Grid.Row="1" IsReadOnly="True" AutoGenerateColumns="True" ColumnWidth="20*" CanUserReorderColumns="False"/>
         <Button x:Name="btn_select_match" Grid.Row="1" Content="Select" HorizontalAlignment="Center" VerticalAlignment="Top" Width="120" Height="44" Margin="0,240,0,0" Click="btn_select_match_Click"/>
         <Button x:Name="btn_help" Grid.Column="2" Content="H" HorizontalAlignment="Left" VerticalAlignment="Top" Width="45" Height="45" Margin="253,25,0,0" Click="OpenHelpPage"/>
         <Label Grid.Column="3" Content="Help" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" Margin="1,0,13,518" Grid.RowSpan="2"/>
+        <Label Content="Search match name" HorizontalAlignment="Left" Margin="31,21,0,0" Grid.Row="1" VerticalAlignment="Top" VerticalContentAlignment="Bottom" Height="22" Width="248" FontSize = "8"/>
+        <Label Content="Search player name" HorizontalAlignment="Left" Margin="30,72,0,0" Grid.Row="1" VerticalAlignment="Top" VerticalContentAlignment="Bottom" Height="22" Width="248" FontSize = "8"/>
+        <Label Content="Search by date:" HorizontalAlignment="Left" Margin="30,128,0,0" Grid.Row="1" VerticalAlignment="Top" VerticalContentAlignment="Bottom" Height="22" Width="252" FontSize = "8"/>
+        <Label Content="Begin:" HorizontalAlignment="Left" Margin="30,150,0,0" Grid.Row="1" VerticalAlignment="Top" VerticalContentAlignment="Bottom" Height="24" Width="56" FontSize = "8"/>
+        <Label Content="End:" HorizontalAlignment="Left" Margin="30,179,0,0" Grid.Row="1" VerticalAlignment="Top" VerticalContentAlignment="Bottom" Height="26" Width="56" FontSize = "8"/>
     </Grid>
 </Page>
