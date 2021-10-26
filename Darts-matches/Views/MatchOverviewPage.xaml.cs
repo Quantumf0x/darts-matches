@@ -17,7 +17,6 @@ namespace Darts_matches
 {
     public partial class MatchOverviewPage : Page
     {
-        private bool _sortingOn = false;
         ObservableCollection<object> sourceList;
 
         public MatchOverviewPage()
@@ -29,7 +28,7 @@ namespace Darts_matches
 
             sourceList = new ObservableCollection<object>();
 
-            foreach (var item in dt.AsDataView())
+            foreach (object item in dt.AsDataView())
             {
                 sourceList.Add(item);
             }
@@ -41,10 +40,10 @@ namespace Darts_matches
 
         private void MatchOverviewPage_loaded(object sender, RoutedEventArgs e)
         {
-            fixCollumns();
+            FixCollumns();
         }
 
-        private void fixCollumns()
+        private void FixCollumns()
         {
             dg_overview.Columns[0].Visibility = Visibility.Collapsed;
             dg_overview.Columns[3].Visibility = Visibility.Collapsed;
@@ -124,8 +123,8 @@ namespace Darts_matches
 
             Dispatcher.Invoke(() =>
             {
-                bool matchNameSearch = searchMatchName.Text != "";
-                bool playerNameSearch = searchPlayerName.Text != "";
+                bool matchNameSearch = string.IsNullOrEmpty(searchMatchName.Text);
+                bool playerNameSearch = string.IsNullOrEmpty(searchPlayerName.Text);
                 bool dateSearch = _datePicker1.SelectedDate != null && _datePicker1.SelectedDate != null;
 
                 string matchNameFilter = searchMatchName.Text;
@@ -168,7 +167,7 @@ namespace Darts_matches
 
                 if (dg_overview.Items.Count > 0)
                 {
-                    fixCollumns();
+                    FixCollumns();
                 }
             });
         }
