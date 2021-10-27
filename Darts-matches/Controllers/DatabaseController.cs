@@ -42,6 +42,7 @@ namespace Darts_matches.Controllers
 
         private void SetConnection()
         {
+            Trace.WriteLine(_projectDir.ToString().ToString());
             _connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='" + _projectDir.ToString() + @"\Darts-matches\DatabaseMatches.mdf';Integrated Security=True");
         }
 
@@ -53,13 +54,11 @@ namespace Darts_matches.Controllers
             }
 
             _connection.Open();
-            _testConnectionOpen = _connection.State.ToString();
         }
 
         private void Close()
         {
             _connection.Close();
-            _testConnectionClose = _connection.State.ToString();
         }
 
         public bool AddToDatabase(string match_name, string empty_input_field, int leg_size, string winner, string player1, string player2, string sets_won_by, string legs_won_per_set_player1, string legs_won_per_set_player2, int average_per_3_darts_total_player1, int average_per_3_darts_total_player2, string average_per_3_darts_per_set_player1, string average_per_3_darts_per_set_player2, string average_per_3_darts_per_leg_player1, string average_per_3_darts_per_leg_player2, int number_180_player1, int number_180_player2, DateTime date)
