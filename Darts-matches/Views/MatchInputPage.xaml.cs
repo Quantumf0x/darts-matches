@@ -4,6 +4,8 @@ using System.Windows.Input;
 using System;
 using Darts_matches.Controllers;
 using System.Diagnostics;
+using System.Collections.Generic;
+using Darts_matches.Models;
 
 namespace Darts_matches
 {
@@ -18,6 +20,17 @@ namespace Darts_matches
         public MatchInputPage()
         {
             InitializeComponent();
+
+            Match match = MatchController.Instance.getMatch();
+
+            if (match != null)
+            {
+                NameInputBox.Text = match.Name;
+                SetsInputBox.Text = match.NumberOfSets.ToString();
+                LegsInputBox.Text = match.NumberOfLegsPerSet.ToString();
+                DateSelector.SelectedDate = match.Date;
+                ToggleShortMatch.IsChecked = match.PointsPerLeg == 301 ? true : false;
+            }
         }
 
         private void Submit(object sender, RoutedEventArgs eventArguments)
@@ -54,16 +67,39 @@ namespace Darts_matches
 
         private bool ValidateInputs()
         {
-            if (NameInputBox.Text == string.Empty)
+            var nameInputValidation = ValidationController.Instance.StringInputValidate(NameInputBox.Text);
+            if (nameInputValidation.ErrorContent != null)
             {
                 NameInputBox.BorderBrush = System.Windows.Media.Brushes.Red;
             }
             else
             {
-                _matchName = NameInputBox.Text;
+                NameInputBox.BorderBrush = System.Windows.Media.Brushes.Gray;
             }
+            List<TextBox> setAndLegsList = new List<TextBox>();
+            setAndLegsList.Add(SetsInputBox);
+            setAndLegsList.Add(LegsInputBox);
 
-            if (DateSelector.SelectedDate == null || DateSelector.Text == string.Empty)
+            foreach (TextBox item in setAndLegsList)
+            {
+                var validation = ValidationController.Instance.SetsAndLegValidate(item.Text);
+                if (validation.ErrorContent != null)
+                {
+                    item.BorderBrush = System.Windows.Media.Brushes.Red;
+                }
+                else
+                {
+                    item.BorderBrush = System.Windows.Media.Brushes.Gray;
+                }
+            }
+            _matchName = NameInputBox.Text;
+            if (SetsInputBox.Text != string.Empty || LegsInputBox.Text != string.Empty)
+            {
+                _numberOfSets = Convert.ToInt32(SetsInputBox.Text);
+                _numberOfLegsPerSet = Convert.ToInt32(LegsInputBox.Text);
+            }
+            var dateValidation = ValidationController.Instance.MatchDateValidate(DateSelector.SelectedDate);
+            if (dateValidation.ErrorContent != null)
             {
                 DateSelector.BorderBrush = System.Windows.Media.Brushes.Red;
             }
@@ -77,6 +113,7 @@ namespace Darts_matches
                 {
                     Debug.WriteLine(e.Message);
                 }
+                DateSelector.BorderBrush = System.Windows.Media.Brushes.Gray;
             }
 
             if (ToggleShortMatch.IsChecked == true)
@@ -87,30 +124,15 @@ namespace Darts_matches
             {
                 _pointsPerLeg = 501;
             }
-            if (SetsInputBox.Text == "0")
-            {
-                SetsInputBox.BorderBrush = System.Windows.Media.Brushes.Red;
-            }
-            else
-            {
-                if (SetsInputBox.Text != string.Empty)
-                {
-                    _numberOfSets = Convert.ToInt32(SetsInputBox.Text);
-                }
-            }
-            if (LegsInputBox.Text == "0")
-            {
-                LegsInputBox.BorderBrush = System.Windows.Media.Brushes.Red;
-            }
-            else
-            {
-                if (LegsInputBox.Text != string.Empty)
-                {
-                    _numberOfLegsPerSet = Convert.ToInt32(LegsInputBox.Text);
-                }
-            }
-
             return _matchName != null && _date != null && _date != DateTime.MinValue && _numberOfLegsPerSet != 0 && _numberOfSets != 0;
+        }
+
+        private void HandleNumberInput(object sender, KeyEventArgs e)
+        {
+            if (!(e.Key >= Key.D0 && e.Key <= Key.D9) && !(e.Key == Key.Tab))
+            {
+                e.Handled = true;
+            }
         }
 
         private void MainMenuButtonClick(object sender, RoutedEventArgs e)
@@ -120,7 +142,9 @@ namespace Darts_matches
 
         private void HelpButtonClick(object sender, RoutedEventArgs e)
         {
-            ApplicationWindow.Instance.SetFrame(new HelpPage());
+            HelpPage helpPage = new HelpPage();
+            helpPage.SetPreviousContext(this);
+            ApplicationWindow.Instance.SetFrame(helpPage);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Darts_matches.Models
 {
-    internal class Throw
+    public class Throw
     {
         private Player _player;
         private Area _area;

@@ -4,6 +4,7 @@ using System.Windows.Input;
 using System;
 using Darts_matches.Controllers;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace Darts_matches
 {
@@ -29,49 +30,46 @@ namespace Darts_matches
 
         void IKeyHandler.handleKeyEvent(KeyEventArgs keyEventArgs)
         {
-                switch (keyEventArgs.Key)
-                {
-                    case Key.Left:
-                        ApplicationWindow.Instance.SetFrame(new MatchInputPage());
-                        break;
-                    case Key.Right:
-                        if (ValidateInputs())
-                        {
-                            ApplicationWindow.Instance.SetFrame(new MatchScoresInputPage());
-                            MatchController.Instance.SetPlayersAndNotes(_namePlayerOne, _namePlayerTwo, "test");
-                        }
-                        break;
-                    default:
-                        break;
-                }
+            switch (keyEventArgs.Key)
+            {
+                case Key.Left:
+                    ApplicationWindow.Instance.SetFrame(new MatchInputPage());
+                    break;
+                case Key.Right:
+                    if (ValidateInputs())
+                    {
+                        ApplicationWindow.Instance.SetFrame(new MatchScoresInputPage());
+                        MatchController.Instance.SetPlayersAndNotes(_namePlayerOne, _namePlayerTwo, "test");
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
 
         private bool ValidateInputs()
         {
-            if (PlayerOneInputBox.Text == string.Empty)
-            {
-                PlayerOneInputBox.BorderBrush = System.Windows.Media.Brushes.Red;
-            }
-            else
-            {
-                _namePlayerOne = PlayerOneInputBox.Text;
-            }
+            List<TextBox> textBoxList = new List<TextBox>();
+            textBoxList.Add(PlayerOneInputBox);
+            textBoxList.Add(PlayerTwoInputBox);
 
-            if (PlayerTwoInputBox.Text == string.Empty)
+            foreach (TextBox item in textBoxList)
             {
-                PlayerTwoInputBox.BorderBrush = System.Windows.Media.Brushes.Red;
+                var validation = ValidationController.Instance.StringInputValidate(item.Text);
+                if (validation.ErrorContent != null)
+                {
+                    item.BorderBrush = System.Windows.Media.Brushes.Red;
+                }
+                else
+                {
+                    item.BorderBrush = System.Windows.Media.Brushes.Gray;
+                }
             }
-            else
-            {
-                _namePlayerTwo = PlayerTwoInputBox.Text;
-            }
+            _namePlayerOne = PlayerOneInputBox.Text;
+            _namePlayerTwo = PlayerTwoInputBox.Text;
+            _note = NotesInputBox.Text;
 
-            if (NotesInputBox.Text != string.Empty)
-            {
-                _note = NotesInputBox.Text;
-            }
-
-            return (_namePlayerOne != null && _namePlayerTwo != null);
+            return (_namePlayerOne != string.Empty && _namePlayerTwo != string.Empty);
         }
 
         private void MainMenuButtonClick(object sender, RoutedEventArgs e)
@@ -81,7 +79,9 @@ namespace Darts_matches
 
         private void HelpButtonClick(object sender, RoutedEventArgs e)
         {
-            ApplicationWindow.Instance.SetFrame(new HelpPage());
+            HelpPage helpPage = new HelpPage();
+            helpPage.SetPreviousContext(this);
+            ApplicationWindow.Instance.SetFrame(helpPage);
         }
     }
 }

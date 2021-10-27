@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Darts_matches.Models
 {
-    internal class Match
+    public class Match
     {
         private string _name;
         private string _notes;
