@@ -104,11 +104,21 @@ namespace Darts_matches
                 Thread _sortingThread = new Thread(SortData);
                 _sortingThread.Start();
             }
+            else if (_datePicker1.SelectedDate == null && _datePicker2.SelectedDate == null)
+            {
+                Thread _sortingThread = new Thread(SortData);
+                _sortingThread.Start();
+            }
         }
 
         private void _datePicker2_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             if (_datePicker1.SelectedDate != null)
+            {
+                Thread _sortingThread = new Thread(SortData);
+                _sortingThread.Start();
+            }
+            else if (_datePicker1.SelectedDate == null && _datePicker2.SelectedDate == null)
             {
                 Thread _sortingThread = new Thread(SortData);
                 _sortingThread.Start();
@@ -134,6 +144,11 @@ namespace Darts_matches
                 {
                     _date1 = _datePicker1.SelectedDate.Value;
                     _date2 = _datePicker2.SelectedDate.Value;
+                }
+
+                if ((_datePicker1.SelectedDate != null && _datePicker2.SelectedDate == null) || (_datePicker1.SelectedDate == null && _datePicker2.SelectedDate != null))
+                {
+                    dateSearch = false;
                 }
 
                 ListCollectionView sortableCollection = new ListCollectionView(sourceList);
