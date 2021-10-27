@@ -24,6 +24,13 @@ namespace Darts_matches
         private TextBox _selectedThrow;
         #endregion
 
+        private int set = 1;
+        private int setsWonByPlayerOne = 0;
+        private int setsWonByPlayerTwo = 0;
+
+        private int leg = 1;
+        private int legsWonByPlayerOne = 0;
+        private int legsWonByPlayerTwo = 0;
 
         #region [Constructors]
         public MatchScoresInputPage()
@@ -36,6 +43,8 @@ namespace Darts_matches
 
             lbl_score_remain_player1.Text = _match.PointsPerLeg.ToString();
             lbl_score_remain_player2.Text = _match.PointsPerLeg.ToString();
+
+            updateViewWithSetsAndLegs();
 
             //Starting Player:
             _startingPlayer = _match.PlayerOne;            
@@ -272,14 +281,61 @@ namespace Darts_matches
                 }
 
                 lbl_current_turn_player1.Text = score.ToString();
-                lbl_score_remain_player1.Text = (Int32.Parse(lbl_score_remain_player1.Text) - score).ToString();
+                int remaining = Int32.Parse(lbl_score_remain_player1.Text) - score;
+                lbl_score_remain_player1.Text = remaining.ToString();
 
-                //Player 2:
-                lbl_throw1_player2.Focusable = true;
-                lbl_throw2_player2.Focusable = true;
-                lbl_throw3_player2.Focusable = true;
+                if (remaining <= 0)
+                {
+                    //TODO: add logic of smart wining (won more than half the legs/sets = win)
+                    if (leg < _match.NumberOfLegsPerSet)
+                    {
+                        leg++;
+                        legsWonByPlayerOne++;
+                    }
+                    else if (set < _match.NumberOfSets)
+                    {
+                        set++;
+                        leg = 1;
 
-                lbl_throw1_player2.Focus();
+                        legsWonByPlayerOne++;
+                        setsWonByPlayerOne++;
+                    }
+                    else
+                    {
+                        legsWonByPlayerOne++;
+                        setsWonByPlayerOne++;
+
+                        //TODO: Match over
+                    }
+
+                    lbl_score_remain_player1.Text = _match.PointsPerLeg.ToString();
+                    lbl_score_remain_player2.Text = _match.PointsPerLeg.ToString();
+
+                    updateViewWithSetsAndLegs();
+
+                    lbl_throw1_player1.Text = "";
+                    lbl_throw2_player1.Text = "";
+                    lbl_throw3_player1.Text = "";
+
+                    lbl_throw1_player1.Focusable = true;
+                    lbl_throw2_player1.Focusable = true;
+                    lbl_throw3_player1.Focusable = true;
+
+                    lbl_throw1_player1.Focus();
+                }
+                else
+                {
+                    //Player 2:
+                    lbl_throw1_player2.Text = "";
+                    lbl_throw2_player2.Text = "";
+                    lbl_throw3_player2.Text = "";
+
+                    lbl_throw1_player2.Focusable = true;
+                    lbl_throw2_player2.Focusable = true;
+                    lbl_throw3_player2.Focusable = true;
+
+                    lbl_throw1_player2.Focus();
+                }
             }
             else
             {
@@ -439,18 +495,62 @@ namespace Darts_matches
                 }
 
                 lbl_current_turn_player2.Text = score.ToString();
+                int remaining = Int32.Parse(lbl_score_remain_player2.Text) - score;
+                lbl_score_remain_player2.Text = remaining.ToString();
+                if(remaining <= 0)
+                {
+                    //TODO: add logic of smart wining (won more than half the legs/sets = win)
+                    if(leg < _match.NumberOfLegsPerSet)
+                    {
+                        leg++;
+                        legsWonByPlayerTwo++;
+                    }
+                    else if (set < _match.NumberOfSets)
+                    {
+                        set++;
+                        leg = 1;
 
-                lbl_score_remain_player2.Text = (Int32.Parse(lbl_score_remain_player2.Text) - score).ToString();
+                        legsWonByPlayerTwo++;
+                        setsWonByPlayerTwo++;
+                    }
+                    else
+                    {
+                        legsWonByPlayerTwo++;
+                        setsWonByPlayerTwo++;
+                        
+                        //TODO: Match over
+                    }
 
-                //Player 1:
-                lbl_throw1_player1.Focusable = true;
-                lbl_throw2_player1.Focusable = true;
-                lbl_throw3_player1.Focusable = true;
+                    lbl_score_remain_player1.Text = _match.PointsPerLeg.ToString();
+                    lbl_score_remain_player2.Text = _match.PointsPerLeg.ToString();
 
-                lbl_throw1_player1.Focus();
+                    updateViewWithSetsAndLegs();
+
+
+                    lbl_throw1_player2.Text = "";
+                    lbl_throw2_player2.Text = "";
+                    lbl_throw3_player2.Text = "";
+
+                    lbl_throw1_player2.Focusable = true;
+                    lbl_throw2_player2.Focusable = true;
+                    lbl_throw3_player2.Focusable = true;
+
+                    lbl_throw1_player2.Focus();
+                }
+                else
+                {
+                    //Player 2:
+                    lbl_throw1_player1.Text = "";
+                    lbl_throw2_player1.Text = "";
+                    lbl_throw3_player1.Text = "";
+
+                    lbl_throw1_player1.Focusable = true;
+                    lbl_throw2_player1.Focusable = true;
+                    lbl_throw3_player1.Focusable = true;
+
+                    lbl_throw1_player1.Focus();
+                }
             }
-
-
         }
 
         #endregion
@@ -464,6 +564,10 @@ namespace Darts_matches
 
             //Player 2:
             lbl_name_player2.Background = Brushes.Transparent;
+
+            //Previous Turn:
+            lbl_previous_turn_player1.Text = lbl_current_turn_player1.Text;
+            lbl_current_turn_player1.Text = "0";
 
             //Throw 1:
             lbl_header_throw1_player1.Background = _selectedThrowBrush;
@@ -512,6 +616,10 @@ namespace Darts_matches
             _selectedThrow = lbl_throw1_player2;
             lbl_name_player2.Background = _selectedPlayerBrush;
 
+            //Previous Turn:
+            lbl_previous_turn_player2.Text = lbl_current_turn_player2.Text;
+            lbl_current_turn_player2.Text = "0";
+
             //Throw 1:
             lbl_header_throw1_player2.Background = _selectedThrowBrush;
             lbl_throw1_player2.Background = _selectedThrowBrush;
@@ -555,6 +663,15 @@ namespace Darts_matches
             {
                 NextTurn();
             }
+        }
+
+        private void updateViewWithSetsAndLegs()
+        {
+            lbl_amount_sets.Text = "Set " + set + "/" + _match.NumberOfSets.ToString();
+            lbl_amount_legs.Text = "Leg " + leg + "/" + _match.NumberOfLegsPerSet.ToString();
+
+            lbl_set_leg_player1.Text = "Sets: " + setsWonByPlayerOne.ToString() + " - Legs: " + legsWonByPlayerOne.ToString();
+            lbl_set_leg_player2.Text = "Sets: " + setsWonByPlayerTwo.ToString() + " - Legs: " + legsWonByPlayerTwo.ToString();
         }
     }
 }

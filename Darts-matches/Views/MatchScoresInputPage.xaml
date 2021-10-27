@@ -45,8 +45,8 @@
         <Label Grid.Column="4" Content="Help" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" Margin="0,-3,5,0"/>
         <Label Grid.Column="2" Content="Dartapplicatie" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontSize="40" Margin="0,-3,5,0"/>
         <Label Grid.Column="2" Content="Voor dartwedstrijden" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontSize="20" Grid.ColumnSpan="2" Margin="0,60,300,0"/>
-        <TextBlock Grid.Column="2" Foreground="White" Background="#0078D7" HorizontalAlignment="Center" Grid.Row="2" Text="Set 1/1" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="141" Margin="0,125,0,0"/>
-        <TextBlock Grid.Column="2" Foreground="White" Background="#0078D7" HorizontalAlignment="Center" Grid.Row="2" Text="Leg 1/1" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="141" Margin="0,150,0,0"/>
+        <TextBlock x:Name="lbl_amount_sets" Grid.Column="2" Foreground="White" Background="#0078D7" HorizontalAlignment="Center" Grid.Row="2" Text="Set 1/1" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="141" Margin="0,125,0,0"/>
+        <TextBlock x:Name="lbl_amount_legs" Grid.Column="2" Foreground="White" Background="#0078D7" HorizontalAlignment="Center" Grid.Row="2" Text="Leg 1/1" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="141" Margin="0,150,0,0"/>
 
         <TextBlock x:Name="lbl_set_leg_player1" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="2" Text="0 Set - 0 Leg" FontSize="15" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
         <TextBlock x:Name="lbl_name_player1" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="2" Text="Speler 1" FontSize="30" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Margin="0,24,0,0"/>
