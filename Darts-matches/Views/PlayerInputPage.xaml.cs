@@ -29,21 +29,21 @@ namespace Darts_matches
 
         void IKeyHandler.handleKeyEvent(KeyEventArgs keyEventArgs)
         {
-                switch (keyEventArgs.Key)
-                {
-                    case Key.Left:
-                        ApplicationWindow.Instance.SetFrame(new MatchInputPage());
-                        break;
-                    case Key.Right:
-                        if (ValidateInputs())
-                        {
-                            ApplicationWindow.Instance.SetFrame(new MatchScoresInputPage());
-                            MatchController.Instance.SetPlayersAndNotes(_namePlayerOne, _namePlayerTwo, "test");
-                        }
-                        break;
-                    default:
-                        break;
-                }
+            switch (keyEventArgs.Key)
+            {
+                case Key.Left:
+                    ApplicationWindow.Instance.SetFrame(new MatchInputPage());
+                    break;
+                case Key.Right:
+                    if (ValidateInputs())
+                    {
+                        ApplicationWindow.Instance.SetFrame(new MatchScoresInputPage());
+                        MatchController.Instance.SetPlayersAndNotes(_namePlayerOne, _namePlayerTwo, "test");
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
 
         private bool ValidateInputs()

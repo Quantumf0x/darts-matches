@@ -90,12 +90,7 @@ namespace Darts_matches
 
         private void _datePicker1_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (_datePicker2.SelectedDate != null)
-            {
-                Thread _sortingThread = new Thread(SortData);
-                _sortingThread.Start();
-            }
-            else if (_datePicker1.SelectedDate == null && _datePicker2.SelectedDate == null)
+            if (_datePicker2.SelectedDate != null || (_datePicker1.SelectedDate == null && _datePicker2.SelectedDate == null))
             {
                 Thread _sortingThread = new Thread(SortData);
                 _sortingThread.Start();
@@ -104,12 +99,7 @@ namespace Darts_matches
 
         private void _datePicker2_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (_datePicker1.SelectedDate != null)
-            {
-                Thread _sortingThread = new Thread(SortData);
-                _sortingThread.Start();
-            }
-            else if (_datePicker1.SelectedDate == null && _datePicker2.SelectedDate == null)
+            if (_datePicker1.SelectedDate != null || (_datePicker1.SelectedDate == null && _datePicker2.SelectedDate == null))
             {
                 Thread _sortingThread = new Thread(SortData);
                 _sortingThread.Start();
@@ -156,7 +146,7 @@ namespace Darts_matches
                     DateTime col_date = (DateTime)row[18];
 
                     if (
-                    (col_matchName.Contains(matchNameFilter) || !matchNameSearch) && 
+                    (col_matchName.Contains(matchNameFilter) || !matchNameSearch) &&
                     (col_playerName1.Contains(playerNameFilter) || col_playerName2.Contains(playerNameFilter) || !playerNameSearch) &&
                     ((col_date > _date1 && col_date < _date2) || !dateSearch))
                     {
