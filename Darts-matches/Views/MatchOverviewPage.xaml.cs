@@ -123,8 +123,8 @@ namespace Darts_matches
 
             Dispatcher.Invoke(() =>
             {
-                bool matchNameSearch = string.IsNullOrEmpty(searchMatchName.Text);
-                bool playerNameSearch = string.IsNullOrEmpty(searchPlayerName.Text);
+                bool matchNameSearch = searchMatchName.Text != "";
+                bool playerNameSearch = searchPlayerName.Text != "";
                 bool dateSearch = _datePicker1.SelectedDate != null && _datePicker1.SelectedDate != null;
 
                 string matchNameFilter = searchMatchName.Text;
