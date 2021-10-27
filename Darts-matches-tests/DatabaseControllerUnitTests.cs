@@ -63,7 +63,6 @@ namespace Darts_matches_tests
             string _value1 = "frisian-open";
             int _value2 = 501;
             string _value3 = "105:101:80;80:30:50;40:60:50";
-            string _value4 = "25/10/2021 00:00:00";
 
             //act
             DataTable _dataList = new DataTable();
@@ -73,11 +72,9 @@ namespace Darts_matches_tests
             Trace.WriteLine(_dataList.Rows[0][1]);
             Trace.WriteLine(_dataList.Rows[1][3]);
             Trace.WriteLine(_dataList.Rows[2][14]);
-            Trace.WriteLine(_dataList.Rows[2][18]);
             Assert.AreEqual(_value1, _dataList.Rows[0][1], "data niet gelijk");
             Assert.AreEqual(_value2, _dataList.Rows[1][3], "data niet gelijk");
             Assert.AreEqual(_value3, _dataList.Rows[2][14], "data niet gelijk");
-            Assert.AreEqual(_value4, _dataList.Rows[2][18].ToString(), "datum niet gelijk");
         }
     }
 }
