@@ -102,12 +102,12 @@ namespace Darts_matches.Controllers
 
             SqlDataReader reader = command.ExecuteReader();
 
-            DataTable dt = new DataTable();
-            dt.Load(reader);
+            DataTable dataTable = new DataTable();
+            dataTable.Load(reader);
 
             Close();
 
-            return dt;
+            return dataTable;
         }
 
         public object[] PullOneFromDatabase(int id)
