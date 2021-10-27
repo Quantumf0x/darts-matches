@@ -36,7 +36,7 @@
         <TextBox x:Name="searchPlayerName" TextChanged="searchPlayerNameChangedEventHandler" Text="" FontSize="12" Margin="34,95,18,444" VerticalContentAlignment="Center" Grid.Row="1"/>
         <DatePicker x:Name="_datePicker1" Margin="86,150,108,387" Grid.Row="1" SelectedDateChanged="_datePicker1_SelectedDateChanged"/>
         <DatePicker x:Name="_datePicker2" Margin="86,179,109,356" Grid.Row="1" SelectedDateChanged="_datePicker2_SelectedDateChanged"/>
-        <DataGrid x:Name="dg_overview" Grid.Column="1" Grid.Row="1" IsReadOnly="True" AutoGenerateColumns="True" ColumnWidth="20*" CanUserReorderColumns="False"/>
+        <DataGrid x:Name="dg_overview" Grid.Column="1" Grid.Row="1" IsReadOnly="True" AutoGenerateColumns="True" ColumnWidth="20*" CanUserReorderColumns="False" AlternatingRowBackground="LightGray"/>
         <Button x:Name="btn_select_match" Grid.Row="1" Content="Select" HorizontalAlignment="Center" VerticalAlignment="Top" Width="120" Height="44" Margin="0,240,0,0" Click="btn_select_match_Click"/>
         <Button x:Name="btn_help" Grid.Column="2" Content="H" HorizontalAlignment="Left" VerticalAlignment="Top" Width="45" Height="45" Margin="253,25,0,0" Click="OpenHelpPage"/>
         <Label Grid.Column="3" Content="Help" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="15" Margin="1,0,13,518" Grid.RowSpan="2"/>
