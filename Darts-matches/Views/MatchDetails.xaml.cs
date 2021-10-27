@@ -25,6 +25,17 @@ namespace Darts_matches.Views
             if (bg) gbg.Opacity = 0.5;
 
             // 7, 8, 9
+            matchName.Text = matchName.Text + " " + rowItemArray[1];
+
+            date.Text = date.Text + " " + rowItemArray[18];
+
+            legSize.Text = legSize.Text + " " + rowItemArray[3];
+
+            emptyInput.Text = emptyInput.Text + " " + rowItemArray[2];
+
+            throw180b1.Text = rowItemArray[16].ToString();
+            throw180b2.Text = rowItemArray[17].ToString();
+
 
             lbl_name_player1.Text = rowItemArray[5].ToString();
 
