@@ -19,13 +19,12 @@ namespace Darts_matches
         #endregion
 
 
-
         #region [Constructors]
         public MatchScoresInputPage()
         {
             InitializeComponent();
 
-            _match = MatchController.Instance.GetMatch();
+            _match = MatchController.Instance.getMatch();
             lbl_name_player1.Text = _match.PlayerOne.Name;
             lbl_name_player2.Text = _match.PlayerTwo.Name;
 
