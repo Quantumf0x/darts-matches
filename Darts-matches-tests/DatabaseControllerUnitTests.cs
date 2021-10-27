@@ -58,12 +58,12 @@ namespace Darts_matches_tests
         [TestMethod]
         public void TestDataBasePull1()
         {
-            //arange b
+            //arrange
             Darts_matches.Controllers.DatabaseController dbManager = Darts_matches.Controllers.DatabaseController.GetInstance();
-            string _value1 = "dutch-open";
+            string _value1 = "frisian-open";
             int _value2 = 501;
-            string _value3 = "105:101:80;90:80";
-            string _value4 = "10/08/2021 00:00:00";
+            string _value3 = "105:101:80;80:30:50;40:60:50";
+            string _value4 = "25/10/2021 00:00:00";
 
             //act
             DataTable _dataList = new DataTable();
