@@ -45,20 +45,11 @@ namespace Darts_matches
 
         private void FixCollumns()
         {
-            dg_overview.Columns[0].Visibility = Visibility.Collapsed;
-            dg_overview.Columns[3].Visibility = Visibility.Collapsed;
-            dg_overview.Columns[4].Visibility = Visibility.Collapsed;
-            dg_overview.Columns[7].Visibility = Visibility.Collapsed;
-            dg_overview.Columns[8].Visibility = Visibility.Collapsed;
-            dg_overview.Columns[9].Visibility = Visibility.Collapsed;
-            dg_overview.Columns[10].Visibility = Visibility.Collapsed;
-            dg_overview.Columns[11].Visibility = Visibility.Collapsed;
-            dg_overview.Columns[12].Visibility = Visibility.Collapsed;
-            dg_overview.Columns[13].Visibility = Visibility.Collapsed;
-            dg_overview.Columns[14].Visibility = Visibility.Collapsed;
-            dg_overview.Columns[15].Visibility = Visibility.Collapsed;
-            dg_overview.Columns[16].Visibility = Visibility.Collapsed;
-            dg_overview.Columns[17].Visibility = Visibility.Collapsed;
+            int[] collapseNums = new int[] { 0, 3, 4, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
+            foreach (int num in collapseNums)
+            {
+                dg_overview.Columns[num].Visibility = Visibility.Collapsed;
+            }
 
             dg_overview.Columns[2].DisplayIndex = 17;
         }
