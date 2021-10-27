@@ -42,7 +42,8 @@ namespace Darts_matches.Controllers
 
         private void SetConnection()
         {
-            _connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='" + Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Darts-matches\DatabaseMatches.mdf';Integrated Security=True");
+            Trace.WriteLine(Environment.CurrentDirectory);
+            _connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='" + Environment.CurrentDirectory + @"\DatabaseMatches.mdf';Integrated Security=True");
         }
 
         private void Connect()

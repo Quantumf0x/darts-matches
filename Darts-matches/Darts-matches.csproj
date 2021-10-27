@@ -19,4 +19,13 @@
     <Resource Include="Views\bg.jpg" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="DatabaseMatches.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DatabaseMatches_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
