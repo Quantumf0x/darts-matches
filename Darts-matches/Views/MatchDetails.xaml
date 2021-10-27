@@ -48,5 +48,11 @@
         <TextBlock x:Name="lbl_average_per_leg_player2" HorizontalAlignment="Right" Grid.Row="2" Text="50" TextAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Grid.Column="3" Margin="0,206,0,0"/>
         <TextBlock HorizontalAlignment="Center" Grid.Row="2" Text="Gemiddelde beurt wedstrijd" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="3" Margin="0,389,0,0"/>
         <TextBlock x:Name="lbl_average_per_turn_player2" HorizontalAlignment="Center" Grid.Row="2" Text="50" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Grid.Column="3" Margin="0,410,0,0"/>
+        <Label Content="MatchName" Grid.Column="2" HorizontalAlignment="Left" Margin="67,41,0,0" Grid.Row="2" VerticalAlignment="Top" Height="33" Width="118"/>
+        <Label Content="Lege input" Grid.Column="2" HorizontalAlignment="Left" Margin="67,79,0,0" Grid.Row="2" VerticalAlignment="Top" Height="33" Width="118"/>
+        <Label Content="Grootte van de leg" Grid.Column="2" HorizontalAlignment="Left" Margin="67,121,0,0" Grid.Row="2" VerticalAlignment="Top" Height="33" Width="118"/>
+        <Label Content="" Grid.Column="2" HorizontalAlignment="Left" Margin="67,163,0,0" Grid.Row="2" VerticalAlignment="Top" Height="33" Width="118"/>
+        <Label Content="Label" Grid.Column="2" HorizontalAlignment="Left" Margin="67,203,0,0" Grid.Row="2" VerticalAlignment="Top" Height="33" Width="118"/>
+        <Label Content="Label" Grid.Column="2" HorizontalAlignment="Left" Margin="67,251,0,0" Grid.Row="2" VerticalAlignment="Top" Height="33" Width="118"/>
     </Grid>
 </Window>

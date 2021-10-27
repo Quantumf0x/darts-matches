@@ -24,28 +24,55 @@ namespace Darts_matches.Views
 
             if (bg) gbg.Opacity = 0.5;
 
+            // 7, 8, 9
+
             lbl_name_player1.Text = rowItemArray[5].ToString();
-            lbl_name_player2.Text = rowItemArray[6].ToString();
 
+            lbl_average_per_set_player1.Text = DetailsFormatter(rowItemArray[12], "Set", rowItemArray[7], rowItemArray[8], 1);
 
-            lbl_average_per_set_player1.Text = DetailsFormatter(rowItemArray[12], "Set");
-            lbl_average_per_set_player2.Text = DetailsFormatter(rowItemArray[13], "Set");
-
-            lbl_average_per_leg_player1.Text = DetailsFormatter(rowItemArray[14], "Leg");
-            lbl_average_per_leg_player2.Text = DetailsFormatter(rowItemArray[15], "Leg");
+            lbl_average_per_leg_player1.Text = DetailsFormatter(rowItemArray[14], "Leg", rowItemArray[7], null, 1);
 
             lbl_average_per_turn_player1.Text = rowItemArray[10].ToString();
+
+
+
+            lbl_name_player2.Text = rowItemArray[6].ToString();
+
+            lbl_average_per_set_player2.Text = DetailsFormatter(rowItemArray[13], "Set", rowItemArray[7], rowItemArray[9], 2);
+
+            lbl_average_per_leg_player2.Text = DetailsFormatter(rowItemArray[15], "Leg", rowItemArray[7], null, 2);
+
             lbl_average_per_turn_player2.Text = rowItemArray[11].ToString();
         }
 
-        public string DetailsFormatter(object input, string setOrLeg)
+        public string DetailsFormatter(object inputScore, string setOrLeg, object inputWonBy, object legsWonThisSet, int player)
         {
-            var input_split = input.ToString().Split(new char[] { ':', ';' }, StringSplitOptions.RemoveEmptyEntries);
+            var inputScore_split = inputScore.ToString().Split(new char[] { ':', ';' }, StringSplitOptions.RemoveEmptyEntries);
+
+            var inputWonBy_split = inputWonBy.ToString().Split(new char[] { ':', ';' }, StringSplitOptions.RemoveEmptyEntries);
+
+            string[] legsWonThisSet_split = new string[] { };
+            if (legsWonThisSet != null) legsWonThisSet_split = legsWonThisSet.ToString().Split(new char[] { ':', ';' }, StringSplitOptions.RemoveEmptyEntries);
+
             string input_formatted = "";
 
-            for (int i = 0; i < input_split.Length; i++)
+            for (int i = 0; i < inputScore_split.Length; i++)
             {
-                input_formatted += $"{setOrLeg} {i + 1}: {input_split[i]}\n";
+                if (setOrLeg == "Set")
+                {
+                    if (Convert.ToInt32(inputWonBy_split[i]) == player)
+                    {
+                        input_formatted += $"{setOrLeg} {i + 1}: {inputScore_split[i]}  | wl: {legsWonThisSet_split[i]} | won\n";
+                    }
+                    else if (Convert.ToInt32(inputWonBy_split[i]) != player)
+                    {
+                        input_formatted += $"{setOrLeg} {i + 1}: {inputScore_split[i]}  | wl: {legsWonThisSet_split[i]}\n";
+                    }
+                }
+                else if (setOrLeg == "Leg")
+                {
+                    input_formatted += $"{setOrLeg} {i + 1}: {inputScore_split[i]}\n";
+                }
             }
 
             return input_formatted;
