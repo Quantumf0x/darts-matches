@@ -39,9 +39,9 @@ namespace Darts_matches.Controllers
             _match.Notes = notes;
         }
 
-        public Match GetMatch()
+        public ref readonly Match getMatch()
         {
-            return _match;
+            return ref _match;
         }
     }
 }
