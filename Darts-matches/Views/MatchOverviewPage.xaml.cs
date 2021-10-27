@@ -23,12 +23,12 @@ namespace Darts_matches
         {
             InitializeComponent();
 
-            DatabaseController dbc = DatabaseController.GetInstance();
-            DataTable dt = dbc.PullAllFromDatabase();
+            DatabaseController databaseController = DatabaseController.GetInstance();
+            DataTable dataTable = databaseController.PullAllFromDatabase();
 
             sourceList = new ObservableCollection<object>();
 
-            foreach (object item in dt.AsDataView())
+            foreach (object item in dataTable.AsDataView())
             {
                 sourceList.Add(item);
             }
@@ -40,10 +40,10 @@ namespace Darts_matches
 
         private void MatchOverviewPage_loaded(object sender, RoutedEventArgs e)
         {
-            FixCollumns();
+            FixColumns();
         }
 
-        private void FixCollumns()
+        private void FixColumns()
         {
             dg_overview.Columns[0].Visibility = Visibility.Collapsed;
             dg_overview.Columns[3].Visibility = Visibility.Collapsed;
@@ -182,7 +182,7 @@ namespace Darts_matches
 
                 if (dg_overview.Items.Count > 0)
                 {
-                    FixCollumns();
+                    FixColumns();
                 }
             });
         }
