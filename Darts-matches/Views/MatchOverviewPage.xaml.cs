@@ -28,14 +28,21 @@ namespace Darts_matches
 
             sourceList = new ObservableCollection<object>();
 
-            foreach (object item in dataTable.AsDataView())
+            if (dataTable.AsDataView().Count > 0)
             {
-                sourceList.Add(item);
+                foreach (object item in dataTable.AsDataView())
+                {
+                    sourceList.Add(item);
+                }
             }
+
 
             dg_overview.ItemsSource = sourceList;
 
-            Loaded += MatchOverviewPage_loaded;
+            if (dataTable.AsDataView().Count > 0)
+            {
+                Loaded += MatchOverviewPage_loaded;
+            }
         }
 
         private void MatchOverviewPage_loaded(object sender, RoutedEventArgs e)
