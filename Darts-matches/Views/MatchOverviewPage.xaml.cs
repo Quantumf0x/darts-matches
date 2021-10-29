@@ -15,14 +15,15 @@ using System.Windows.Data;
 
 namespace Darts_matches
 {
-    public partial class MatchOverviewPage : Page
+    public partial class MatchOverviewPage : Page, IKeyHandler
     {
         ObservableCollection<object> sourceList;
+        private Page _previousContext;
 
         public MatchOverviewPage()
         {
             InitializeComponent();
-
+            
             DatabaseController databaseController = DatabaseController.GetInstance();
             DataTable dataTable = databaseController.PullAllFromDatabase();
 
@@ -48,6 +49,19 @@ namespace Darts_matches
         private void MatchOverviewPage_loaded(object sender, RoutedEventArgs e)
         {
             FixColumns();
+        }
+
+        public void SetPreviousContext(Page context)
+        {
+            _previousContext = context;
+        }
+
+        void IKeyHandler.handleKeyEvent(KeyEventArgs keyEventArgs)
+        {
+            if (keyEventArgs.Key == Key.Escape)
+            {
+                ApplicationWindow.Instance.SetFrame(_previousContext);
+            }
         }
 
         private void FixColumns()

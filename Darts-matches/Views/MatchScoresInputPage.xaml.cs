@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -756,6 +757,84 @@ namespace Darts_matches
 
             lbl_set_leg_player1.Text = "Sets: " + setsWonByPlayerOne.ToString() + " - Legs: " + legsWonByPlayerOne.ToString();
             lbl_set_leg_player2.Text = "Sets: " + setsWonByPlayerTwo.ToString() + " - Legs: " + legsWonByPlayerTwo.ToString();
+        }
+
+
+
+        private void checkFields(TextBox textbox)
+        {
+
+            if (textbox.Text.Length > 3)
+            {
+                textbox.Text = textbox.Text.Substring(0, 3);
+                textbox.SelectionStart = textbox.Text.Length;
+            }
+
+            if (isInt(textbox.Text))
+            {
+                int[] impossibleScores = new int[] { 163, 166, 169, 172, 173, 175, 175, 178, 179 };
+                foreach (int impossibleScore in impossibleScores)
+                {
+                    if (Convert.ToInt32(textbox.Text) == impossibleScore)
+                    {
+                        textbox.Text = textbox.Text.Substring(0, 2);
+                        textbox.SelectionStart = textbox.Text.Length;
+                    }
+                }
+
+                if (Convert.ToInt32(textbox.Text) > 180)
+                {
+                    textbox.Text = textbox.Text.Substring(0, 2);
+                    textbox.SelectionStart = textbox.Text.Length;
+                }
+            }
+            else
+            {
+                textbox.Text = "";
+            }
+        }
+
+        private bool isInt(string text)
+        {
+            try
+            {
+                Convert.ToInt32(text);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private void lbl_throw1_player1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            checkFields(lbl_throw1_player1);
+        }
+
+        private void lbl_throw2_player1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            checkFields(lbl_throw2_player1);
+        }
+
+        private void lbl_throw3_player1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            checkFields(lbl_throw3_player1);
+        }
+
+        private void lbl_throw1_player2_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            checkFields(lbl_throw1_player2);
+        }
+
+        private void lbl_throw2_player2_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            checkFields(lbl_throw2_player2);
+        }
+
+        private void lbl_throw3_player2_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            checkFields(lbl_throw3_player2);
         }
     }
 }
