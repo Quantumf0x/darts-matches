@@ -50,7 +50,7 @@ namespace Darts_matches.Controllers
             // search for exsisting database
             if (File.Exists(databasePath))
             {
-                _connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='" + Environment.CurrentDirectory + @"\DatabaseMatches.mdf';Integrated Security=True");
+                _connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='" + Environment.CurrentDirectory + @"\DatabaseMatches.mdf';Integrated Security=False;");
             }
             else
             {
