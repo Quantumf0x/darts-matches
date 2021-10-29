@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -35,16 +36,50 @@ namespace Darts_matches.Views
             throw180b1.Text = rowItemArray[16].ToString();
             throw180b2.Text = rowItemArray[17].ToString();
 
-
             lbl_name_player1.Text = rowItemArray[5].ToString();
-            lbl_average_per_set_player1.Text = DetailsFormatter(rowItemArray[12], "Set", rowItemArray[7], rowItemArray[8], 1);
-            lbl_average_per_leg_player1.Text = DetailsFormatter(rowItemArray[14], "Leg", rowItemArray[7], null, 1);
-            lbl_average_per_turn_player1.Text = rowItemArray[10].ToString();
-
             lbl_name_player2.Text = rowItemArray[6].ToString();
-            lbl_average_per_set_player2.Text = DetailsFormatter(rowItemArray[13], "Set", rowItemArray[7], rowItemArray[9], 2);
-            lbl_average_per_leg_player2.Text = DetailsFormatter(rowItemArray[15], "Leg", rowItemArray[7], null, 2);
+            lbl_average_per_turn_player1.Text = rowItemArray[10].ToString();
             lbl_average_per_turn_player2.Text = rowItemArray[11].ToString();
+
+            try 
+            {
+                lbl_average_per_set_player1.Text = DetailsFormatter(rowItemArray[12], "Set", rowItemArray[7], rowItemArray[8], 1);
+            }
+            catch (Exception e)
+            {
+                Trace.WriteLine(e);
+                lbl_average_per_set_player1.Text = "no data available";
+            }
+
+            try
+            {
+                lbl_average_per_leg_player1.Text = DetailsFormatter(rowItemArray[14], "Leg", rowItemArray[7], null, 1);
+            }
+            catch (Exception e)
+            {
+                Trace.WriteLine(e);
+                lbl_average_per_leg_player1.Text = "no data available";
+            }
+
+            try
+            {
+                lbl_average_per_set_player2.Text = DetailsFormatter(rowItemArray[13], "Set", rowItemArray[7], rowItemArray[9], 2);
+            }
+            catch (Exception e)
+            {
+                Trace.WriteLine(e);
+                lbl_average_per_set_player2.Text = "no data available";
+            }
+
+            try
+            {
+                lbl_average_per_leg_player2.Text = DetailsFormatter(rowItemArray[15], "Leg", rowItemArray[7], null, 2);
+            }
+            catch (Exception e)
+            {
+                Trace.WriteLine(e);
+                lbl_average_per_leg_player2.Text = "no data available";
+            }
         }
 
         public string DetailsFormatter(object inputScore, string setOrLeg, object inputWonBy, object legsWonThisSet, int player)

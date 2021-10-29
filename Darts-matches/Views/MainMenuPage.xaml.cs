@@ -22,7 +22,9 @@ namespace Darts_matches
 
         private void OpenMatchOverviewPage(object sender, RoutedEventArgs eventArguments)
         {
-            ApplicationWindow.Instance.SetFrame(new MatchOverviewPage());
+            MatchOverviewPage matchOverviewPage = new MatchOverviewPage();
+            matchOverviewPage.SetPreviousContext(this);
+            ApplicationWindow.Instance.SetFrame(matchOverviewPage);
         }
 
         private void OpenHelpPage(object sender, RoutedEventArgs eventArguments)
