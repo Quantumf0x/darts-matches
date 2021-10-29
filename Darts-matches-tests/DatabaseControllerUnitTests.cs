@@ -10,7 +10,7 @@ namespace Darts_matches_tests
     [TestClass]
     public class DatabaseControllerUnitTests
     {
-        [TestMethod]
+        //[TestMethod]
         public void TestConnectionOpen()
         {
             //arrange
@@ -25,7 +25,7 @@ namespace Darts_matches_tests
             Assert.AreEqual(expected, state, "connection not established: " + state);
         }
 
-        [TestMethod]
+        //[TestMethod]
         public void TestConnectionClose()
         {
             //arrange
@@ -55,7 +55,7 @@ namespace Darts_matches_tests
             Assert.AreEqual(expected, succes, "data not inserted into database");
         }
 
-        [TestMethod]
+        //[TestMethod]
         public void TestDataBasePull1()
         {
             //arrange

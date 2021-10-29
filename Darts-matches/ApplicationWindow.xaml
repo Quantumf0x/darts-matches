@@ -10,7 +10,7 @@
     <Grid>
         <UserControl Loaded="UserControlOnLoaded"/>
         <Viewbox Stretch="Uniform">
-            <Frame x:Name="frame" 
+            <Frame x:Name="frame" Focusable="False" 
                Content="Frame" 
                Margin="0" HorizontalAlignment="Stretch" 
                VerticalAlignment="Stretch" 
