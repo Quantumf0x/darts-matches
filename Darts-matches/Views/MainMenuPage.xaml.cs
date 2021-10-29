@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Darts_matches.Controllers;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -9,6 +10,9 @@ namespace Darts_matches
         public MainMenuPage()
         {
             InitializeComponent();
+            DatabaseController databaseController = DatabaseController.GetInstance();
+            databaseController.TestConnection();
+            databaseController.KillInstance();
         }
 
         private void OpenDartMatchInputPage(object sender, RoutedEventArgs eventArguments)
