@@ -32,6 +32,18 @@ namespace Darts_matches
         private int legsWonByPlayerOne = 0;
         private int legsWonByPlayerTwo = 0;
 
+        private bool previousLegWon = false;
+
+        private int scoreCurrentDart = 0;
+        private int cummalativeAveragePlayer1 = 0;
+        private int thrownTurnsPlayer1 = 0;
+        private int cummalativeAveragePlayer2 = 0;
+        private int thrownTurnPlayer2 = 0;
+
+        private int numberOf180sPlayer1 = 0;
+        private int numberOf180sPlayer2 = 0;
+
+
         #region [Constructors]
         public MatchScoresInputPage()
         {
@@ -125,6 +137,7 @@ namespace Darts_matches
 
             int score = 0;
 
+
             if (_selectedPlayer.Equals(_match.PlayerOne))
             {
                 //Player 1:
@@ -150,7 +163,9 @@ namespace Darts_matches
                     try
                     {
                         throwOne = Int32.Parse(lbl_throw1_player1.Text.Substring(1));
-                        score += throwOne * 2;
+                        scoreCurrentDart = throwOne * 2;
+                        score += scoreCurrentDart;
+
                         _match.PlayerOne.ThrowDart(throwOneArea, throwOne);
                     }
                     catch (Exception) { }
@@ -161,7 +176,8 @@ namespace Darts_matches
                     try
                     {
                         throwOne = Int32.Parse(lbl_throw1_player1.Text.Substring(1));
-                        score += throwOne * 3;
+                        scoreCurrentDart = throwOne * 3;
+                        score += scoreCurrentDart;
                         _match.PlayerOne.ThrowDart(throwOneArea, throwOne);
                     }
                     catch (Exception) { }
@@ -184,7 +200,8 @@ namespace Darts_matches
                             throwOneArea = Area.Single;
                         }
 
-                        score += throwOne;
+                        scoreCurrentDart = throwOne;
+                        score += scoreCurrentDart;
                         _match.PlayerOne.ThrowDart(throwOneArea, throwOne);
                     }
                     catch (Exception) { }
@@ -281,33 +298,54 @@ namespace Darts_matches
                     }
                     catch (Exception) { }
                 }
-
+                
+                if(score == 180)
+                {
+                    numberOf180sPlayer1 += 1;
+                }
                 lbl_current_turn_player1.Text = score.ToString();
+                RecalculateAverages(score, 1);
                 int remaining = Int32.Parse(lbl_score_remain_player1.Text) - score;
                 lbl_score_remain_player1.Text = remaining.ToString();
 
                 if (remaining <= 0)
                 {
-                    //TODO: add logic of smart wining (won more than half the legs/sets = win)
-                    if (leg < _match.NumberOfLegsPerSet)
+                    if (previousLegWon)
+                    {
+                        legsWonByPlayerOne = 0;
+                        previousLegWon = false;
+                    }
+                    if (legsWonByPlayerOne < _match.NumberOfLegsPerSet && !previousLegWon)
                     {
                         leg++;
                         legsWonByPlayerOne++;
                     }
-                    else if (set < _match.NumberOfSets)
+                    if (legsWonByPlayerOne == Math.Ceiling(((double)_match.NumberOfLegsPerSet / 2)))
                     {
-                        set++;
-                        leg = 1;
+                        if (legsWonByPlayerOne < _match.NumberOfLegsPerSet)
+                        {
+                            set++;
+                            leg = 1;
+                            legsWonByPlayerOne = 0;
+                            legsWonByPlayerTwo = 0;
+                            previousLegWon = true;
 
-                        legsWonByPlayerOne++;
-                        setsWonByPlayerOne++;
-                    }
-                    else
-                    {
-                        legsWonByPlayerOne++;
-                        setsWonByPlayerOne++;
-
-                        //TODO: Match over
+                            setsWonByPlayerOne++;
+                        }
+                        if (setsWonByPlayerOne == Math.Ceiling(((double)_match.NumberOfSets / 2)))
+                        {
+                            var match = MatchController.Instance.getMatch();
+                            match.Winner = match.PlayerOne;
+                            match.PlayerOne.AveragePerTurn = cummalativeAveragePlayer1;
+                            match.PlayerTwo.AveragePerTurn = cummalativeAveragePlayer2;
+                            match.PlayerOne.AveragePerLeg = (cummalativeAveragePlayer1 * thrownTurnsPlayer1) / leg;
+                            match.PlayerTwo.AveragePerLeg = (cummalativeAveragePlayer2 * thrownTurnPlayer2) / leg;
+                            match.PlayerOne.AveragePerSet = (cummalativeAveragePlayer1 * thrownTurnsPlayer1) / set;
+                            match.PlayerTwo.AveragePerSet = (cummalativeAveragePlayer2 * thrownTurnPlayer2) / set;
+                            match.PlayerOne.NumberOfMaxScores = numberOf180sPlayer1;
+                            match.PlayerTwo.NumberOfMaxScores = numberOf180sPlayer2;
+                            ApplicationWindow.Instance.SetFrame(new MatchResultsPage());
+                        }                        
                     }
 
                     lbl_score_remain_player1.Text = _match.PointsPerLeg.ToString();
@@ -497,30 +535,52 @@ namespace Darts_matches
                 }
 
                 lbl_current_turn_player2.Text = score.ToString();
+
+                if (score == 180)
+                {
+                    numberOf180sPlayer2 += 1;
+                }
+                RecalculateAverages(score, 2);
                 int remaining = Int32.Parse(lbl_score_remain_player2.Text) - score;
                 lbl_score_remain_player2.Text = remaining.ToString();
                 if(remaining <= 0)
                 {
-                    //TODO: add logic of smart wining (won more than half the legs/sets = win)
-                    if(leg < _match.NumberOfLegsPerSet)
+                    if (previousLegWon)
+                    {
+                        legsWonByPlayerTwo = 0;
+                        previousLegWon = false;
+                    }
+                    if (legsWonByPlayerTwo < _match.NumberOfLegsPerSet && !previousLegWon)
                     {
                         leg++;
                         legsWonByPlayerTwo++;
                     }
-                    else if (set < _match.NumberOfSets)
+                    if (legsWonByPlayerTwo == Math.Ceiling(((double)_match.NumberOfLegsPerSet / 2)))
                     {
-                        set++;
-                        leg = 1;
+                        if (legsWonByPlayerTwo < _match.NumberOfLegsPerSet)
+                        {
+                            set++;
+                            leg = 1;
+                            legsWonByPlayerOne = 0;
+                            legsWonByPlayerTwo = 0;
+                            previousLegWon = true;
 
-                        legsWonByPlayerTwo++;
-                        setsWonByPlayerTwo++;
-                    }
-                    else
-                    {
-                        legsWonByPlayerTwo++;
-                        setsWonByPlayerTwo++;
-                        
-                        //TODO: Match over
+                            setsWonByPlayerTwo++;
+                        }
+                        if (setsWonByPlayerTwo == Math.Ceiling(((double)_match.NumberOfSets / 2)))
+                        {
+                            var match = MatchController.Instance.getMatch();
+                            match.Winner = match.PlayerTwo;
+                            match.PlayerOne.AveragePerTurn = cummalativeAveragePlayer1;
+                            match.PlayerTwo.AveragePerTurn = cummalativeAveragePlayer2;
+                            match.PlayerOne.AveragePerLeg = (cummalativeAveragePlayer1 * thrownTurnsPlayer1) / leg;
+                            match.PlayerTwo.AveragePerLeg = (cummalativeAveragePlayer2 * thrownTurnPlayer2) / leg;
+                            match.PlayerOne.AveragePerSet = (cummalativeAveragePlayer1 * thrownTurnsPlayer1) / set;
+                            match.PlayerTwo.AveragePerSet = (cummalativeAveragePlayer2 * thrownTurnPlayer2) / set;
+                            match.PlayerOne.NumberOfMaxScores = numberOf180sPlayer1;
+                            match.PlayerTwo.NumberOfMaxScores = numberOf180sPlayer2;
+                            ApplicationWindow.Instance.SetFrame(new MatchResultsPage());
+                        }
                     }
 
                     lbl_score_remain_player1.Text = _match.PointsPerLeg.ToString();
@@ -552,6 +612,22 @@ namespace Darts_matches
 
                     lbl_throw1_player1.Focus();
                 }
+            }
+        }
+
+        private void RecalculateAverages(int score, int playerNumber)
+        {
+            if(playerNumber == 1)
+            {
+                int oldAveragePlayer1 = cummalativeAveragePlayer1 * thrownTurnsPlayer1;
+                cummalativeAveragePlayer1 = (oldAveragePlayer1 += score) / (thrownTurnsPlayer1 += 1);
+                lbl_average_turn_player1.Text = cummalativeAveragePlayer1.ToString();
+            }
+            else
+            {
+                int oldAveragePlayer2 = cummalativeAveragePlayer2 * thrownTurnPlayer2;
+                cummalativeAveragePlayer2 = (oldAveragePlayer2 += score) / (thrownTurnPlayer2 += 1);
+                lbl_average_turn_player2.Text = cummalativeAveragePlayer2.ToString();
             }
         }
 
