@@ -47,24 +47,19 @@ namespace Darts_matches.Controllers
             string databasePath = Environment.CurrentDirectory + "\\DatabaseMatches.mdf";
             string databaseLogPath = Environment.CurrentDirectory + "\\DatabaseMatches_log.ldf";
 
+
             // search for exsisting database
-            if (File.Exists(databasePath))
-            {
-                _connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='" + Environment.CurrentDirectory + @"\DatabaseMatches.mdf';Integrated Security=False;");
-            }
-            else
+            if (!File.Exists(databasePath))
             {
                 SetupDatabase(databasePath, databaseLogPath);
-                _connection = null;
-                SetConnection();
             }
-
+            _connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='" + Environment.CurrentDirectory + @"\DatabaseMatches.mdf';Integrated Security=False;");
         }
 
         private void SetupDatabase(string databasePath, string databaseLogPath)
         {
             // create database
-            _connection = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;Integrated security=False;");
+            _connection = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=master;Integrated security=False;");
             string createDatabaseString =
                 "DROP DATABASE DatabaseMatches;" +
                 "CREATE DATABASE DatabaseMatches ON PRIMARY " +
@@ -83,6 +78,11 @@ namespace Darts_matches.Controllers
                 _connection.Open();
                 createDatabaseCommand.ExecuteNonQuery();
                 Trace.WriteLine("Database created successfully!");
+
+                Trace.WriteLine(_connection.Database);
+                _connection.ChangeDatabase("DatabaseMatches");
+                Trace.WriteLine(_connection.Database);
+                SetupDatabaseTables();
             }
             catch (System.Exception ex)
             {
@@ -94,13 +94,6 @@ namespace Darts_matches.Controllers
                 {
                     Trace.WriteLine("Database creation failed! " + ex.ToString());
                 }
-            }
-            finally
-            {
-                Trace.WriteLine(_connection.Database);
-                _connection.ChangeDatabase("DatabaseMatches");
-                Trace.WriteLine(_connection.Database);
-                SetupDatabaseTables();
             }
         }
 
@@ -137,20 +130,18 @@ namespace Darts_matches.Controllers
             {
                 createTableCommand.ExecuteNonQuery();
                 Trace.WriteLine("Database table created successfully!");
-            }
-            catch (System.Exception ex)
-            {
-                Trace.WriteLine("Database table creation failed! " + ex.ToString());
 
-            }
-            finally
-            {
                 if (_connection.State == ConnectionState.Open)
                 {
                     ClearTables();
                     _connection.Close();
                     _connection = null;
                 }
+            }
+            catch (System.Exception ex)
+            {
+                Trace.WriteLine("Database table creation failed! " + ex.ToString());
+
             }
         }
 
