@@ -14,12 +14,12 @@ namespace Darts_matches
             var match = MatchController.Instance.getMatch();
             DisplayWinnerBorder(match);
             DisplayPlayer1Info(match);
-            DisplayPlayer2Info(match);            
+            DisplayPlayer2Info(match);
         }
 
         private void DisplayWinnerBorder(Match match)
         {
-            if(match.Winner != null)
+            if (match.Winner != null)
             {
                 if (match.Winner.Name == match.PlayerOne.Name)
                 {
