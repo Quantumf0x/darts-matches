@@ -344,6 +344,9 @@ namespace Darts_matches
                             match.PlayerTwo.AveragePerSet = (cummalativeAveragePlayer2 * thrownTurnPlayer2) / set;
                             match.PlayerOne.NumberOfMaxScores = numberOf180sPlayer1;
                             match.PlayerTwo.NumberOfMaxScores = numberOf180sPlayer2;
+
+                            DatabaseController.GetInstance().AddToDatabase(match.Name, match.Notes, match.PointsPerLeg, match.Winner.Name, match.PlayerOne.Name, match.PlayerTwo.Name, string.Empty, string.Empty, string.Empty, cummalativeAveragePlayer1, cummalativeAveragePlayer2, match.PlayerOne.AveragePerSet.ToString(), match.PlayerTwo.AveragePerSet.ToString(), match.PlayerOne.AveragePerLeg.ToString(), match.PlayerTwo.AveragePerLeg.ToString(), numberOf180sPlayer1, numberOf180sPlayer2, match.Date);
+
                             ApplicationWindow.Instance.SetFrame(new MatchResultsPage());
                         }                        
                     }
@@ -579,6 +582,9 @@ namespace Darts_matches
                             match.PlayerTwo.AveragePerSet = (cummalativeAveragePlayer2 * thrownTurnPlayer2) / set;
                             match.PlayerOne.NumberOfMaxScores = numberOf180sPlayer1;
                             match.PlayerTwo.NumberOfMaxScores = numberOf180sPlayer2;
+
+                            DatabaseController.GetInstance().AddToDatabase(match.Name, match.Notes, match.PointsPerLeg, match.Winner.Name, match.PlayerOne.Name, match.PlayerTwo.Name, string.Empty, string.Empty, string.Empty, cummalativeAveragePlayer1, cummalativeAveragePlayer2, match.PlayerOne.AveragePerSet.ToString(), match.PlayerTwo.AveragePerSet.ToString(), match.PlayerOne.AveragePerLeg.ToString(), match.PlayerTwo.AveragePerLeg.ToString(), numberOf180sPlayer1, numberOf180sPlayer2, match.Date);
+
                             ApplicationWindow.Instance.SetFrame(new MatchResultsPage());
                         }
                     }
