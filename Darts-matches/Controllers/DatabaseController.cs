@@ -64,7 +64,7 @@ namespace Darts_matches.Controllers
         private void SetupDatabase(string databasePath, string databaseLogPath)
         {
             // create database
-            _connection = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;Integrated security=True;");
+            _connection = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;Integrated security=False;");
             string createDatabaseString =
                 "DROP DATABASE DatabaseMatches;" +
                 "CREATE DATABASE DatabaseMatches ON PRIMARY " +
