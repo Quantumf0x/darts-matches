@@ -763,35 +763,6 @@ namespace Darts_matches
 
         private void checkFields(TextBox textbox)
         {
-
-            if (textbox.Text.Length > 3)
-            {
-                textbox.Text = textbox.Text.Substring(0, 3);
-                textbox.SelectionStart = textbox.Text.Length;
-            }
-
-            if (isInt(textbox.Text))
-            {
-                int[] impossibleScores = new int[] { 163, 166, 169, 172, 173, 175, 175, 178, 179 };
-                foreach (int impossibleScore in impossibleScores)
-                {
-                    if (Convert.ToInt32(textbox.Text) == impossibleScore)
-                    {
-                        textbox.Text = textbox.Text.Substring(0, 2);
-                        textbox.SelectionStart = textbox.Text.Length;
-                    }
-                }
-
-                if (Convert.ToInt32(textbox.Text) > 180)
-                {
-                    textbox.Text = textbox.Text.Substring(0, 2);
-                    textbox.SelectionStart = textbox.Text.Length;
-                }
-            }
-            else
-            {
-                textbox.Text = "";
-            }
         }
 
         private bool isInt(string text)
