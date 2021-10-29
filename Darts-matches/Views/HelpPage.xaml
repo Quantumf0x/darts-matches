@@ -41,10 +41,12 @@
         <Button Grid.Column="1" Grid.Row="1" Content="F1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="60" Height="60" Margin="100,60,10,20"/>
         <Button Grid.Column="1" Grid.Row="2" Content="Tab" HorizontalAlignment="Left" Width="60" Height="60" Margin="100,60,10,20"/>
         <Label Grid.Column="1" Grid.Row="2"  Content="Volgende veld"  Margin="178,71,350,32" FontSize="20" FontWeight="Light"/>
-        <Button Grid.Column="1" Grid.Row="3" Content="Ctrl" HorizontalAlignment="Left" Width="60" Height="60"/>
+        <Button Grid.Column="1" Grid.Row="3" Content="Shift" HorizontalAlignment="Left" Width="60" Height="60"/>
         <Label Grid.Column="1" Grid.Row="3"  Content="+" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30" Width="45" Margin="63,40,667,3"/>
         <Button Grid.Column="1" Grid.Row="3" Content="Tab" HorizontalAlignment="Left" Width="60" Height="60" Margin="100,60,10,20"/>
         <Label Grid.Column="1" Grid.Row="3"  Content="Vorige veld"  Margin="178,71,380,32" FontSize="20" FontWeight="Light"/>
         <Button Grid.Column="1" Grid.Row="4" Content="Sluiten" Padding="280,20,280,20"/>
+        <Button Grid.Column="1" Grid.Row="2" Content="Enter" HorizontalAlignment="Left" Width="84" Height="60" Margin="422,59,0,21"/>
+        <Label Grid.Column="1" Grid.Row="2"  Content="Volgende beurt"  Margin="510,71,284,32" FontSize="20" FontWeight="Light" Grid.ColumnSpan="2"/>
     </Grid>
 </Page>
