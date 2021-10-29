@@ -35,6 +35,11 @@ namespace Darts_matches.Controllers
             return _instance;
         }
 
+        public void KillInstance()
+        {
+            _instance = null;
+        }
+
         public void TestConnection()
         {
             Connect();
@@ -52,6 +57,15 @@ namespace Darts_matches.Controllers
             if (!File.Exists(databasePath))
             {
                 SetupDatabase(databasePath, databaseLogPath);
+
+                var process = Process.GetCurrentProcess();
+                string path = process.MainModule.FileName;
+
+                ProcessStartInfo startInfo = new ProcessStartInfo(path);
+                startInfo.WindowStyle = ProcessWindowStyle.Maximized;
+                Process.Start(startInfo);
+
+                process.Kill();
 
             }
             _connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='" + Environment.CurrentDirectory + @"\DatabaseMatches.mdf';Integrated Security=False;");
@@ -173,9 +187,9 @@ namespace Darts_matches.Controllers
         {
             Trace.WriteLine("Adding to database");
             AddToDatabase("Test match name", "niks", 501, "player1", "player1", "player2", "2:1:1:2:2", "2:3:3:1:1", "3:1:2:3:3", 50, 50, "130:70:50:10:30", "130:70:50:10:30", "105:101:80;80:30:50;40:60:50", "105:101:80;80:30:50;40:60:50", 4, 8, new DateTime(2021, 10, 20, 20, 30, 45));
-            AddToDatabase("Test match name", "niks", 501, "player1", "player1", "player2", "2:1:1:2:2", "2:3:3:1:1", "3:1:2:3:3", 50, 50, "130:70:50:10:30", "130:70:50:10:30", "105:101:80;80:30:50;40:60:50", "105:101:80;80:30:50;40:60:50", 4, 8, new DateTime(2021, 10, 21, 12, 44, 45));
-            AddToDatabase("Test match name", "niks", 501, "player1", "player1", "player2", "2:1:1:2:2", "2:3:3:1:1", "3:1:2:3:3", 50, 50, "130:70:50:10:30", "130:70:50:10:30", "105:101:80;80:30:50;40:60:50", "105:101:80;80:30:50;40:60:50", 4, 8, new DateTime(2021, 10, 22, 15, 30, 45));
-            AddToDatabase("Test match name", "niks", 501, "player1", "player1", "player2", "2:1:1:2:2", "2:3:3:1:1", "3:1:2:3:3", 50, 50, "130:70:50:10:30", "130:70:50:10:30", "105:101:80;80:30:50;40:60:50", "105:101:80;80:30:50;40:60:50", 4, 8, new DateTime(2021, 10, 23, 20, 17, 45));
+            //AddToDatabase("Test match name", "niks", 501, "player1", "player1", "player2", "2:1:1:2:2", "2:3:3:1:1", "3:1:2:3:3", 50, 50, "130:70:50:10:30", "130:70:50:10:30", "105:101:80;80:30:50;40:60:50", "105:101:80;80:30:50;40:60:50", 4, 8, new DateTime(2021, 10, 21, 12, 44, 45));
+            //AddToDatabase("Test match name", "niks", 501, "player1", "player1", "player2", "2:1:1:2:2", "2:3:3:1:1", "3:1:2:3:3", 50, 50, "130:70:50:10:30", "130:70:50:10:30", "105:101:80;80:30:50;40:60:50", "105:101:80;80:30:50;40:60:50", 4, 8, new DateTime(2021, 10, 22, 15, 30, 45));
+            //AddToDatabase("Test match name", "niks", 501, "player1", "player1", "player2", "2:1:1:2:2", "2:3:3:1:1", "3:1:2:3:3", 50, 50, "130:70:50:10:30", "130:70:50:10:30", "105:101:80;80:30:50;40:60:50", "105:101:80;80:30:50;40:60:50", 4, 8, new DateTime(2021, 10, 23, 20, 17, 45));
         }
 
         private void Connect()
