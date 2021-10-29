@@ -8,11 +8,13 @@ namespace Darts_matches.Models
         private List<Throw> _throws;
         private int _averagePerSet;
         private int _averagePerLeg;
+        private int _averagePerTurn;
         private int _numberOfMaxScores;
 
         public string Name { get => _name; }
         public int AveragePerSet { get => _averagePerSet; }
         public int AveragePerLeg { get => _averagePerLeg; }
+        public int AveragePerTurn { get => _averagePerTurn; }
         public int NumberOfMaxScores { get => _numberOfMaxScores; }
 
         public Player(string name)
@@ -40,6 +42,12 @@ namespace Darts_matches.Models
         public void CalculateAveragePerLeg(List<Leg> legs)
         {
             _averagePerLeg = 0;
+        }
+
+        // TODO: add logic to calculate average for the turns
+        public void CalculateAveragePerTurn(List<Leg> legs)
+        {
+            _averagePerTurn = 0;
         }
 
         // TODO: add logic to calculate number of max scores

@@ -35,7 +35,7 @@
         <Label Grid.Column="2" Content="Dartapplicatie" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontSize="40" Margin="0,-3,5,0"/>
         <Label Grid.Column="2" Content="Voor dartwedstrijden" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontSize="20" Grid.ColumnSpan="2" Margin="0,60,300,0"/>
 
-        <Border x:Name="player1_border" BorderBrush="Gold" BorderThickness="5" Grid.Column="1" Grid.Row="2" Width="300" Height="300"/>
+        <Border x:Name="player1_border" Grid.Column="1" Grid.Row="2" Width="300" Height="300"/>
         <TextBlock x:Name="lbl_name_player1" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="2" Text="Speler 1" FontSize="30" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Margin="0,24,0,0"/>
         <TextBlock HorizontalAlignment="Center" Grid.Row="2" Text="Gemiddelde per set:" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Margin="0,93,0,0" Grid.Column="1"/>
         <TextBlock x:Name="lbl_average_set_player1" HorizontalAlignment="Center" Grid.Row="2" Text="50" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="1" Margin="0,111,0,0"/>
@@ -46,9 +46,9 @@
         <TextBlock HorizontalAlignment="Center" Grid.Row="2" Text="Aantal 180's:" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="1" Margin="0,234,0,0"/>
         <TextBlock x:Name="lbl_amount_of_180s_player1" HorizontalAlignment="Center" Grid.Row="2" Text="50" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="1" Margin="0,252,0,0"/>
 
-        <TextBlock x:Name="winner_announcer_textblock" Grid.Column="2" Grid.Row="2" Text="Speler 1 is de winnaar!"  HorizontalAlignment="Center" FontWeight="Bold"/>
+        <TextBlock x:Name="winner_announcer_textblock" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" FontWeight="Bold"/>
 
-        <Border Name="player2_border" BorderBrush="Silver" BorderThickness="2" Grid.Column="3" Grid.Row="2" Width="300" Height="300"/>
+        <Border Name="player2_border" Grid.Column="3" Grid.Row="2" Width="300" Height="300"/>
         <TextBlock x:Name="lbl_name_player2" Grid.Column="3" HorizontalAlignment="Center" Grid.Row="2" Text="Speler 2" FontSize="30" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Margin="0,24,0,0"/>
         <TextBlock HorizontalAlignment="Center" Grid.Row="2" Text="Gemiddelde per set:" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Margin="0,93,0,0" Grid.Column="3"/>
         <TextBlock x:Name="lbl_average_set_player2" HorizontalAlignment="Center" Grid.Row="2" Text="50" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="3" Margin="0,111,0,0"/>
