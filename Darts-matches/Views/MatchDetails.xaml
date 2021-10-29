@@ -1,0 +1,60 @@
+﻿<Window x:Class="Darts_matches.Views.MatchDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Darts_matches.Views"
+        mc:Ignorable="d"
+        Title="MatchDetails" Height="700" Width="977">
+    <Grid Name="MatchDetailsGrid" HorizontalAlignment="Center" Width="977" Opacity="0.995">
+        <Grid.Resources>
+            <Style TargetType="Button">
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="Background" Value="#0078D7" />
+                <Setter Property="Foreground" Value="White" />
+            </Style>
+        </Grid.Resources>
+        <Grid.Background>
+            <ImageBrush x:Name="gridBackground" ImageSource="/Views/bg.jpg" Opacity="0"/>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="500" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <Label Grid.Column="1" Content="" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="15" Margin="0,-3,5,0"/>
+        <Label Grid.Column="2" Content="Match Details" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontSize="40" Margin="0,-3,5,0"/>
+        <Label Grid.Column="2" Content="Algemeen" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontSize="20" Grid.ColumnSpan="2" Margin="0,60,300,0"/>
+        <TextBlock x:Name="lbl_name_player1" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="2" Text="Speler 1" FontSize="30" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Margin="-2,0,0,0"/>
+        <TextBlock HorizontalAlignment="Left" Grid.Row="2" Text="Gemiddelde per set:" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Margin="-2,45,0,0" Grid.Column="1"/>
+        <TextBlock x:Name="lbl_average_per_set_player1" HorizontalAlignment="Right" Grid.Row="2" Text="50" TextAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Grid.Column="1" Margin="-2,66,0,0"/>
+        <TextBlock HorizontalAlignment="Center" Grid.Row="2" Text="Gemiddelde per leg" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="1" Margin="0,185,0,0" RenderTransformOrigin="0.496,3.729"/>
+        <TextBlock x:Name="lbl_average_per_leg_player1" HorizontalAlignment="Right" Grid.Row="2" Text="50" TextAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Grid.Column="1" Margin="0,206,0,0"/>
+        <TextBlock HorizontalAlignment="Center" Grid.Row="2" Text="Gemiddelde beurt wedstrijd" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="1" Margin="0,389,0,0"/>
+        <TextBlock x:Name="throw180a1" HorizontalAlignment="Center" Grid.Row="2" Text="Aantal keer 180 gegooid:" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="1" Margin="0,450,0,0"/>
+        <TextBlock x:Name="throw180a2" HorizontalAlignment="Center" Grid.Row="2" Text="Aantal keer 180 gegooid:" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="3" Margin="0,450,0,0"/>
+        <TextBlock x:Name="throw180b1" HorizontalAlignment="Center" Grid.Row="2" Text="5" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="1" Margin="0,480,0,0"/>
+        <TextBlock x:Name="throw180b2" HorizontalAlignment="Center" Grid.Row="2" Text="5" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="3" Margin="0,480,0,0"/>
+        <TextBlock x:Name="lbl_average_per_turn_player1" HorizontalAlignment="Center" Grid.Row="2" Text="50" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="1" Margin="0,410,0,0" RenderTransformOrigin="0.509,4"/>
+        <TextBlock x:Name="lbl_name_player2" Grid.Column="3" HorizontalAlignment="Center" Grid.Row="2" Text="Speler 2" FontSize="30" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
+        <TextBlock HorizontalAlignment="Center" Grid.Row="2" Text="Gemiddelde per set:" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Margin="0,45,0,0" Grid.Column="3"/>
+        <TextBlock x:Name="lbl_average_per_set_player2" HorizontalAlignment="Right" Grid.Row="2" Text="50" TextAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Grid.Column="3" Margin="0,66,0,0"/>
+        <TextBlock HorizontalAlignment="Center" Grid.Row="2" Text="Gemiddelde per leg" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="3" Margin="0,185,0,0"/>
+        <TextBlock x:Name="lbl_average_per_leg_player2" HorizontalAlignment="Right" Grid.Row="2" Text="50" TextAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Grid.Column="3" Margin="0,206,0,0"/>
+        <TextBlock HorizontalAlignment="Center" Grid.Row="2" Text="Gemiddelde beurt wedstrijd" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="300" Grid.Column="3" Margin="0,389,0,0"/>
+        <TextBlock x:Name="lbl_average_per_turn_player2" HorizontalAlignment="Center" Grid.Row="2" Text="50" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Grid.Column="3" Margin="0,410,0,0"/>
+        <TextBlock x:Name="matchName" Text="MatchName:" Grid.Column="2" HorizontalAlignment="Center" Margin="0,20,0,0" Grid.Row="2" VerticalAlignment="Top" Height="30" Width="200"/>
+        <TextBlock x:Name="date" Text="Date:" Grid.Column="2" HorizontalAlignment="Center" Margin="0,70,0,0" Grid.Row="2" VerticalAlignment="Top" Height="30" Width="200"/>
+        <TextBlock x:Name="emptyInput" TextWrapping="Wrap" Text="Leeg input:" Grid.Column="2" HorizontalAlignment="Center" Margin="0,170,0,0" Grid.Row="2" VerticalAlignment="Top" Height="100" Width="200"/>
+        <TextBlock x:Name="legSize" Text="Grootte van de leg:" Grid.Column="2" HorizontalAlignment="Center" Margin="0,120,0,0" Grid.Row="2" VerticalAlignment="Top" Height="30" Width="200"/>
+    </Grid>
+</Window>

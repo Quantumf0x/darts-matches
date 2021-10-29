@@ -23,7 +23,9 @@ namespace Darts_matches
 
         private void OpenHelpPage(object sender, RoutedEventArgs eventArguments)
         {
-            ApplicationWindow.Instance.SetFrame(new HelpPage());
+            HelpPage helpPage = new HelpPage();
+            helpPage.SetPreviousContext(this);
+            ApplicationWindow.Instance.SetFrame(helpPage);
         }
     }
 }

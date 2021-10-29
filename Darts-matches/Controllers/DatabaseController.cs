@@ -4,6 +4,7 @@ using System.Text;
 using System.Data.SqlClient;
 using System.IO;
 using System.Diagnostics;
+using System.Data;
 
 namespace Darts_matches.Controllers
 {
@@ -78,7 +79,7 @@ namespace Darts_matches.Controllers
                 " '" + legs_won_per_set_player1 + "', '" + legs_won_per_set_player2 + "', '" + average_per_3_darts_total_player1 + "'," +
                 " '" + average_per_3_darts_total_player2 + "', '" + average_per_3_darts_per_set_player1 + "', '" + average_per_3_darts_per_set_player2 + "'," +
                 " '" + average_per_3_darts_per_leg_player1 + "', '" + average_per_3_darts_per_leg_player2 + "', '" + number_180_player1 + "'," +
-                " '" + number_180_player2 + "', '" + date + "')";
+                " '" + number_180_player2 + "', '" + date.Year + date.Month + date.Day + "')";
             if (command.ExecuteNonQuery() == 1)
             {
                 _succes = true;
@@ -93,9 +94,41 @@ namespace Darts_matches.Controllers
             return _succes;
         }
 
-        public void PullFromDatabase()
+        public DataTable PullAllFromDatabase()
         {
-            throw new NotImplementedException();
+            Connect();
+            SqlCommand command = _connection.CreateCommand();
+            command.CommandText = "SELECT * FROM dbo.matches;";
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            DataTable dataTable = new DataTable();
+            dataTable.Load(reader);
+
+            Close();
+
+            return dataTable;
+        }
+
+        public object[] PullOneFromDatabase(int id)
+        {
+            Connect();
+            SqlCommand command = _connection.CreateCommand();
+            command.CommandText = "SELECT * FROM dbo.matches WHERE id = " + id + ";";
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            object[] data = new object[19];
+            while (reader.Read())
+            {
+                reader.GetValues(data);
+            }
+
+            reader.Close();
+
+            Close();
+
+            return data;
         }
     }
 }
