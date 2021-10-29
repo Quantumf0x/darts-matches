@@ -6,16 +6,16 @@ namespace Darts_matches.Models
     {
         private string _name;
         private List<Throw> _throws;
-        private int _averagePerSet;
-        private int _averagePerLeg;
-        private int _averagePerTurn;
-        private int _numberOfMaxScores;
+        private int _averagePerSet = 0;
+        private int _averagePerLeg = 0;
+        private int _averagePerTurn = 0;
+        private int _numberOfMaxScores = 0;
 
         public string Name { get => _name; }
-        public int AveragePerSet { get => _averagePerSet; }
-        public int AveragePerLeg { get => _averagePerLeg; }
-        public int AveragePerTurn { get => _averagePerTurn; }
-        public int NumberOfMaxScores { get => _numberOfMaxScores; }
+        public int AveragePerSet { get => _averagePerSet; set => _averagePerSet = value; }
+        public int AveragePerLeg { get => _averagePerLeg; set => _averagePerLeg = value; }
+        public int AveragePerTurn { get => _averagePerTurn; set => _averagePerTurn = value; }
+        public int NumberOfMaxScores { get => _numberOfMaxScores; set => _numberOfMaxScores = value; }
 
         public Player(string name)
         {

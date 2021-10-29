@@ -23,17 +23,20 @@ namespace Darts_matches
             {
                 if (match.Winner.Name == match.PlayerOne.Name)
                 {
-                    winner_announcer_textblock.Text = string.Format($"{0} is de winnaar!", match.PlayerOne.Name);
+                    winner_announcer_textblock.Text = string.Format("{0} is de winnaar!", match.PlayerOne.Name);
                     player1_border.BorderBrush = System.Windows.Media.Brushes.Gold;
                     player1_border.BorderThickness = new Thickness(5, 5, 5, 5);
                     player2_border.BorderBrush = System.Windows.Media.Brushes.Silver;
                     player2_border.BorderThickness = new Thickness(2, 2, 2, 2);
                 }
-                winner_announcer_textblock.Text = string.Format($"{0} is de winnaar!", match.PlayerTwo.Name);
-                player2_border.BorderBrush = System.Windows.Media.Brushes.Gold;
-                player2_border.BorderThickness = new Thickness(5, 5, 5, 5);
-                player1_border.BorderBrush = System.Windows.Media.Brushes.Silver;
-                player1_border.BorderThickness = new Thickness(2, 2, 2, 2);
+                else
+                {
+                    winner_announcer_textblock.Text = string.Format("{0} is de winnaar!", match.PlayerTwo.Name);
+                    player2_border.BorderBrush = System.Windows.Media.Brushes.Gold;
+                    player2_border.BorderThickness = new Thickness(5, 5, 5, 5);
+                    player1_border.BorderBrush = System.Windows.Media.Brushes.Silver;
+                    player1_border.BorderThickness = new Thickness(2, 2, 2, 2);
+                }
             }
         }
         private void DisplayPlayer1Info(Match match)
@@ -48,9 +51,9 @@ namespace Darts_matches
         {
             lbl_name_player2.Text = match.PlayerTwo.Name;
             lbl_average_set_player2.Text = match.PlayerTwo.AveragePerSet.ToString();
-            lbl_average_leg_player2.Text = match.PlayerTwo.AveragePerSet.ToString();
-            lbl_average_turn_player2.Text = match.PlayerTwo.AveragePerSet.ToString();
-            lbl_amount_of_180s_player2.Text = match.PlayerTwo.AveragePerSet.ToString();
+            lbl_average_leg_player2.Text = match.PlayerTwo.AveragePerLeg.ToString();
+            lbl_average_turn_player2.Text = match.PlayerTwo.AveragePerTurn.ToString();
+            lbl_amount_of_180s_player2.Text = match.PlayerTwo.NumberOfMaxScores.ToString();
         }
 
         void IKeyHandler.handleKeyEvent(KeyEventArgs keyEventArgs)
