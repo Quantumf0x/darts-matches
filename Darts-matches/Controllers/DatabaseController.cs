@@ -215,7 +215,7 @@ namespace Darts_matches.Controllers
                 " '" + legs_won_per_set_player1 + "', '" + legs_won_per_set_player2 + "', '" + average_per_3_darts_total_player1 + "'," +
                 " '" + average_per_3_darts_total_player2 + "', '" + average_per_3_darts_per_set_player1 + "', '" + average_per_3_darts_per_set_player2 + "'," +
                 " '" + average_per_3_darts_per_leg_player1 + "', '" + average_per_3_darts_per_leg_player2 + "', '" + number_180_player1 + "'," +
-                " '" + number_180_player2 + "', '" + date.Year + date.Month + date.Day + "')";
+                " '" + number_180_player2 + "', '" + date + "')";
 
             try
             {
